@@ -7,14 +7,16 @@
 
 // Changes to proposal.md must be discussed with Mr. Schellenberg
 
-let screenBrightness;
 let questionScreen = "Start";
 let colours = ["red", "blue", "green", "purple"];
 let songs = [];
 
+let startText;
+let startRect;
+
 let firstQuestion;
 
-class Layout {
+class Question {
   constructor() {
     this.space = map(2.5, 0, 100, 0, width);
 
@@ -80,23 +82,38 @@ function windowResized() {
 }
 
 function draw() {
-  preference();
+  background("whitesmoke");
+  start();
+  // questions();
 }
 
-function preference() {
-  let screenBrightness = prompt("Do you want to take this quiz in light mode or dark mode?");
+function start() {
+  let startText = {
+    x: 0,
+    y: 0,
+    w: width,
+    h: height,
+    size: height/10,
+  };
 
-  if (screenBrightness === "l") {
-    background("whitesmoke");
-  }
+  let startRect = {
+    x: width/2 - map(30, 0, 100, 0, width)/2,
+    y: 0.75*height,
+    w: map(30, 0, 100, 0, width),
+    h: height/10,
+  };
 
-  else {
-    background(0);
-  }
+  textAlign(CENTER, CENTER);
+  textSize(startText.size);
+  text("Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!", startText.x, startText.y, startText.w, startText.h);
+
+  rect(startRect.x, startRect.y, startRect.w, startRect.h);
+  text("START", startRect.x, startRect.y, startRect.w, startRect.h);
 }
 
 function question1() {
-  let firstQuestion = new Layout;
+  let firstQuestion = new Question;
+  questionScreen = 1;
   fill(colours[0]);
   firstQuestion.question();
   firstQuestion.choice1();
