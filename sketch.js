@@ -75,16 +75,63 @@ class Question {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  startText = {
+    x: 0,
+    y: 0,
+    w: width,
+    h: height,
+
+    size: map(5, 0, 100, 0, width),
+    lower: 0.75*height + height/200,
+    description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
+    button: "START",
+  };
+
+  startRect = {
+    x: width/2 - map(30, 0, 100, 0, width)/2,
+    y: 0.75*height,
+    w: map(30, 0, 100, 0, width),
+    h: height/10,
+  };
 }
 
 function windowResized() {
   createCanvas(windowWidth, windowHeight);
+
+  startText = {
+    x: 0,
+    y: 0,
+    w: width,
+    h: height,
+
+    size: map(5, 0, 100, 0, width),
+    lower: 0.75*height + height/200,
+    description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
+    button: "START",
+  };
+
+  startRect = {
+    x: width/2 - map(30, 0, 100, 0, width)/2,
+    y: 0.75*height,
+    w: map(30, 0, 100, 0, width),
+    h: height/10,
+  };
 }
 
 function draw() {
   background("whitesmoke");
   start();
-  // questions();
+
+  if (questionScreen !== "Start") {
+    questions();
+  }
+}
+
+function mousePressed() {
+  if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h) {
+    questionScreen = 1;
+  }
 }
 
 function start() {
@@ -93,7 +140,11 @@ function start() {
     y: 0,
     w: width,
     h: height,
-    size: height/10,
+
+    size: map(5, 0, 100, 0, width),
+    lower: 0.75*height + height/200,
+    description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
+    button: "START",
   };
 
   let startRect = {
@@ -105,16 +156,29 @@ function start() {
 
   textAlign(CENTER, CENTER);
   textSize(startText.size);
-  text("Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!", startText.x, startText.y, startText.w, startText.h);
 
-  rect(startRect.x, startRect.y, startRect.w, startRect.h);
-  text("START", startRect.x, startRect.y, startRect.w, startRect.h);
+  if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h) {
+    fill("black");
+    text(startText.description, startText.x, startText.y, startText.w, startText.h);
+    rect(startRect.x, startRect.y, startRect.w, startRect.h);
+    fill("white");
+    text(startText.button, startRect.x, startText.lower, startRect.w, startRect.h);
+  }
+
+  else {
+    fill("white");
+    rect(startRect.x, startRect.y, startRect.w, startRect.h);
+    fill("black");
+    text(startText.description, startText.x, startText.y, startText.w, startText.h);
+    text(startText.button, startRect.x, startText.lower, startRect.w, startRect.h);
+  }
 }
 
 function question1() {
+  clear();
   let firstQuestion = new Question;
-  questionScreen = 1;
   fill(colours[0]);
+  
   firstQuestion.question();
   firstQuestion.choice1();
   firstQuestion.choice2();
