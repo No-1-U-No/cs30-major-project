@@ -18,58 +18,103 @@ let firstQuestion;
 
 class Question {
   constructor() {
-    this.space = map(2.5, 0, 100, 0, width);
+    if (width > height) {
+      this.questionX = map(25, 0, 100, 0, width);
+      this.questionWidth = map(50, 0, 100, 0, width);
 
-    this.questionX = width/4;
+      this.choices1and3x = map(25, 0, 100, 0, width);
+      this.choicesWidth = map(22.5, 0, 100, 0, width);
+
+      this.backX = map(25, 0, 100, 0, width);
+      this.backNextWidth = map(20, 0, 100, 0, width);
+    }
+
+    else {
+      this.questionX = map(5, 0, 100, 0, width);
+      this.questionWidth = map(90, 0, 100, 0, width);
+
+      this.choices1and3x = map(5, 0, 100, 0, width);
+      this.choicesWidth = map(42.5, 0, 100, 0, width);
+      
+      this.backX = map(5, 0, 100, 0, width);
+      this.backNextWidth = map(40, 0, 100, 0, width);
+    }
+
     this.questionY = map(5, 0, 100, 0, height);
-    this.questionWidth = width/2;
-    this.questionHeight = height/4;
+    this.questionHeight = map(25, 0, 100, 0, height);
 
-    this.choices1and3x = width/4;
-    this.choices2and4x = width/2 + map(2.5, 0, 100, 0, width);
+    this.choices2and4x = map(52.5, 0, 100, 0, width);
 
-    this.choices1and2y = height/4 + 2*map(2.5, 0, 100, 0, width);
-    this.choices3and4y = 3*height/8 + 3*map(2.5, 0, 100, 0, width);
+    this.choices1and2y = map(35, 0, 100, 0, height);
+    this.choices3and4y = map(62.5, 0, 100, 0, height);
+    this.choicesHeight = map(22.5, 0, 100, 0, height);
 
-    this.choicesWidth = width/4 - map(2.5, 0, 100, 0, width);
-    this.choicesHeight = height/8;
-
-    this.backX = width/4;
-    this.nextX = width/2 + 2*map(2.5, 0, 100, 0, width);
+    this.nextX = map(55, 0, 100, 0, width);
 
     this.backNextY = map(90, 0, 100, 0, height);
-    this.backNextWidth = width/5;
-    this.backNextHeight = height/16;
+    this.backNextHeight = map(7.5, 0, 100, 0, height);
   }
 
-  question() {
+  questionRect() {
     noStroke();
     rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
   }
 
-  choice1() {
+  choice1rect() {
     rect(this.choices1and3x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
   }
 
-  choice2() {
+  choice2rect() {
     rect(this.choices2and4x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
   }
 
-  choice3() {
+  choice3rect() {
     rect(this.choices1and3x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
   }
 
-  choice4() {
+  choice4rect() {
     rect(this.choices2and4x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
   }
 
-  back() {
-    fill("black");
+  backRect() {
+    noFill();
+    stroke("black");
     rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
   }
 
-  next() {
+  nextRect() {
     rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
+  }
+
+  questionText(someText) {
+    noStroke();
+    fill("white");
+    text(someText, this.questionX, this.questionY, this.questionWidth, this.questionHeight);
+  }
+
+  choice1text(someText) {
+    text(someText, this.choices1and3x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
+  }
+
+  choice2text(someText) {
+    text(someText, this.choices2and4x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
+  }
+
+  choice3text(someText) {
+    text(someText, this.choices1and3x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
+  }
+
+  choice4text(someText) {
+    text(someText, this.choices2and4x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
+  }
+
+  backText() {
+    fill("black");
+    text("BACK", this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
+  }
+
+  nextText() {
+    text("NEXT", this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
   }
 }
 
@@ -83,16 +128,16 @@ function setup() {
     h: height,
 
     size: map(5, 0, 100, 0, width),
-    lower: 0.75*height + height/200,
+    lower: map(75.5, 0, 100, 0, height),
     description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
     button: "START",
   };
 
   startRect = {
-    x: width/2 - map(30, 0, 100, 0, width)/2,
-    y: 0.75*height,
+    x: map(35, 0, 100, 0, width),
+    y: map(75, 0, 100, 0, height),
     w: map(30, 0, 100, 0, width),
-    h: height/10,
+    h: map(10, 0, 100, 0, height),
   };
 }
 
@@ -106,16 +151,16 @@ function windowResized() {
     h: height,
 
     size: map(5, 0, 100, 0, width),
-    lower: 0.75*height + height/200,
+    lower: map(75.5, 0, 100, 0, height),
     description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
     button: "START",
   };
 
   startRect = {
-    x: width/2 - map(30, 0, 100, 0, width)/2,
-    y: 0.75*height,
+    x: map(35, 0, 100, 0, width),
+    y: map(75, 0, 100, 0, height),
     w: map(30, 0, 100, 0, width),
-    h: height/10,
+    h: map(10, 0, 100, 0, height),
   };
 }
 
@@ -129,31 +174,12 @@ function draw() {
 }
 
 function mousePressed() {
-  if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h) {
+  if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h && questionScreen === "Start") {
     questionScreen = 1;
   }
 }
 
 function start() {
-  let startText = {
-    x: 0,
-    y: 0,
-    w: width,
-    h: height,
-
-    size: map(5, 0, 100, 0, width),
-    lower: 0.75*height + height/200,
-    description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
-    button: "START",
-  };
-
-  let startRect = {
-    x: width/2 - map(30, 0, 100, 0, width)/2,
-    y: 0.75*height,
-    w: map(30, 0, 100, 0, width),
-    h: height/10,
-  };
-
   textAlign(CENTER, CENTER);
   textSize(startText.size);
 
@@ -179,13 +205,21 @@ function question1() {
   let firstQuestion = new Question;
   fill(colours[0]);
   
-  firstQuestion.question();
-  firstQuestion.choice1();
-  firstQuestion.choice2();
-  firstQuestion.choice3();
-  firstQuestion.choice4();
-  firstQuestion.back();
-  firstQuestion.next();
+  firstQuestion.questionRect();
+  firstQuestion.choice1rect();
+  firstQuestion.choice2rect();
+  firstQuestion.choice3rect();
+  firstQuestion.choice4rect();
+  firstQuestion.backRect();
+  firstQuestion.nextRect();
+  
+  firstQuestion.questionText("Which is your favourite genre of music?");
+  firstQuestion.choice1text("YO");
+  firstQuestion.choice2text("YO");
+  firstQuestion.choice3text("YO");
+  firstQuestion.choice4text("YO");
+  firstQuestion.backText();
+  firstQuestion.nextText();
 }
 
 function questions() {
