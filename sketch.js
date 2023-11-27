@@ -53,6 +53,8 @@ class Question {
 
     this.backNextY = map(90, 0, 100, 0, height);
     this.backNextHeight = map(7.5, 0, 100, 0, height);
+
+    this.lower = map(0.5, 0, 100, 0, height);
   }
 
   questionRect() {
@@ -89,32 +91,33 @@ class Question {
   questionText(someText) {
     noStroke();
     fill("white");
-    text(someText, this.questionX, this.questionY, this.questionWidth, this.questionHeight);
+    text(someText, this.questionX, this.questionY + this.lower, this.questionWidth, this.questionHeight);
   }
 
   choice1text(someText) {
-    text(someText, this.choices1and3x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
+    text(someText, this.choices1and3x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
   }
 
   choice2text(someText) {
-    text(someText, this.choices2and4x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
+    text(someText, this.choices2and4x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
   }
 
   choice3text(someText) {
-    text(someText, this.choices1and3x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
+    text(someText, this.choices1and3x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
   }
 
   choice4text(someText) {
-    text(someText, this.choices2and4x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
+    text(someText, this.choices2and4x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
   }
 
   backText() {
     fill("black");
-    text("BACK", this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
+    textSize(this.backNextHeight);
+    text("BACK", this.backX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
   }
 
   nextText() {
-    text("NEXT", this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
+    text("NEXT", this.nextX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
   }
 }
 
@@ -127,10 +130,12 @@ function setup() {
     w: width,
     h: height,
 
-    size: map(5, 0, 100, 0, width),
-    lower: map(75.5, 0, 100, 0, height),
     description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
+    descriptionSize: map(5, 0, 100, 0, width),
     button: "START",
+    buttonSize: map(10, 0, 100, 0, height),
+    
+    lower: map(75.5, 0, 100, 0, height),
   };
 
   startRect = {
@@ -150,10 +155,12 @@ function windowResized() {
     w: width,
     h: height,
 
-    size: map(5, 0, 100, 0, width),
-    lower: map(75.5, 0, 100, 0, height),
     description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
+    descriptionSize: map(5, 0, 100, 0, width),
     button: "START",
+    buttonSize: map(10, 0, 100, 0, height),
+    
+    lower: map(75.5, 0, 100, 0, height),
   };
 
   startRect = {
@@ -177,17 +184,22 @@ function mousePressed() {
   if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h && questionScreen === "Start") {
     questionScreen = 1;
   }
+
+  if (mouseX >= firstQuestion.choices1and3x && mouseX <= firstQuestion.choices1and3x + firstQuestion.choicesWidth && mouseY >= firstQuestion.choices1and2y && mouseY <= firstQuestion.choices1and2y + firstQuestion.choicesHeight && questionScreen === 1) {
+    background(0);
+  }
 }
 
 function start() {
   textAlign(CENTER, CENTER);
-  textSize(startText.size);
+  textSize(startText.descriptionSize);
 
   if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h) {
     fill("black");
     text(startText.description, startText.x, startText.y, startText.w, startText.h);
     rect(startRect.x, startRect.y, startRect.w, startRect.h);
     fill("white");
+    textSize(startText.buttonSize);
     text(startText.button, startRect.x, startText.lower, startRect.w, startRect.h);
   }
 
@@ -196,14 +208,16 @@ function start() {
     rect(startRect.x, startRect.y, startRect.w, startRect.h);
     fill("black");
     text(startText.description, startText.x, startText.y, startText.w, startText.h);
+    textSize(startText.buttonSize);
     text(startText.button, startRect.x, startText.lower, startRect.w, startRect.h);
   }
 }
 
 function question1() {
   clear();
-  let firstQuestion = new Question;
   fill(colours[0]);
+  
+  firstQuestion = new Question;
   
   firstQuestion.questionRect();
   firstQuestion.choice1rect();
