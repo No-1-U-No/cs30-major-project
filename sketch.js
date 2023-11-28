@@ -8,13 +8,16 @@
 // Changes to proposal.md must be discussed with Mr. Schellenberg
 
 let questionScreen = "Start";
-let colours = ["red", "blue", "green", "purple"];
+let colours;
 let songs = [];
+
+let choices;
 
 let startText;
 let startRect;
 
-let firstQuestion;
+let question;
+let questionsArray = [];
 
 class Question {
   constructor() {
@@ -120,34 +123,36 @@ class Question {
     text("NEXT", this.nextX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
   }
 
-  choice1selected() {
-    if (mouseX >= this.choices1and3x && mouseX <= this.choices1and3x + this.choicesWidth && mouseY >= this.choices1and2y && mouseY <= this.choices1and2y + this.choicesHeight) {
-      stroke(200);
-      fill(200);
-      this.choice2rect();
-      this.choice3rect();
-      this.choice4rect();
+  // choice1selected() {
+  //   if (mouseX >= this.choices1and3x && mouseX <= this.choices1and3x + this.choicesWidth && mouseY >= this.choices1and2y && mouseY <= this.choices1and2y + this.choicesHeight) {
+  //     stroke(200);
+  //     fill(200);
+  //     this.choice2rect();
+  //     this.choice3rect();
+  //     this.choice4rect();
 
-      fill("white");
-      textSize(startText.buttonSize);
-      this.choice2text(choices[1]);
-      this.choice3text(choices[2]);
-      this.choice4text(choices[3]);
+  //     fill("white");
+  //     textSize(startText.buttonSize);
+  //     this.choice2text(choices[1]);
+  //     this.choice3text(choices[2]);
+  //     this.choice4text(choices[3]);
 
-      strokeWeight(5);
-      stroke("black");
-      this.nextRect();
+  //     strokeWeight(5);
+  //     stroke("black");
+  //     this.nextRect();
 
-      strokeWeight(1);
-      fill("black");
-      textSize(startText.descriptionSize);
-      this.nextText();
-    }
-  }
+  //     strokeWeight(1);
+  //     fill("black");
+  //     textSize(this.backNextHeight);
+  //     this.nextText();
+  //   }
+  // }
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  colours = random(["red", "blue", "green", "purple"]);
 
   startText = {
     x: 0,
@@ -169,6 +174,8 @@ function setup() {
     w: map(30, 0, 100, 0, width),
     h: map(10, 0, 100, 0, height),
   };
+
+  createQuestions();
 }
 
 function windowResized() {
@@ -209,6 +216,29 @@ function mousePressed() {
   if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h && questionScreen === "Start") {
     questionScreen = 1;
   }
+
+  if (mouseX >= question.choices1and3x && mouseX <= question.choices1and3x + question.choicesWidth && mouseY >= question.choices1and2y && mouseY <= question.choices1and2y + question.choicesHeight && questionScreen !== "Start") {
+    stroke(200);
+    fill(200);
+    question.choice2rect();
+    question.choice3rect();
+    question.choice4rect();
+
+    fill("white");
+    textSize(startText.buttonSize);
+    question.choice2text(choices[1]);
+    question.choice3text(choices[2]);
+    question.choice4text(choices[3]);
+
+    strokeWeight(5);
+    stroke("black");
+    question.nextRect();
+
+    strokeWeight(1);
+    fill("black");
+    textSize(question.backNextHeight);
+    question.nextText();
+  }
 }
 
 function start() {
@@ -234,32 +264,33 @@ function start() {
   }
 }
 
-function question1() {
-  clear();
-  fill(colours[0]);
-  
-  firstQuestion = new Question;
-  choices = ["YO", "YO", "YO", "YO"];
-  
-  firstQuestion.questionRect();
-  firstQuestion.choice1rect();
-  firstQuestion.choice2rect();
-  firstQuestion.choice3rect();
-  firstQuestion.choice4rect();
-  firstQuestion.backRect();
-  firstQuestion.nextRect();
-  
-  firstQuestion.questionText("Which is your favourite genre of music?");
-  firstQuestion.choice1text(choices[0]);
-  firstQuestion.choice2text(choices[1]);
-  firstQuestion.choice3text(choices[2]);
-  firstQuestion.choice4text(choices[3]);
-  firstQuestion.backText();
-  firstQuestion.nextText();
-
-  firstQuestion.choice1selected();
+function createQuestions() {
+  for (let i = 0; i < 20; i++) {
+    question = new Question;
+    questionsArray.push(question);
+  }
 }
 
 function questions() {
-  question1();
+  clear();
+  fill(colours);
+  choices = ["G", "A", "B", "E"];
+  
+  question.questionRect();
+  question.choice1rect();
+  question.choice2rect();
+  question.choice3rect();
+  question.choice4rect();
+  question.backRect();
+  question.nextRect();
+  
+  question.questionText("Which is your favourite genre of music?");
+  question.choice1text(choices[0]);
+  question.choice2text(choices[1]);
+  question.choice3text(choices[2]);
+  question.choice4text(choices[3]);
+  question.backText();
+  question.nextText();
+
+  // question.choice1selected();
 }
