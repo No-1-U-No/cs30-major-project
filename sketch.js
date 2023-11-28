@@ -94,20 +94,20 @@ class Question {
     text(someText, this.questionX, this.questionY + this.lower, this.questionWidth, this.questionHeight);
   }
 
-  choice1text(someText) {
-    text(someText, this.choices1and3x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
+  choice1text() {
+    text(choices[0], this.choices1and3x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
   }
 
-  choice2text(someText) {
-    text(someText, this.choices2and4x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
+  choice2text() {
+    text(choices[1], this.choices2and4x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
   }
 
-  choice3text(someText) {
-    text(someText, this.choices1and3x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
+  choice3text() {
+    text(choices[2], this.choices1and3x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
   }
 
-  choice4text(someText) {
-    text(someText, this.choices2and4x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
+  choice4text() {
+    text(choices[3], this.choices2and4x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
   }
 
   backText() {
@@ -118,6 +118,31 @@ class Question {
 
   nextText() {
     text("NEXT", this.nextX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
+  }
+
+  choice1selected() {
+    if (mouseX >= this.choices1and3x && mouseX <= this.choices1and3x + this.choicesWidth && mouseY >= this.choices1and2y && mouseY <= this.choices1and2y + this.choicesHeight) {
+      stroke(200);
+      fill(200);
+      this.choice2rect();
+      this.choice3rect();
+      this.choice4rect();
+
+      fill("white");
+      textSize(startText.buttonSize);
+      this.choice2text(choices[1]);
+      this.choice3text(choices[2]);
+      this.choice4text(choices[3]);
+
+      strokeWeight(5);
+      stroke("black");
+      this.nextRect();
+
+      strokeWeight(1);
+      fill("black");
+      textSize(startText.descriptionSize);
+      this.nextText();
+    }
   }
 }
 
@@ -184,10 +209,6 @@ function mousePressed() {
   if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h && questionScreen === "Start") {
     questionScreen = 1;
   }
-
-  if (mouseX >= firstQuestion.choices1and3x && mouseX <= firstQuestion.choices1and3x + firstQuestion.choicesWidth && mouseY >= firstQuestion.choices1and2y && mouseY <= firstQuestion.choices1and2y + firstQuestion.choicesHeight && questionScreen === 1) {
-    background(0);
-  }
 }
 
 function start() {
@@ -218,6 +239,7 @@ function question1() {
   fill(colours[0]);
   
   firstQuestion = new Question;
+  choices = ["YO", "YO", "YO", "YO"];
   
   firstQuestion.questionRect();
   firstQuestion.choice1rect();
@@ -228,12 +250,14 @@ function question1() {
   firstQuestion.nextRect();
   
   firstQuestion.questionText("Which is your favourite genre of music?");
-  firstQuestion.choice1text("YO");
-  firstQuestion.choice2text("YO");
-  firstQuestion.choice3text("YO");
-  firstQuestion.choice4text("YO");
+  firstQuestion.choice1text(choices[0]);
+  firstQuestion.choice2text(choices[1]);
+  firstQuestion.choice3text(choices[2]);
+  firstQuestion.choice4text(choices[3]);
   firstQuestion.backText();
   firstQuestion.nextText();
+
+  firstQuestion.choice1selected();
 }
 
 function questions() {
