@@ -8,16 +8,16 @@
 // Changes to proposal.md must be discussed with Mr. Schellenberg
 
 let questionScreen = "Start";
-let colours;
-let songs = [];
 
+let songs = [];
+let questionsArray = [];
+
+let colours;
+let question;
 let choices;
 
 let startText;
 let startRect;
-
-let question;
-let questionsArray = [];
 
 class Question {
   constructor() {
@@ -217,27 +217,32 @@ function mousePressed() {
     questionScreen = 1;
   }
 
-  if (mouseX >= question.choices1and3x && mouseX <= question.choices1and3x + question.choicesWidth && mouseY >= question.choices1and2y && mouseY <= question.choices1and2y + question.choicesHeight && questionScreen !== "Start") {
-    stroke(200);
-    fill(200);
-    question.choice2rect();
-    question.choice3rect();
-    question.choice4rect();
-
-    fill("white");
-    textSize(startText.buttonSize);
-    question.choice2text(choices[1]);
-    question.choice3text(choices[2]);
-    question.choice4text(choices[3]);
-
-    strokeWeight(5);
-    stroke("black");
-    question.nextRect();
-
-    strokeWeight(1);
-    fill("black");
-    textSize(question.backNextHeight);
-    question.nextText();
+  // needs fixing
+  for (let item of questionsArray) {
+    if (mouseX >= item.choices1and3x && mouseX <= item.choices1and3x + item.choicesWidth && mouseY >= item.choices1and2y && mouseY <= item.choices1and2y + item.choicesHeight && questionScreen !== "Start") {
+      stroke(200);
+      fill(200);
+      item.choice2rect();
+      item.choice3rect();
+      item.choice4rect();
+  
+      fill("white");
+      textSize(startText.buttonSize);
+      item.choice2text(choices[1]);
+      item.choice3text(choices[2]);
+      item.choice4text(choices[3]);
+  
+      strokeWeight(5);
+      stroke("black");
+      item.nextRect();
+  
+      strokeWeight(1);
+      fill("black");
+      textSize(item.backNextHeight);
+      item.nextText();
+    }
+    console.log(item);
+    console.log(item.choices1and3x);
   }
 }
 
