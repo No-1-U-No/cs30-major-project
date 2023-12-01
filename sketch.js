@@ -123,30 +123,30 @@ class Question {
     text("NEXT", this.nextX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
   }
 
-  // choice1selected() {
-  //   if (mouseX >= this.choices1and3x && mouseX <= this.choices1and3x + this.choicesWidth && mouseY >= this.choices1and2y && mouseY <= this.choices1and2y + this.choicesHeight) {
-  //     stroke(200);
-  //     fill(200);
-  //     this.choice2rect();
-  //     this.choice3rect();
-  //     this.choice4rect();
+  choice1selected() {
+    if (mouseX >= this.choices1and3x && mouseX <= this.choices1and3x + this.choicesWidth && mouseY >= this.choices1and2y && mouseY <= this.choices1and2y + this.choicesHeight) {
+      stroke(200);
+      fill(200);
+      this.choice2rect();
+      this.choice3rect();
+      this.choice4rect();
 
-  //     fill("white");
-  //     textSize(startText.buttonSize);
-  //     this.choice2text(choices[1]);
-  //     this.choice3text(choices[2]);
-  //     this.choice4text(choices[3]);
+      fill("white");
+      textSize(startText.buttonSize);
+      this.choice2text(choices[1]);
+      this.choice3text(choices[2]);
+      this.choice4text(choices[3]);
 
-  //     strokeWeight(5);
-  //     stroke("black");
-  //     this.nextRect();
+      strokeWeight(5);
+      stroke("black");
+      this.nextRect();
 
-  //     strokeWeight(1);
-  //     fill("black");
-  //     textSize(this.backNextHeight);
-  //     this.nextText();
-  //   }
-  // }
+      strokeWeight(1);
+      fill("black");
+      textSize(this.backNextHeight);
+      this.nextText();
+    }
+  }
 }
 
 function setup() {
@@ -217,32 +217,10 @@ function mousePressed() {
     questionScreen = 1;
   }
 
-  // needs fixing
+  // needs modifying
   for (let item of questionsArray) {
-    if (mouseX >= item.choices1and3x && mouseX <= item.choices1and3x + item.choicesWidth && mouseY >= item.choices1and2y && mouseY <= item.choices1and2y + item.choicesHeight && questionScreen !== "Start") {
-      stroke(200);
-      fill(200);
-      item.choice2rect();
-      item.choice3rect();
-      item.choice4rect();
-  
-      fill("white");
-      textSize(startText.buttonSize);
-      item.choice2text(choices[1]);
-      item.choice3text(choices[2]);
-      item.choice4text(choices[3]);
-  
-      strokeWeight(5);
-      stroke("black");
-      item.nextRect();
-  
-      strokeWeight(1);
-      fill("black");
-      textSize(item.backNextHeight);
-      item.nextText();
-    }
-    console.log(item);
-    console.log(item.choices1and3x);
+    item.choice1selected();
+    noLoop();
   }
 }
 
@@ -296,6 +274,4 @@ function questions() {
   question.choice4text(choices[3]);
   question.backText();
   question.nextText();
-
-  // question.choice1selected();
 }
