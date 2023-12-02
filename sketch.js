@@ -16,6 +16,11 @@ let colours;
 let question;
 let choices;
 
+let choice1selected;
+let choice2selected;
+let choice3selected;
+let choice4selected;
+
 let startText;
 let startRect;
 
@@ -125,6 +130,7 @@ class Question {
 
   choice1selected() {
     if (mouseX >= this.choices1and3x && mouseX <= this.choices1and3x + this.choicesWidth && mouseY >= this.choices1and2y && mouseY <= this.choices1and2y + this.choicesHeight) {
+      choice1selected = true;
       stroke(200);
       fill(200);
       this.choice2rect();
@@ -144,6 +150,13 @@ class Question {
       strokeWeight(1);
       fill("black");
       textSize(this.backNextHeight);
+      this.nextText();
+    }
+    
+    if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
+      fill("black");
+      this.nextRect();
+      fill("white");
       this.nextText();
     }
   }
@@ -176,6 +189,11 @@ function setup() {
   };
 
   createQuestions();
+
+  choice1selected = false;
+  choice2selected = false;
+  choice3selected = false;
+  choice4selected = false;
 }
 
 function windowResized() {
