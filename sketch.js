@@ -16,6 +16,10 @@ let colours;
 let question;
 let choices;
 
+let questionX, questionWidth, choices1and3x, choicesWidth, backX, backNextWidth;
+
+let questionY, questionHeight, choices2and4x, choices1and2y, choices3and4y, choicesHeight, nextX, backNextY, backNextHeight, lower;
+
 let choice1selected;
 let choice2selected;
 let choice3selected;
@@ -26,47 +30,37 @@ let startRect;
 
 class Question {
   constructor() {
-    if (width > height) {
-      this.questionX = map(25, 0, 100, 0, width);
-      this.questionWidth = map(50, 0, 100, 0, width);
+    this.questionX = questionX;
+    this.questionWidth = questionWidth;
 
-      this.choices1and3x = map(25, 0, 100, 0, width);
-      this.choicesWidth = map(22.5, 0, 100, 0, width);
+    this.choices1and3x = choices1and3x;
+    this.choicesWidth = choicesWidth;
 
-      this.backX = map(25, 0, 100, 0, width);
-      this.backNextWidth = map(20, 0, 100, 0, width);
-    }
+    this.backX = backX;
+    this.backNextWidth = backNextWidth;
 
-    else {
-      this.questionX = map(5, 0, 100, 0, width);
-      this.questionWidth = map(90, 0, 100, 0, width);
+    this.questionY = questionY;
+    this.questionHeight = questionHeight;
 
-      this.choices1and3x = map(5, 0, 100, 0, width);
-      this.choicesWidth = map(42.5, 0, 100, 0, width);
-      
-      this.backX = map(5, 0, 100, 0, width);
-      this.backNextWidth = map(40, 0, 100, 0, width);
-    }
+    this.choices2and4x = choices2and4x;
 
-    this.questionY = map(5, 0, 100, 0, height);
-    this.questionHeight = map(25, 0, 100, 0, height);
+    this.choices1and2y = choices1and2y;
+    this.choices3and4y = choices3and4y;
+    this.choicesHeight = choicesHeight;
 
-    this.choices2and4x = map(52.5, 0, 100, 0, width);
+    this.nextX = nextX;
 
-    this.choices1and2y = map(35, 0, 100, 0, height);
-    this.choices3and4y = map(62.5, 0, 100, 0, height);
-    this.choicesHeight = map(22.5, 0, 100, 0, height);
+    this.backNextY = backNextY;
+    this.backNextHeight = backNextHeight;
 
-    this.nextX = map(55, 0, 100, 0, width);
+    this.lower = lower;
 
-    this.backNextY = map(90, 0, 100, 0, height);
-    this.backNextHeight = map(7.5, 0, 100, 0, height);
-
-    this.lower = map(0.5, 0, 100, 0, height);
+    this.textSize = startText.buttonSize/2;
   }
 
   questionRect() {
     noStroke();
+    textSize(this.textSize);
     rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
   }
 
@@ -138,7 +132,7 @@ class Question {
       this.choice4rect();
 
       fill("white");
-      textSize(startText.buttonSize);
+      textSize(this.textSize);
       this.choice2text(choices[1]);
       this.choice3text(choices[2]);
       this.choice4text(choices[3]);
@@ -188,6 +182,44 @@ function setup() {
     h: map(10, 0, 100, 0, height),
   };
 
+  if (width > height) {
+    questionX = map(25, 0, 100, 0, width);
+    questionWidth = map(50, 0, 100, 0, width);
+
+    choices1and3x = map(25, 0, 100, 0, width);
+    choicesWidth = map(22.5, 0, 100, 0, width);
+
+    backX = map(25, 0, 100, 0, width);
+    backNextWidth = map(20, 0, 100, 0, width);
+  }
+
+  else {
+    questionX = map(5, 0, 100, 0, width);
+    questionWidth = map(90, 0, 100, 0, width);
+
+    choices1and3x = map(5, 0, 100, 0, width);
+    choicesWidth = map(42.5, 0, 100, 0, width);
+    
+    backX = map(5, 0, 100, 0, width);
+    backNextWidth = map(40, 0, 100, 0, width);
+  }
+
+  questionY = map(5, 0, 100, 0, height);
+  questionHeight = map(25, 0, 100, 0, height);
+
+  choices2and4x = map(52.5, 0, 100, 0, width);
+
+  choices1and2y = map(35, 0, 100, 0, height);
+  choices3and4y = map(62.5, 0, 100, 0, height);
+  choicesHeight = map(22.5, 0, 100, 0, height);
+
+  nextX = map(55, 0, 100, 0, width);
+
+  backNextY = map(90, 0, 100, 0, height);
+  backNextHeight = map(7.5, 0, 100, 0, height);
+
+  lower = map(0.5, 0, 100, 0, height);
+  
   createQuestions();
 
   choice1selected = false;
@@ -219,6 +251,49 @@ function windowResized() {
     w: map(30, 0, 100, 0, width),
     h: map(10, 0, 100, 0, height),
   };
+
+  if (width > height) {
+    questionX = map(25, 0, 100, 0, width);
+    questionWidth = map(50, 0, 100, 0, width);
+
+    choices1and3x = map(25, 0, 100, 0, width);
+    choicesWidth = map(22.5, 0, 100, 0, width);
+
+    backX = map(25, 0, 100, 0, width);
+    backNextWidth = map(20, 0, 100, 0, width);
+  }
+
+  else {
+    questionX = map(5, 0, 100, 0, width);
+    questionWidth = map(90, 0, 100, 0, width);
+
+    choices1and3x = map(5, 0, 100, 0, width);
+    choicesWidth = map(42.5, 0, 100, 0, width);
+    
+    backX = map(5, 0, 100, 0, width);
+    backNextWidth = map(40, 0, 100, 0, width);
+  }
+
+  questionY = map(5, 0, 100, 0, height);
+  questionHeight = map(25, 0, 100, 0, height);
+
+  choices2and4x = map(52.5, 0, 100, 0, width);
+
+  choices1and2y = map(35, 0, 100, 0, height);
+  choices3and4y = map(62.5, 0, 100, 0, height);
+  choicesHeight = map(22.5, 0, 100, 0, height);
+
+  nextX = map(55, 0, 100, 0, width);
+
+  backNextY = map(90, 0, 100, 0, height);
+  backNextHeight = map(7.5, 0, 100, 0, height);
+
+  lower = map(0.5, 0, 100, 0, height);
+
+  clear();
+  questionsArray.splice(0, questionsArray.length);
+  createQuestions();
+  questions();
 }
 
 function draw() {
@@ -236,15 +311,18 @@ function mousePressed() {
   }
 
   // needs modifying
-  for (let item of questionsArray) {
-    item.choice1selected();
-    noLoop();
+  if (questionScreen !== "Start") {
+    for (let item of questionsArray) {
+      noLoop();
+      item.choice1selected();
+    }
   }
 }
 
 function start() {
   textAlign(CENTER, CENTER);
   textSize(startText.descriptionSize);
+  stroke("black");
 
   if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h) {
     fill("black");
