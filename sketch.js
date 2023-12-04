@@ -16,14 +16,11 @@ let colours;
 let question;
 let choices;
 
-let questionX, questionWidth, choices1and3x, choicesWidth, backX, backNextWidth;
+let questionX, questionWidth, choices1and3x, choicesWidth, backX, backNextWidth, questionSize;
 
 let questionY, questionHeight, choices2and4x, choices1and2y, choices3and4y, choicesHeight, nextX, backNextY, backNextHeight, lower;
 
-let choice1selected;
-let choice2selected;
-let choice3selected;
-let choice4selected;
+let choice1selected, choice2selected, choice3selected, choice4selected;
 
 let startText;
 let startRect;
@@ -55,12 +52,12 @@ class Question {
 
     this.lower = lower;
 
-    this.textSize = startText.buttonSize/2;
+    this.questionSize = questionSize;
   }
 
   questionRect() {
     noStroke();
-    textSize(this.textSize);
+    textSize(this.questionSize);
     rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
   }
 
@@ -114,7 +111,6 @@ class Question {
 
   backText() {
     fill("black");
-    textSize(this.backNextHeight);
     text("BACK", this.backX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
   }
 
@@ -125,14 +121,18 @@ class Question {
   choice1selected() {
     if (mouseX >= this.choices1and3x && mouseX <= this.choices1and3x + this.choicesWidth && mouseY >= this.choices1and2y && mouseY <= this.choices1and2y + this.choicesHeight) {
       choice1selected = true;
-      stroke(200);
+    }
+
+    if (choice1selected) {
+      // stroke(200); //creates thick outline of non-selected rectangles
+      // noStroke(); //creates outline of non-selected rectangles to match its colour
       fill(200);
       this.choice2rect();
       this.choice3rect();
       this.choice4rect();
 
       fill("white");
-      textSize(this.textSize);
+      textSize(this.questionSize);
       this.choice2text(choices[1]);
       this.choice3text(choices[2]);
       this.choice4text(choices[3]);
@@ -141,9 +141,8 @@ class Question {
       stroke("black");
       this.nextRect();
 
-      strokeWeight(1);
+      noStroke();
       fill("black");
-      textSize(this.backNextHeight);
       this.nextText();
     }
     
@@ -167,10 +166,9 @@ function setup() {
     w: width,
     h: height,
 
+    size: map(5, 0, 100, 0, width),
     description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
-    descriptionSize: map(5, 0, 100, 0, width),
     button: "START",
-    buttonSize: map(10, 0, 100, 0, height),
     
     lower: map(75.5, 0, 100, 0, height),
   };
@@ -191,6 +189,8 @@ function setup() {
 
     backX = map(25, 0, 100, 0, width);
     backNextWidth = map(20, 0, 100, 0, width);
+
+    questionSize = 0.75*startText.size;
   }
 
   else {
@@ -202,6 +202,8 @@ function setup() {
     
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
+
+    questionSize = 2*startText.size;
   }
 
   questionY = map(5, 0, 100, 0, height);
@@ -237,10 +239,9 @@ function windowResized() {
     w: width,
     h: height,
 
+    size: map(5, 0, 100, 0, width),
     description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
-    descriptionSize: map(5, 0, 100, 0, width),
     button: "START",
-    buttonSize: map(10, 0, 100, 0, height),
     
     lower: map(75.5, 0, 100, 0, height),
   };
@@ -261,6 +262,8 @@ function windowResized() {
 
     backX = map(25, 0, 100, 0, width);
     backNextWidth = map(20, 0, 100, 0, width);
+
+    questionSize = 0.75*startText.size;
   }
 
   else {
@@ -272,6 +275,8 @@ function windowResized() {
     
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
+
+    questionSize = 2*startText.size;
   }
 
   questionY = map(5, 0, 100, 0, height);
@@ -294,6 +299,10 @@ function windowResized() {
   questionsArray.splice(0, questionsArray.length);
   createQuestions();
   questions();
+
+  if (choice1selected) {
+    question.choice1selected();
+  }
 }
 
 function draw() {
@@ -321,24 +330,25 @@ function mousePressed() {
 
 function start() {
   textAlign(CENTER, CENTER);
-  textSize(startText.descriptionSize);
-  stroke("black");
-
+  textSize(startText.size);
+  
   if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h) {
     fill("black");
     text(startText.description, startText.x, startText.y, startText.w, startText.h);
+    stroke("black");
     rect(startRect.x, startRect.y, startRect.w, startRect.h);
+    noStroke();
     fill("white");
-    textSize(startText.buttonSize);
     text(startText.button, startRect.x, startText.lower, startRect.w, startRect.h);
   }
 
   else {
     fill("white");
+    stroke("black");
     rect(startRect.x, startRect.y, startRect.w, startRect.h);
+    noStroke();
     fill("black");
     text(startText.description, startText.x, startText.y, startText.w, startText.h);
-    textSize(startText.buttonSize);
     text(startText.button, startRect.x, startText.lower, startRect.w, startRect.h);
   }
 }
