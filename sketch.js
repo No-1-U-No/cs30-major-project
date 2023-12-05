@@ -124,8 +124,7 @@ class Question {
     }
 
     if (choice1selected) {
-      // stroke(200); //creates thick outline of non-selected rectangles
-      // noStroke(); //creates outline of non-selected rectangles to match its colour
+      noStroke();
       fill(200);
       this.choice2rect();
       this.choice3rect();
@@ -145,13 +144,13 @@ class Question {
       fill("black");
       this.nextText();
     }
-    
-    if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
-      fill("black");
-      this.nextRect();
-      fill("white");
-      this.nextText();
-    }
+
+    // if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
+    //   fill("black");
+    //   this.nextRect();
+    //   fill("white");
+    //   this.nextText();
+    // }
   }
 }
 
@@ -324,6 +323,10 @@ function mousePressed() {
     for (let item of questionsArray) {
       noLoop();
       item.choice1selected();
+
+      if (mouseX >= item.nextX && mouseX <= item.nextX + item.backNextWidth && mouseY >= item.backNextY && mouseY <= item.backNextY + item.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
+        loop();
+      }
     }
   }
 }
