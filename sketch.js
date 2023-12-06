@@ -25,135 +25,6 @@ let choice1selected, choice2selected, choice3selected, choice4selected;
 let startText;
 let startRect;
 
-class Question {
-  constructor() {
-    this.questionX = questionX;
-    this.questionWidth = questionWidth;
-
-    this.choices1and3x = choices1and3x;
-    this.choicesWidth = choicesWidth;
-
-    this.backX = backX;
-    this.backNextWidth = backNextWidth;
-
-    this.questionY = questionY;
-    this.questionHeight = questionHeight;
-
-    this.choices2and4x = choices2and4x;
-
-    this.choices1and2y = choices1and2y;
-    this.choices3and4y = choices3and4y;
-    this.choicesHeight = choicesHeight;
-
-    this.nextX = nextX;
-
-    this.backNextY = backNextY;
-    this.backNextHeight = backNextHeight;
-
-    this.lower = lower;
-
-    this.questionSize = questionSize;
-  }
-
-  questionRect() {
-    noStroke();
-    textSize(this.questionSize);
-    rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
-  }
-
-  choice1rect() {
-    rect(this.choices1and3x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
-  }
-
-  choice2rect() {
-    rect(this.choices2and4x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
-  }
-
-  choice3rect() {
-    rect(this.choices1and3x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
-  }
-
-  choice4rect() {
-    rect(this.choices2and4x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
-  }
-
-  backRect() {
-    noFill();
-    stroke("black");
-    rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
-  }
-
-  nextRect() {
-    rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
-  }
-
-  questionText(someText) {
-    noStroke();
-    fill("white");
-    text(someText, this.questionX, this.questionY + this.lower, this.questionWidth, this.questionHeight);
-  }
-
-  choice1text() {
-    text(choices[0], this.choices1and3x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
-  }
-
-  choice2text() {
-    text(choices[1], this.choices2and4x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
-  }
-
-  choice3text() {
-    text(choices[2], this.choices1and3x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
-  }
-
-  choice4text() {
-    text(choices[3], this.choices2and4x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
-  }
-
-  backText() {
-    fill("black");
-    text("BACK", this.backX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
-  }
-
-  nextText() {
-    text("NEXT", this.nextX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
-  }
-
-  choice1selected() {
-    if (mouseX >= this.choices1and3x && mouseX <= this.choices1and3x + this.choicesWidth && mouseY >= this.choices1and2y && mouseY <= this.choices1and2y + this.choicesHeight) {
-      choice1selected = true;
-    }
-
-    if (choice1selected) {
-      noStroke();
-      fill(200);
-      this.choice2rect();
-      this.choice3rect();
-      this.choice4rect();
-
-      fill("white");
-      textSize(this.questionSize);
-      this.choice2text(choices[1]);
-      this.choice3text(choices[2]);
-      this.choice4text(choices[3]);
-
-      strokeWeight(5);
-      stroke("black");
-      this.nextRect();
-
-      noStroke();
-      fill("black");
-      this.nextText();
-    }
-
-    // if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
-    //   fill("black");
-    //   this.nextRect();
-    //   fill("white");
-    //   this.nextText();
-    // }
-  }
-}
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -313,6 +184,137 @@ function draw() {
   }
 }
 
+class Question {
+  constructor() {
+    this.questionX = questionX;
+    this.questionWidth = questionWidth;
+
+    this.choices1and3x = choices1and3x;
+    this.choicesWidth = choicesWidth;
+
+    this.backX = backX;
+    this.backNextWidth = backNextWidth;
+
+    this.questionY = questionY;
+    this.questionHeight = questionHeight;
+
+    this.choices2and4x = choices2and4x;
+
+    this.choices1and2y = choices1and2y;
+    this.choices3and4y = choices3and4y;
+    this.choicesHeight = choicesHeight;
+
+    this.nextX = nextX;
+
+    this.backNextY = backNextY;
+    this.backNextHeight = backNextHeight;
+
+    this.lower = lower;
+
+    this.questionSize = questionSize;
+  }
+
+  questionRect() {
+    noStroke();
+    textSize(this.questionSize);
+    rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
+  }
+
+  choice1rect() {
+    rect(this.choices1and3x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
+  }
+
+  choice2rect() {
+    rect(this.choices2and4x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
+  }
+
+  choice3rect() {
+    rect(this.choices1and3x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
+  }
+
+  choice4rect() {
+    rect(this.choices2and4x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
+  }
+
+  backRect() {
+    noFill();
+    stroke("black");
+    rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
+  }
+
+  nextRect() {
+    rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
+  }
+
+  questionText(someText) {
+    noStroke();
+    fill("white");
+    text(someText, this.questionX, this.questionY + this.lower, this.questionWidth, this.questionHeight);
+  }
+
+  choice1text() {
+    text(choices[0], this.choices1and3x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
+  }
+
+  choice2text() {
+    text(choices[1], this.choices2and4x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
+  }
+
+  choice3text() {
+    text(choices[2], this.choices1and3x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
+  }
+
+  choice4text() {
+    text(choices[3], this.choices2and4x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
+  }
+
+  backText() {
+    fill("black");
+    text("BACK", this.backX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
+  }
+
+  nextText() {
+    text("NEXT", this.nextX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
+  }
+
+  choice1selected() {
+    if (mouseX >= this.choices1and3x && mouseX <= this.choices1and3x + this.choicesWidth && mouseY >= this.choices1and2y && mouseY <= this.choices1and2y + this.choicesHeight) {
+      choice1selected = true;
+    }
+
+    if (choice1selected) {
+      noStroke();
+      fill(200);
+      this.choice2rect();
+      this.choice3rect();
+      this.choice4rect();
+
+      fill("white");
+      textSize(this.questionSize);
+      this.choice2text(choices[1]);
+      this.choice3text(choices[2]);
+      this.choice4text(choices[3]);
+
+      strokeWeight(5);
+      stroke("black");
+      this.nextRect();
+
+      noStroke();
+      fill("black");
+      this.nextText();
+    }
+  }
+
+  nextSelected() {
+    if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
+      fill("black");
+      this.nextRect();
+      fill("white");
+      this.nextText();
+    }
+  }
+}
+
 function mousePressed() {
   if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h && questionScreen === "Start") {
     questionScreen = 1;
@@ -320,13 +322,9 @@ function mousePressed() {
 
   // needs modifying
   if (questionScreen !== "Start") {
-    for (let item of questionsArray) {
+    for (let currentQuestion of questionsArray) {
       noLoop();
-      item.choice1selected();
-
-      if (mouseX >= item.nextX && mouseX <= item.nextX + item.backNextWidth && mouseY >= item.backNextY && mouseY <= item.backNextY + item.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
-        loop();
-      }
+      currentQuestion.choice1selected();
     }
   }
 }
@@ -383,4 +381,11 @@ function questions() {
   question.choice4text(choices[3]);
   question.backText();
   question.nextText();
+
+  for (let currentQuestion of questionsArray) {
+    if (mouseX >= currentQuestion.nextX && mouseX <= currentQuestion.nextX + currentQuestion.backNextWidth && mouseY >= currentQuestion.backNextY && mouseY <= currentQuestion.backNextY + currentQuestion.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
+      loop();
+      currentQuestion.nextSelected();
+    }
+  }
 }
