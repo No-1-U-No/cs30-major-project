@@ -243,6 +243,14 @@ class Question {
   }
 
   nextRect() {
+    // needs modifying
+    // if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
+    //   fill("black");
+    //   this.nextRect();
+    //   fill("white");
+    //   this.nextText();
+    // }
+
     rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
   }
 
@@ -304,15 +312,6 @@ class Question {
       this.nextText();
     }
   }
-
-  nextSelected() {
-    if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
-      fill("black");
-      this.nextRect();
-      fill("white");
-      this.nextText();
-    }
-  }
 }
 
 function mousePressed() {
@@ -323,7 +322,6 @@ function mousePressed() {
   // needs modifying
   if (questionScreen !== "Start") {
     for (let currentQuestion of questionsArray) {
-      noLoop();
       currentQuestion.choice1selected();
     }
   }
@@ -381,11 +379,4 @@ function questions() {
   question.choice4text(choices[3]);
   question.backText();
   question.nextText();
-
-  for (let currentQuestion of questionsArray) {
-    if (mouseX >= currentQuestion.nextX && mouseX <= currentQuestion.nextX + currentQuestion.backNextWidth && mouseY >= currentQuestion.backNextY && mouseY <= currentQuestion.backNextY + currentQuestion.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
-      loop();
-      currentQuestion.nextSelected();
-    }
-  }
 }
