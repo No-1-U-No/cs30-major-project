@@ -12,14 +12,20 @@ let questionScreen = 0;
 let questionsArray = [];
 
 let colours = ["red", "blue", "green", "purple"];
-let questionsList = ["Question 1", "Question 2", "Question 3", "Question 4"];
+
+let questionsList = ["Which of these is your favourite genre of music?", "Question 2", "Question 3", "Question 4"];
 let choice1list = ["G", "A", "B", "E"];
 let choice2list = ["A", "B", "E", "G"];
 let choice3list = ["B", "E", "G", "A"];
 let chocie4list = ["E", "G", "A", "B"];
-let songs = []; //possibly incorporate 2D array here???
 
-let startText, startRect;
+let choice1songs = [["G", "A"], ["B, E"]];
+let choice2songs = ["B", "E"];
+let choice3songs = ["G", "A"];
+let choice4songs = ["B", "E"];
+let songs = [choice1songs, choice2songs, choice3songs, choice4songs]; //possibly incorporate 2D array here???
+
+let startText;
 
 let question;
 
@@ -45,19 +51,9 @@ function setup() {
     y: 0,
     w: width,
     h: height,
-
     size: map(5, 0, 100, 0, width),
-    description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
-    button: "START",
-    
+    description: "Welcome! This quiz will tell you what 2023 song is your jam. Have fun! Press Enter to begin.",
     lower: map(75.5, 0, 100, 0, height),
-  };
-
-  startRect = {
-    x: map(35, 0, 100, 0, width),
-    y: map(75, 0, 100, 0, height),
-    w: map(30, 0, 100, 0, width),
-    h: map(10, 0, 100, 0, height),
   };
 
   if (width > height) {
@@ -119,19 +115,9 @@ function windowResized() {
     y: 0,
     w: width,
     h: height,
-
     size: map(5, 0, 100, 0, width),
-    description: "Welcome! After answering these questions, I will tell you what 2023 song is your jam! Have fun!",
-    button: "START",
-    
+    description: "Welcome! This quiz will tell you what 2023 song is your jam. Have fun! Press Enter to begin.",
     lower: map(75.5, 0, 100, 0, height),
-  };
-
-  startRect = {
-    x: map(35, 0, 100, 0, width),
-    y: map(75, 0, 100, 0, height),
-    w: map(30, 0, 100, 0, width),
-    h: map(10, 0, 100, 0, height),
   };
 
   if (width > height) {
@@ -222,7 +208,7 @@ class Question {
   questionRect(questionText) {
     noStroke();
     fill(colours[questionScreen-1]);
-    textSize(80 - questionText.length);
+    textSize(100 - questionText.length);
     rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
     
     fill("white");
@@ -231,7 +217,7 @@ class Question {
 
   choice1(choice1text) {
     fill(colours[questionScreen-1]);
-    textSize(80 - choice1text.length);
+    textSize(75 - choice1text.length);
 
     if (choice2selected || choice3selected || choice4selected) {
       fill(180);
@@ -244,7 +230,7 @@ class Question {
 
   choice2(choice2text) {
     fill(colours[questionScreen-1]);
-    textSize(80 - choice2text.length);
+    textSize(75 - choice2text.length);
     
     if (choice1selected || choice3selected || choice4selected) {
       fill(180);
@@ -257,7 +243,7 @@ class Question {
 
   choice3(choice3text) {
     fill(colours[questionScreen-1]);
-    textSize(80 - choice3text.length);
+    textSize(75 - choice3text.length);
     
     if (choice1selected || choice2selected || choice4selected) {
       fill(180);
@@ -270,7 +256,7 @@ class Question {
 
   choice4(choice4text) {
     fill(colours[questionScreen-1]);
-    textSize(80 - choice4text.length);
+    textSize(75 - choice4text.length);
 
     if (choice1selected || choice2selected || choice3selected) {
       fill(180);
@@ -302,10 +288,20 @@ class Question {
   }
 
   next() {
+    //need to work around here for mobile friendliness
     stroke("black");
 
     if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
       fill("black");
+      rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
+      fill("white");
+    }
+
+    else if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && !(choice1selected || choice2selected || choice3selected || choice4selected)) {
+      if (mouseIsPressed) {
+        fill("red");
+      }
+
       rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
       fill("white");
     }
@@ -358,11 +354,13 @@ class Question {
   }
 }
 
-function mousePressed() {
-  if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h && questionScreen === 0) {
+function keyPressed() {
+  if (keyCode === ENTER && questionScreen === 0) {
     questionScreen++;
   }
+}
 
+function mousePressed() {
   if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
     questionScreen--;
   }
@@ -371,8 +369,10 @@ function mousePressed() {
     questionScreen++;
   }
 
-  for (let currentQuestion of questionsArray) {
-    currentQuestion.choiceSelected();
+  if (questionScreen > 0) {
+    for (let currentQuestion of questionsArray) {
+      currentQuestion.choiceSelected();
+    }
   }
 }
 
@@ -381,22 +381,6 @@ function start() {
   textAlign(CENTER, CENTER);
   textSize(startText.size);
   text(startText.description, startText.x, startText.y, startText.w, startText.h);
-  stroke("black");
-
-  if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h) {
-    rect(startRect.x, startRect.y, startRect.w, startRect.h);
-    noStroke();
-    fill("white");
-    text(startText.button, startRect.x, startText.lower, startRect.w, startRect.h);
-  }
-
-  else {
-    fill("white");
-    rect(startRect.x, startRect.y, startRect.w, startRect.h);
-    noStroke();
-    fill("black");
-    text(startText.button, startRect.x, startText.lower, startRect.w, startRect.h);
-  }
 }
 
 function createQuestions() {
