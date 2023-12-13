@@ -99,6 +99,7 @@ function setup() {
 
   lower = map(0.5, 0, 100, 0, height);
   
+  mobile();
   createQuestions();
 
   choice1selected = false;
@@ -162,6 +163,8 @@ function windowResized() {
 
   lower = map(0.5, 0, 100, 0, height);
 
+  mobile();
+  
   questionsArray.splice(0, questionsArray.length);
   createQuestions();
 }
@@ -288,25 +291,24 @@ class Question {
   }
 
   next() {
-    //need to work around here for mobile friendliness
     stroke("black");
 
     // https://dev.to/timhuang/a-simple-way-to-detect-if-browser-is-on-a-mobile-device-with-javascript-44j3
-    // Detects if on mobile, but I read that it may get discontinued soon?
-    // Need to change to detect touches x and y inside array
-    if (/Android | BlackBerry | IE Mobile | iPad | iPhone | iPod | Linux | Opera Mini | webOS/i.test(navigator.userAgent)) {
-      if (touches.length > 0 && (choice1selected || choice2selected || choice3selected || choice4selected)) {
-        fill("black");
-        rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
-        fill("white");
-      }
+    if (mobile()) {
+      if (touches.length > 0) {
+        if (touches[touches.length-1].x >= this.nextX && touches[touches.length-1].x <= this.nextX + this.backNextWidth && touches[touches.length-1].y >= this.backNextY && touches[touches.length-1].y <= this.backNextY + this.backNextHeight && !(choice1selected || choice2selected || choice3selected || choice4selected)) {
+          fill("black");
+          rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
+          fill("white");
+        }
 
-      else if (touches.length > 0 && !(choice1selected || choice2selected || choice3selected || choice4selected)) {
-        fill("red");
-        rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
-        fill("white");
+        else {
+          fill("white");
+          rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
+          fill("black");
+        }
       }
-
+        
       else {
         fill("white");
         rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
@@ -322,10 +324,6 @@ class Question {
       }
   
       else if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && !(choice1selected || choice2selected || choice3selected || choice4selected)) {
-        if (mouseIsPressed) {
-          fill("red");
-        }
-  
         rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
         fill("white");
       }
@@ -390,8 +388,12 @@ function mousePressed() {
     questionScreen--;
   }
 
-  if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 & (choice1selected || choice2selected || choice3selected || choice4selected)) {
+  if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && (choice1selected || choice2selected || choice3selected || choice4selected)) {
     questionScreen++;
+  }
+
+  if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && !(choice1selected || choice2selected || choice3selected || choice4selected) && !mobile()) {
+    alert("Please select an option.");
   }
 
   if (questionScreen > 0) {
@@ -399,6 +401,10 @@ function mousePressed() {
       currentQuestion.choiceSelected();
     }
   }
+}
+
+function mobile() {
+  return /Android | BlackBerry | IE Mobile | iPad | iPhone | iPod | Linux | Opera Mini | webOS/i.test(navigator.userAgent);
 }
 
 function start() {
