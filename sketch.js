@@ -175,6 +175,7 @@ function draw() {
 
   if (questionScreen > 0) {
     questions();
+    console.log(questionScreen);
   }
 }
 
@@ -274,16 +275,40 @@ class Question {
     textSize(this.backNextSize);
     stroke("black");
 
-    if (mouseX >= this.backX && mouseX <= this.backX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight) {
-      fill("black");
-      rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
-      fill("white");
+    if (mobile()) {
+      if (touches.length > 0) {
+        if (touches[touches.length-1].x >= this.backX && touches[touches.length-1].x <= this.backX + this.backNextWidth && touches[touches.length-1].y >= this.backNextY && touches[touches.length-1].y <= this.backNextY + this.backNextHeight) {
+          fill("black");
+          rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
+          fill("white");
+        }
+  
+        else {
+          fill("white");
+          rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
+          fill("black");
+        }
+      }
+
+      else {
+        fill("white");
+        rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
+        fill("black");
+      }
     }
 
     else {
-      fill("white");
-      rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
-      fill("black");
+      if (mouseX >= this.backX && mouseX <= this.backX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight) {
+        fill("black");
+        rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
+        fill("white");
+      }
+
+      else {
+        fill("white");
+        rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
+        fill("black");
+      }
     }
 
     noStroke();
@@ -384,7 +409,7 @@ function keyPressed() {
 }
 
 function mousePressed() {
-  if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
+  if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && !mobile()) {
     questionScreen--;
   }
 
@@ -400,6 +425,12 @@ function mousePressed() {
     for (let currentQuestion of questionsArray) {
       currentQuestion.choiceSelected();
     }
+  }
+}
+
+function mouseReleased() {
+  if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && mobile()) {
+    questionScreen--;
   }
 }
 
