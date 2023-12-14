@@ -13,7 +13,7 @@ let questionsArray = [];
 
 let colours = ["red", "blue", "green", "purple"];
 
-let questionsList = ["Which of these is your favourite genre of music?", "Question 2", "Question 3", "Question 4"];
+let questionList = ["Which of these is your favourite genre of music?", "Question 2", "Question 3", "Question 4"];
 let choice1list = ["G", "A", "B", "E"];
 let choice2list = ["A", "B", "E", "G"];
 let choice3list = ["B", "E", "G", "A"];
@@ -79,7 +79,7 @@ function setup() {
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
 
-    backNextSize = 1.5*startText.size;
+    backNextSize = 2.25*startText.size;
   }
 
   questionY = map(5, 0, 100, 0, height);
@@ -95,7 +95,6 @@ function setup() {
 
   backNextY = map(90, 0, 100, 0, height);
   backNextHeight = map(7.5, 0, 100, 0, height);
-  backNextSize = 0.75*startText.size;
 
   lower = map(0.5, 0, 100, 0, height);
   
@@ -144,7 +143,7 @@ function windowResized() {
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
 
-    backNextSize = 1.5*startText.size;
+    backNextSize = 2.25*startText.size;
   }
 
   questionY = map(5, 0, 100, 0, height);
@@ -175,7 +174,6 @@ function draw() {
 
   if (questionScreen > 0) {
     questions();
-    console.log(questionScreen);
   }
 }
 
@@ -209,12 +207,19 @@ class Question {
     this.backNextSize = backNextSize;
   }
 
-  questionRect(questionText) {
+  question(questionText) {
     noStroke();
     fill(colours[questionScreen-1]);
-    textSize(100 - questionText.length);
-    rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
+
+    if (!mobile()) {
+      textSize(questionHeight - 3*questionText.length);
+    }
+
+    else {
+      textSize(questionHeight - 3.75*questionText.length);
+    }
     
+    rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
     fill("white");
     text(questionText, this.questionX, this.questionY + this.lower, this.questionWidth, this.questionHeight);
   }
@@ -222,6 +227,14 @@ class Question {
   choice1(choice1text) {
     fill(colours[questionScreen-1]);
     textSize(75 - choice1text.length);
+
+    // if (!mobile()) {
+    //   textSize(choicesHeight - 3*choice1text.length);
+    // }
+
+    // else {
+    //   textSize(choicesHeight - 3.75*choice1text.length);
+    // }
 
     if (choice2selected || choice3selected || choice4selected) {
       fill(180);
@@ -275,6 +288,7 @@ class Question {
     textSize(this.backNextSize);
     stroke("black");
 
+    // even though they look the same, this keeps the rectangle from staying black on mobile after clicking once
     if (mobile()) {
       if (touches.length > 0) {
         if (touches[touches.length-1].x >= this.backX && touches[touches.length-1].x <= this.backX + this.backNextWidth && touches[touches.length-1].y >= this.backNextY && touches[touches.length-1].y <= this.backNextY + this.backNextHeight) {
@@ -409,7 +423,7 @@ function keyPressed() {
 }
 
 function mousePressed() {
-  if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && !mobile()) {
+  if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
     questionScreen--;
   }
 
@@ -430,7 +444,7 @@ function mousePressed() {
 
 function mouseReleased() {
   if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && mobile()) {
-    questionScreen--;
+    questionScreen += 0.5;
   }
 }
 
@@ -455,7 +469,7 @@ function createQuestions() {
 function questions() {
   clear();
   
-  question.questionRect(questionsList[questionScreen-1]);
+  question.question(questionList[questionScreen-1]);
   question.choice1(choice1list[questionScreen-1]);
   question.choice2(choice2list[questionScreen-1]);
   question.choice3(choice3list[questionScreen-1]);
