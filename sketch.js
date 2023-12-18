@@ -19,7 +19,7 @@ let choice2list = ["Hip-hop, rap, R&B or soul", "B", "E", "G"];
 let choice3list = ["Dance", "E", "G", "A"];
 let choice4list = ["Country", "G", "A", "B"];
 
-let question1songs = [["'Daylight' by Shinedown", "'Anti-Hero' by Taylor Swift", "'Flowers' by Miley Cyrus", "'Run Away to Mars' by TALK", "'Dial Drunk' by Noah Kahan & Post Malone"], ["'Creepin' by Metro Boomin, The Weeknd & 21 Savage", "'Kill Bill' by SZA", "'Players' by Coi Leray", "'Sure Thing' by Miguel", "'Paint The Town Red' by Doja Cat"], ["'I'm Good (Blue)' by David Guetta & Bebe Rexha'", "'Whitney' by Rêve", "'Bloody Mary' by Lady Gaga", "'TRUSTFALL' by P!nk", "'Next To You' by Loud Luxury & DVBBS ft. Kane Brown"], ["'Take My Name' by Parmalee", "'Thank God' by Kane Brown & Katelyn Brown", "'Last Night' by Morgan Wallen", "'Fast Car' by Luke Combs", "'Need A Favor' by Jelly Roll"]]
+let question1songs = [["'Daylight' by Shinedown", "'Anti-Hero' by Taylor Swift", "'Flowers' by Miley Cyrus", "'Run Away to Mars' by TALK", "'Dial Drunk' by Noah Kahan & Post Malone"], ["'Creepin' by Metro Boomin, The Weeknd & 21 Savage", "'Kill Bill' by SZA", "'Players' by Coi Leray", "'Sure Thing' by Miguel", "'Paint The Town Red' by Doja Cat"], ["'I'm Good (Blue)' by David Guetta & Bebe Rexha'", "'Whitney' by Rêve", "'Bloody Mary' by Lady Gaga", "'TRUSTFALL' by P!nk", "'Next To You' by Loud Luxury & DVBBS ft. Kane Brown"], ["'Take My Name' by Parmalee", "'Thank God' by Kane Brown & Katelyn Brown", "'Last Night' by Morgan Wallen", "'Fast Car' by Luke Combs", "'Need A Favor' by Jelly Roll"]];
 
 let choice1songs = [question1songs[0]];
 let choice2songs = [question1songs[1]];
@@ -432,28 +432,30 @@ function mousePressed() {
     questionScreen--;
   }
 
-  if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && (choice1selected || choice2selected || choice3selected || choice4selected)) {
+  if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
     if (choice1selected) {
       total1selected++;
+      questionScreen++;
     }
     
     else if (choice2selected) {
       total2selected++;
+      questionScreen++;
     }
 
     else if (choice3selected) {
       total3selected++;
+      questionScreen++;
     }
 
     else if (choice4selected) {
       total4selected++;
+      questionScreen++;
     }
     
-    questionScreen++;
-  }
-
-  if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && !(choice1selected || choice2selected || choice3selected || choice4selected) && !mobile()) {
-    alert("Please select an option.");
+    else if (!mobile()) {
+      alert("Please select an option.");
+    }
   }
 
   if (questionScreen > 0) {
@@ -470,7 +472,7 @@ function mouseReleased() {
 }
 
 function mobile() {
-  return /Android | BlackBerry | IE Mobile | iPad | iPhone | iPod | Linux | Opera Mini | webOS/i.test(navigator.userAgent);
+  return /Android | BlackBerry | CPU | IE Mobile | Intel | iPad | iPhone | iPod | Linux | Macintosh | Opera Mini | webOS/i.test(navigator.userAgent);
 }
 
 function start() {
