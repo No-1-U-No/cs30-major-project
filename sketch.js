@@ -14,15 +14,17 @@ let questionsArray = [];
 let colours = ["red", "blue", "green", "purple"];
 
 let questionList = ["Which of these is your favourite genre of music?", "Question 2", "Question 3", "Question 4"];
-let choice1list = ["G", "A", "B", "E"];
-let choice2list = ["A", "B", "E", "G"];
-let choice3list = ["B", "E", "G", "A"];
-let chocie4list = ["E", "G", "A", "B"];
+let choice1list = ["Pop, rock, indie or alternative", "A", "B", "E"];
+let choice2list = ["Hip-hop, rap, R&B or soul", "B", "E", "G"];
+let choice3list = ["Dance", "E", "G", "A"];
+let choice4list = ["Country", "G", "A", "B"];
 
-let choice1songs = [["G", "A"], ["B, E"]];
-let choice2songs = ["B", "E"];
-let choice3songs = ["G", "A"];
-let choice4songs = ["B", "E"];
+let question1songs = [["'Daylight' by Shinedown", "'Anti-Hero' by Taylor Swift", "'Flowers' by Miley Cyrus", "'Run Away to Mars' by TALK", "'Dial Drunk' by Noah Kahan & Post Malone"], ["'Creepin' by Metro Boomin, The Weeknd & 21 Savage", "'Kill Bill' by SZA", "'Players' by Coi Leray", "'Sure Thing' by Miguel", "'Paint The Town Red' by Doja Cat"], ["'I'm Good (Blue)' by David Guetta & Bebe Rexha'", "'Whitney' by Rêve", "'Bloody Mary' by Lady Gaga", "'TRUSTFALL' by P!nk", "'Next To You' by Loud Luxury & DVBBS ft. Kane Brown"], ["'Take My Name' by Parmalee", "'Thank God' by Kane Brown & Katelyn Brown", "'Last Night' by Morgan Wallen", "'Fast Car' by Luke Combs", "'Need A Favor' by Jelly Roll"]]
+
+let choice1songs = [question1songs[0]];
+let choice2songs = [question1songs[1]];
+let choice3songs = [question1songs[2]];
+let choice4songs = [question1songs[3]];
 let songs = [choice1songs, choice2songs, choice3songs, choice4songs]; //possibly incorporate 2D array here???
 
 let startText;
@@ -42,6 +44,11 @@ let backNextSize;
 let lower;
 
 let choice1selected, choice2selected, choice3selected, choice4selected;
+
+let total1selected = 0;
+let total2selected = 0;
+let total3selected = 0;
+let total4selected = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -79,7 +86,7 @@ function setup() {
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
 
-    backNextSize = 2.25*startText.size;
+    backNextSize = 2*startText.size;
   }
 
   questionY = map(5, 0, 100, 0, height);
@@ -143,7 +150,7 @@ function windowResized() {
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
 
-    backNextSize = 2.25*startText.size;
+    backNextSize = 2*startText.size;
   }
 
   questionY = map(5, 0, 100, 0, height);
@@ -210,14 +217,7 @@ class Question {
   question(questionText) {
     noStroke();
     fill(colours[questionScreen-1]);
-
-    if (!mobile()) {
-      textSize(questionHeight - 3*questionText.length);
-    }
-
-    else {
-      textSize(questionHeight - 3.75*questionText.length);
-    }
+    textSize((questionWidth + questionHeight)/15);
     
     rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
     fill("white");
@@ -226,15 +226,7 @@ class Question {
 
   choice1(choice1text) {
     fill(colours[questionScreen-1]);
-    textSize(75 - choice1text.length);
-
-    // if (!mobile()) {
-    //   textSize(choicesHeight - 3*choice1text.length);
-    // }
-
-    // else {
-    //   textSize(choicesHeight - 3.75*choice1text.length);
-    // }
+    textSize((choicesWidth + choicesHeight)/15);
 
     if (choice2selected || choice3selected || choice4selected) {
       fill(180);
@@ -247,8 +239,7 @@ class Question {
 
   choice2(choice2text) {
     fill(colours[questionScreen-1]);
-    textSize(75 - choice2text.length);
-    
+
     if (choice1selected || choice3selected || choice4selected) {
       fill(180);
     }
@@ -260,8 +251,7 @@ class Question {
 
   choice3(choice3text) {
     fill(colours[questionScreen-1]);
-    textSize(75 - choice3text.length);
-    
+
     if (choice1selected || choice2selected || choice4selected) {
       fill(180);
     }
@@ -273,7 +263,6 @@ class Question {
 
   choice4(choice4text) {
     fill(colours[questionScreen-1]);
-    textSize(75 - choice4text.length);
 
     if (choice1selected || choice2selected || choice3selected) {
       fill(180);
@@ -424,10 +413,42 @@ function keyPressed() {
 
 function mousePressed() {
   if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
+    if (total1selected > 0) {
+      total1selected--;
+    }
+
+    else if (total2selected > 0) {
+      total2selected--;
+    }
+
+    else if (total3selected > 0) {
+      total3selected--;
+    }
+
+    else if (total4selected > 0) {
+      total4selected--;
+    }
+
     questionScreen--;
   }
 
   if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && (choice1selected || choice2selected || choice3selected || choice4selected)) {
+    if (choice1selected) {
+      total1selected++;
+    }
+    
+    else if (choice2selected) {
+      total2selected++;
+    }
+
+    else if (choice3selected) {
+      total3selected++;
+    }
+
+    else if (choice4selected) {
+      total4selected++;
+    }
+    
     questionScreen++;
   }
 
@@ -473,7 +494,7 @@ function questions() {
   question.choice1(choice1list[questionScreen-1]);
   question.choice2(choice2list[questionScreen-1]);
   question.choice3(choice3list[questionScreen-1]);
-  question.choice4(chocie4list[questionScreen-1]);
+  question.choice4(choice4list[questionScreen-1]);
   question.back();
   question.next();
 }
