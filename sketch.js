@@ -13,13 +13,15 @@ let questionsArray = [];
 
 let colours = ["red", "blue", "green", "purple"];
 
-let questionList = ["Which of these is your favourite genre of music?", "Question 2", "Question 3", "Question 4"];
-let choice1list = ["Pop, rock, indie or alternative", "A", "B", "E"];
-let choice2list = ["Hip-hop, rap, R&B or soul", "B", "E", "G"];
-let choice3list = ["Dance", "E", "G", "A"];
-let choice4list = ["Country", "G", "A", "B"];
+let questionList = ["Which of these is your favourite genre of music?", "Which kind of love song is your favourite?", "How did you feel after your last breakup?", "Question 4"];
+let choice1list = ["Pop, rock, indie or alternative", "Songs about a significant other", "Accepting", "E"];
+let choice2list = ["Hip-hop, rap, R&B or soul", "Songs about family and/or friends", "I wish we were still together", "G"];
+let choice3list = ["Dance", "Self-love songs", "I was FURIOUS!!!", "A"];
+let choice4list = ["Country", "Songs about someone who loves me when I don't love myself as much", "I've never had a breakup :)", "B"];
 
 let question1songs = [["'Daylight' by Shinedown", "'Anti-Hero' by Taylor Swift", "'Flowers' by Miley Cyrus", "'Run Away to Mars' by TALK", "'Dial Drunk' by Noah Kahan & Post Malone"], ["'Creepin' by Metro Boomin, The Weeknd & 21 Savage", "'Kill Bill' by SZA", "'Players' by Coi Leray", "'Sure Thing' by Miguel", "'Paint The Town Red' by Doja Cat"], ["'I'm Good (Blue)' by David Guetta & Bebe Rexha'", "'Whitney' by Rêve", "'Bloody Mary' by Lady Gaga", "'TRUSTFALL' by P!nk", "'Next To You' by Loud Luxury & DVBBS ft. Kane Brown"], ["'Take My Name' by Parmalee", "'Thank God' by Kane Brown & Katelyn Brown", "'Last Night' by Morgan Wallen", "'Fast Car' by Luke Combs", "'Need A Favor' by Jelly Roll"]];
+let question2songs = [["'Flowers Need Rain' by Preston Pablo & Banx & Ranx", "'Until I Found You' by Stephen Sanchez", "'Take My Name' by Parmalee", "'Die For You' by The Weeknd", "'Thank God' by Kane Brown & Katelyn Brown'"], ["'I Like You (A Happier Song) by Post Malone & Doja Cat", "'How Do I Say Goodbye' by Dean Lewis", "'Waffle House' by Jonas Brothers", "'Fast Car' by Luke Combs", "'In The Stars' by Benson Boone"], ["'Victoria's Secret' by Jax", "'Made You Look' by Meghan Trainor", "'Who I Am' by Wyn Starks", "'Single Soon' by Selena Gomez", "'Keep Going Up' by Timbaland, Nelly Furtado & Justin Timberlake"], ["'Daylight' by Shinedown", "'Love Me Like I Am' by for KING & COUNTRY & Jordin Sparks", "'Nobody Gets Me' by SZA", "'Thank God I Do' by Lauren Daigle", "'Dial Drunk' by Noah Kahan & Post Malone"]];
+let question3songs = [["'Wish You The Best' by Lewis Capaldi"], ["'Forget Me' by Lewis Capaldi", "'Love Again' by The Kid LAROI", "'Nobody Gets Me' by SZA"], ["'Kill Bill' by SZA"], []];
 
 let choice1songs = [question1songs[0]];
 let choice2songs = [question1songs[1]];
