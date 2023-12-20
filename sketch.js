@@ -11,18 +11,19 @@ let questionScreen = 0;
 
 let questionsArray = [];
 
-let colours = ["red", "blue", "green", "purple"];
+let colours;
 
-let questionList = ["Which of these is your favourite genre of music?", "Which kind of love song is your favourite?", "How did you feel after your last breakup?", "How do you like to listen to music?"];
-let choice1list = ["Pop, rock, indie or alternative", "Songs about a significant other", "I accepted that we weren't meant to be", "Radio"];
-let choice2list = ["Hip-hop, rap, R&B or soul", "Songs about family and/or friends", "I wish we were still together", "Streaming"];
-let choice3list = ["Dance", "Self-love songs", "I was disappointed and upset", "Concerts and live performances"];
-let choice4list = ["Country", "Songs about someone who loves me when I don't love myself as much", "I've never had a breakup :)", "I don't really listen to music"];
+let questionList = ["Which of these is your favourite genre of music?", "Which kind of love song is your favourite?", "How did you feel after your last breakup?", "How do you like to listen to music?", "Which is your favourite Midnights song?", `Which is your favourite ${"Midnights".italics()} song?`];
+let choice1list = ["Pop, rock, indie or alternative", "Songs about a significant other", "I accepted that we weren't meant to be", "Radio", "Anti-Hero"];
+let choice2list = ["Hip-hop, rap, R&B or soul", "Songs about family and/or friends", "I wish we were still together", "Streaming", "Lavender Haze"];
+let choice3list = ["Dance", "Self-love songs", "I was disappointed and upset", "Concerts and live performances", "Karma"];
+let choice4list = ["Country", "Songs about someone who loves me when I don't love myself as much", "I've never had a breakup :)", "I don't really listen to music", "I prefer other Taylor Swift songs"];
 
 let question1songs = [["'Daylight' by Shinedown", "'Anti-Hero' by Taylor Swift", "'Flowers' by Miley Cyrus", "'Run Away to Mars' by TALK", "'Dial Drunk' by Noah Kahan & Post Malone"], ["'Creepin' by Metro Boomin, The Weeknd & 21 Savage", "'Kill Bill' by SZA", "'Players' by Coi Leray", "'Sure Thing' by Miguel", "'Paint The Town Red' by Doja Cat"], ["'I'm Good (Blue)' by David Guetta & Bebe Rexha'", "'Whitney' by Rêve", "'Bloody Mary' by Lady Gaga", "'TRUSTFALL' by P!nk", "'Next To You' by Loud Luxury & DVBBS ft. Kane Brown"], ["'Take My Name' by Parmalee", "'Thank God' by Kane Brown & Katelyn Brown", "'Last Night' by Morgan Wallen", "'Fast Car' by Luke Combs", "'Need A Favor' by Jelly Roll"]];
 let question2songs = [["'Flowers Need Rain' by Preston Pablo & Banx & Ranx", "'Until I Found You' by Stephen Sanchez", "'Take My Name' by Parmalee", "'Die For You' by The Weeknd", "'Thank God' by Kane Brown & Katelyn Brown'"], ["'I Like You (A Happier Song) by Post Malone & Doja Cat", "'How Do I Say Goodbye' by Dean Lewis", "'Waffle House' by Jonas Brothers", "'Fast Car' by Luke Combs", "'In The Stars' by Benson Boone"], ["'Victoria's Secret' by Jax", "'Made You Look' by Meghan Trainor", "'Who I Am' by Wyn Starks", "'Single Soon' by Selena Gomez", "'Keep Going Up' by Timbaland, Nelly Furtado & Justin Timberlake"], ["'Daylight' by Shinedown", "'Love Me Like I Am' by for KING & COUNTRY & Jordin Sparks", "'Nobody Gets Me' by SZA", "'Thank God I Do' by Lauren Daigle", "'Dial Drunk' by Noah Kahan & Post Malone"]];
 let question3songs = [["'Seeing Someone Else' by Ingrid Andress", "'mine' by Kelly Clarkson", "'Wish You The Best' by Lewis Capaldi", "'I Don't Miss You' by JP Saxe", "'Single Soon' by Selena Gomez"], ["'Forget Me' by Lewis Capaldi", "'Love Again' by The Kid LAROI", "'Nobody Gets Me' by SZA", "'I'll Be Waiting' by Cian Ducrot", "'bad idea right?' by Olivia Rodrigo"], ["'Miss You' by Oliver Tree & Robin Schulz", "'Kill Bill' by SZA", "'Last Night' by Morgan Wallen", "'That's Not How This Works' by Charlie Puth ft. Dan + Shay", "'Jaded' by Miley Cyrus"], []];
 let question4songs = [["'Forget Me' by Lewis Capaldi", "'Eyes Closed' by Ed Sheeran", "'A Symptom Of Being Human' by Shinedown", "'Waffle House' by Jonas Brothers", "'Mona Lisa' by Dominic Fike"], ["'Creepin' by Metro Boomin, The Weeknd & 21 Savage", "'Flowers' by Miley Cyrus", "'Kill Bill' by SZA", "'Escapism.' by RAYE & 070 Shake", "'Players' by Coi Leray"], ["'I'm Good (Blue)' by David Guetta & Bebe Rexha", "'Unholy' by Sam Smith & Kim Petras", "'Jaded' by Miley Cyrus", "'Cruel Summer' by Taylor Swift", "'vampire' by Olivia Rodrigo"], []];
+let question5songs = [["'Anti-Hero' by Taylor Swift"], ["'Lavender Haze' by Taylor Swift"], ["'Karma' by Taylor Swift"], ["'Cruel Summer' by Taylor Swift", "'The Alcott' by The National ft. Taylor Swift", "'Is It Over Now?' by Taylor Swift"]];
 
 let choice1songs = [question1songs[0], question2songs[0], question3songs[0], question4songs[0]];
 let choice2songs = [question1songs[1], question2songs[1], question3songs[1], question4songs[1]];
@@ -56,6 +57,8 @@ let total4selected = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  
+  colours = random(["red", "blue", "green", "purple"]);
 
   startText = {
     x: 0,
@@ -185,6 +188,7 @@ function draw() {
 
   if (questionScreen > 0) {
     questions();
+    console.log(colours);
   }
 }
 
@@ -220,7 +224,7 @@ class Question {
 
   question(questionText) {
     noStroke();
-    fill(colours[questionScreen-1]);
+    fill(colours);
     textSize((questionWidth + questionHeight)/15);
     
     rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
@@ -229,7 +233,7 @@ class Question {
   }
 
   choice1(choice1text) {
-    fill(colours[questionScreen-1]);
+    fill(colours);
     textSize((choicesWidth + choicesHeight)/15);
 
     if (choice2selected || choice3selected || choice4selected) {
@@ -242,7 +246,7 @@ class Question {
   }
 
   choice2(choice2text) {
-    fill(colours[questionScreen-1]);
+    fill(colours);
 
     if (choice1selected || choice3selected || choice4selected) {
       fill(180);
@@ -254,7 +258,7 @@ class Question {
   }
 
   choice3(choice3text) {
-    fill(colours[questionScreen-1]);
+    fill(colours);
 
     if (choice1selected || choice2selected || choice4selected) {
       fill(180);
@@ -266,7 +270,7 @@ class Question {
   }
 
   choice4(choice4text) {
-    fill(colours[questionScreen-1]);
+    fill(colours);
 
     if (choice1selected || choice2selected || choice3selected) {
       fill(180);
@@ -434,27 +438,32 @@ function mousePressed() {
     }
 
     questionScreen--;
+    newColour();
   }
 
   if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
     if (choice1selected) {
       total1selected++;
       questionScreen++;
+      newColour();
     }
     
     else if (choice2selected) {
       total2selected++;
       questionScreen++;
+      newColour();
     }
 
     else if (choice3selected) {
       total3selected++;
       questionScreen++;
+      newColour();
     }
 
     else if (choice4selected) {
       total4selected++;
       questionScreen++;
+      newColour();
     }
     
     else if (!mobile()) {
@@ -472,6 +481,7 @@ function mousePressed() {
 function mouseReleased() {
   if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && mobile()) {
     questionScreen += 0.5;
+    newColour();
   }
 }
 
@@ -503,4 +513,8 @@ function questions() {
   question.choice4(choice4list[questionScreen-1]);
   question.back();
   question.next();
+}
+
+function newColour() {
+  colours = random(["red", "blue", "green", "purple"]);
 }
