@@ -13,20 +13,22 @@ let questionsArray = [];
 
 let colours = ["red", "blue", "green", "purple"];
 
-let questionList = ["Which of these is your favourite genre of music?", "Which kind of love song is your favourite?", "How did you feel after your last breakup?", "Question 4"];
-let choice1list = ["Pop, rock, indie or alternative", "Songs about a significant other", "Accepting", "E"];
-let choice2list = ["Hip-hop, rap, R&B or soul", "Songs about family and/or friends", "I wish we were still together", "G"];
-let choice3list = ["Dance", "Self-love songs", "I was FURIOUS!!!", "A"];
-let choice4list = ["Country", "Songs about someone who loves me when I don't love myself as much", "I've never had a breakup :)", "B"];
+let questionList = ["Which of these is your favourite genre of music?", "Which kind of love song is your favourite?", "How did you feel after your last breakup?", "How do you like to listen to music?"];
+let choice1list = ["Pop, rock, indie or alternative", "Songs about a significant other", "I accepted that we weren't meant to be", "Radio"];
+let choice2list = ["Hip-hop, rap, R&B or soul", "Songs about family and/or friends", "I wish we were still together", "Streaming"];
+let choice3list = ["Dance", "Self-love songs", "I was disappointed and upset", "Concerts and live performances"];
+let choice4list = ["Country", "Songs about someone who loves me when I don't love myself as much", "I've never had a breakup :)", "I don't really listen to music"];
 
 let question1songs = [["'Daylight' by Shinedown", "'Anti-Hero' by Taylor Swift", "'Flowers' by Miley Cyrus", "'Run Away to Mars' by TALK", "'Dial Drunk' by Noah Kahan & Post Malone"], ["'Creepin' by Metro Boomin, The Weeknd & 21 Savage", "'Kill Bill' by SZA", "'Players' by Coi Leray", "'Sure Thing' by Miguel", "'Paint The Town Red' by Doja Cat"], ["'I'm Good (Blue)' by David Guetta & Bebe Rexha'", "'Whitney' by Rêve", "'Bloody Mary' by Lady Gaga", "'TRUSTFALL' by P!nk", "'Next To You' by Loud Luxury & DVBBS ft. Kane Brown"], ["'Take My Name' by Parmalee", "'Thank God' by Kane Brown & Katelyn Brown", "'Last Night' by Morgan Wallen", "'Fast Car' by Luke Combs", "'Need A Favor' by Jelly Roll"]];
 let question2songs = [["'Flowers Need Rain' by Preston Pablo & Banx & Ranx", "'Until I Found You' by Stephen Sanchez", "'Take My Name' by Parmalee", "'Die For You' by The Weeknd", "'Thank God' by Kane Brown & Katelyn Brown'"], ["'I Like You (A Happier Song) by Post Malone & Doja Cat", "'How Do I Say Goodbye' by Dean Lewis", "'Waffle House' by Jonas Brothers", "'Fast Car' by Luke Combs", "'In The Stars' by Benson Boone"], ["'Victoria's Secret' by Jax", "'Made You Look' by Meghan Trainor", "'Who I Am' by Wyn Starks", "'Single Soon' by Selena Gomez", "'Keep Going Up' by Timbaland, Nelly Furtado & Justin Timberlake"], ["'Daylight' by Shinedown", "'Love Me Like I Am' by for KING & COUNTRY & Jordin Sparks", "'Nobody Gets Me' by SZA", "'Thank God I Do' by Lauren Daigle", "'Dial Drunk' by Noah Kahan & Post Malone"]];
-let question3songs = [["'Wish You The Best' by Lewis Capaldi"], ["'Forget Me' by Lewis Capaldi", "'Love Again' by The Kid LAROI", "'Nobody Gets Me' by SZA"], ["'Kill Bill' by SZA"], []];
+let question3songs = [["'Seeing Someone Else' by Ingrid Andress", "'mine' by Kelly Clarkson", "'Wish You The Best' by Lewis Capaldi", "'I Don't Miss You' by JP Saxe", "'Single Soon' by Selena Gomez"], ["'Forget Me' by Lewis Capaldi", "'Love Again' by The Kid LAROI", "'Nobody Gets Me' by SZA", "'I'll Be Waiting' by Cian Ducrot", "'bad idea right?' by Olivia Rodrigo"], ["'Miss You' by Oliver Tree & Robin Schulz", "'Kill Bill' by SZA", "'Last Night' by Morgan Wallen", "'That's Not How This Works' by Charlie Puth ft. Dan + Shay", "'Jaded' by Miley Cyrus"], []];
+let question4songs = [["'Forget Me' by Lewis Capaldi", "'Eyes Closed' by Ed Sheeran", "'A Symptom Of Being Human' by Shinedown", "'Waffle House' by Jonas Brothers", "'Mona Lisa' by Dominic Fike"], ["'Creepin' by Metro Boomin, The Weeknd & 21 Savage", "'Flowers' by Miley Cyrus", "'Kill Bill' by SZA", "'Escapism.' by RAYE & 070 Shake", "'Players' by Coi Leray"], ["'I'm Good (Blue)' by David Guetta & Bebe Rexha", "'Unholy' by Sam Smith & Kim Petras", "'Jaded' by Miley Cyrus", "'Cruel Summer' by Taylor Swift", "'vampire' by Olivia Rodrigo"], []];
 
-let choice1songs = [question1songs[0]];
-let choice2songs = [question1songs[1]];
-let choice3songs = [question1songs[2]];
-let choice4songs = [question1songs[3]];
+let choice1songs = [question1songs[0], question2songs[0], question3songs[0], question4songs[0]];
+let choice2songs = [question1songs[1], question2songs[1], question3songs[1], question4songs[1]];
+let choice3songs = [question1songs[2], question2songs[2], question3songs[2], question4songs[2]];
+let choice4songs = [question1songs[3], question2songs[3], question3songs[3], question4songs[3]];
+
 let songs = [choice1songs, choice2songs, choice3songs, choice4songs]; //possibly incorporate 2D array here???
 
 let startText;
