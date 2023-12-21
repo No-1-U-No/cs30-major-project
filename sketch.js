@@ -8,10 +8,7 @@
 // Changes to proposal.md must be discussed with Mr. Schellenberg
 
 let questionScreen = 0;
-
-let questionsArray = [];
-
-let colours;
+let colours = ["red", "blue", "green", "purple"];
 
 let questionList = ["Which of these is your favourite genre of music?", "Which kind of love song is your favourite?", "How did you feel after your last breakup?", "How do you like to listen to music?", "Which is your favourite Midnights song?", `Which is your favourite ${"Midnights".italics()} song?`];
 let choice1list = ["Pop, rock, indie or alternative", "Songs about a significant other", "I accepted that we weren't meant to be", "Radio", "Anti-Hero"];
@@ -24,13 +21,29 @@ let question2songs = [["'Flowers Need Rain' by Preston Pablo & Banx & Ranx", "'U
 let question3songs = [["'Seeing Someone Else' by Ingrid Andress", "'mine' by Kelly Clarkson", "'Wish You The Best' by Lewis Capaldi", "'I Don't Miss You' by JP Saxe", "'Single Soon' by Selena Gomez"], ["'Forget Me' by Lewis Capaldi", "'Love Again' by The Kid LAROI", "'Nobody Gets Me' by SZA", "'I'll Be Waiting' by Cian Ducrot", "'bad idea right?' by Olivia Rodrigo"], ["'Miss You' by Oliver Tree & Robin Schulz", "'Kill Bill' by SZA", "'Last Night' by Morgan Wallen", "'That's Not How This Works' by Charlie Puth ft. Dan + Shay", "'Jaded' by Miley Cyrus"], []];
 let question4songs = [["'Forget Me' by Lewis Capaldi", "'Eyes Closed' by Ed Sheeran", "'A Symptom Of Being Human' by Shinedown", "'Waffle House' by Jonas Brothers", "'Mona Lisa' by Dominic Fike"], ["'Creepin' by Metro Boomin, The Weeknd & 21 Savage", "'Flowers' by Miley Cyrus", "'Kill Bill' by SZA", "'Escapism.' by RAYE & 070 Shake", "'Players' by Coi Leray"], ["'I'm Good (Blue)' by David Guetta & Bebe Rexha", "'Unholy' by Sam Smith & Kim Petras", "'Jaded' by Miley Cyrus", "'Cruel Summer' by Taylor Swift", "'vampire' by Olivia Rodrigo"], []];
 let question5songs = [["'Anti-Hero' by Taylor Swift"], ["'Lavender Haze' by Taylor Swift"], ["'Karma' by Taylor Swift"], ["'Cruel Summer' by Taylor Swift", "'The Alcott' by The National ft. Taylor Swift", "'Is It Over Now?' by Taylor Swift"]];
+let question6songs = [[], [], [], []];
+let question7songs = [[], [], [], []];
+let question8songs = [[], [], [], []];
+let question9songs = [[], [], [], []];
+let question10songs = [[], [], [], []];
+let question11songs = [[], [], [], []];
+let question12songs = [[], [], [], []];
+let question13songs = [[], [], [], []];
+let question14songs = [[], [], [], []];
+let question15songs = [[], [], [], []];
+let question16songs = [[], [], [], []];
+let question17songs = [[], [], [], []];
+let question18songs = [[], [], [], []];
+let question19songs = [[], [], [], []];
+let question20songs = [[], [], [], []];
 
-let choice1songs = [question1songs[0], question2songs[0], question3songs[0], question4songs[0]];
-let choice2songs = [question1songs[1], question2songs[1], question3songs[1], question4songs[1]];
-let choice3songs = [question1songs[2], question2songs[2], question3songs[2], question4songs[2]];
-let choice4songs = [question1songs[3], question2songs[3], question3songs[3], question4songs[3]];
+let choice1songs = [question1songs[0], question2songs[0], question3songs[0], question4songs[0], question5songs[0], question6songs[0], question7songs[0], question8songs[0], question9songs[0], question10songs[0], question11songs[0], question12songs[0], question13songs[0], question14songs[0], question15songs[0], question16songs[0], question17songs[0], question18songs[0], question19songs[0], question20songs[0]];
+let choice2songs = [question1songs[1], question2songs[1], question3songs[1], question4songs[1], question5songs[1], question6songs[1], question7songs[1], question8songs[1], question9songs[1], question10songs[1], question11songs[1], question12songs[1], question13songs[1], question14songs[1], question15songs[1], question16songs[1], question17songs[1], question18songs[1], question19songs[1], question20songs[1]];
+let choice3songs = [question1songs[2], question2songs[2], question3songs[2], question4songs[2], question5songs[2], question6songs[2], question7songs[2], question8songs[2], question9songs[2], question10songs[2], question11songs[2], question12songs[2], question13songs[2], question14songs[2], question15songs[2], question16songs[2], question17songs[2], question18songs[2], question19songs[2], question20songs[2]];
+let choice4songs = [question1songs[3], question2songs[3], question3songs[3], question4songs[3], question5songs[3], question6songs[3], question7songs[3], question8songs[3], question9songs[3], question10songs[3], question11songs[3], question12songs[3], question13songs[3], question14songs[3], question15songs[3], question16songs[3], question17songs[3], question18songs[3], question19songs[3], question20songs[3]];
 
-let songs = [choice1songs, choice2songs, choice3songs, choice4songs]; //possibly incorporate 2D array here???
+let questionsArray = [];
+let userChoices = [];
 
 let startText;
 
@@ -57,8 +70,6 @@ let total4selected = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  
-  colours = random(["red", "blue", "green", "purple"]);
 
   startText = {
     x: 0,
@@ -188,7 +199,7 @@ function draw() {
 
   if (questionScreen > 0) {
     questions();
-    console.log(colours);
+    console.log(total1selected, total2selected, total3selected, total4selected);
   }
 }
 
@@ -223,9 +234,24 @@ class Question {
   }
 
   question(questionText) {
-    noStroke();
-    fill(colours);
     textSize((questionWidth + questionHeight)/15);
+    noStroke();
+    
+    if (questionScreen % 4 === 1) {
+      fill(colours[0]);
+    }
+
+    else if (questionScreen % 4 === 2) {
+      fill(colours[1]);
+    }
+
+    else if (questionScreen % 4 === 3) {
+      fill(colours[2]);
+    }
+
+    else {
+      fill(colours[3]);
+    }
     
     rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
     fill("white");
@@ -233,8 +259,23 @@ class Question {
   }
 
   choice1(choice1text) {
-    fill(colours);
     textSize((choicesWidth + choicesHeight)/15);
+    
+    if (questionScreen % 4 === 1) {
+      fill(colours[0]);
+    }
+
+    else if (questionScreen % 4 === 2) {
+      fill(colours[1]);
+    }
+
+    else if (questionScreen % 4 === 3) {
+      fill(colours[2]);
+    }
+
+    else {
+      fill(colours[3]);
+    }
 
     if (choice2selected || choice3selected || choice4selected) {
       fill(180);
@@ -246,7 +287,22 @@ class Question {
   }
 
   choice2(choice2text) {
-    fill(colours);
+    
+    if (questionScreen % 4 === 1) {
+      fill(colours[0]);
+    }
+
+    else if (questionScreen % 4 === 2) {
+      fill(colours[1]);
+    }
+
+    else if (questionScreen % 4 === 3) {
+      fill(colours[2]);
+    }
+
+    else {
+      fill(colours[3]);
+    }
 
     if (choice1selected || choice3selected || choice4selected) {
       fill(180);
@@ -258,7 +314,22 @@ class Question {
   }
 
   choice3(choice3text) {
-    fill(colours);
+    
+    if (questionScreen % 4 === 1) {
+      fill(colours[0]);
+    }
+
+    else if (questionScreen % 4 === 2) {
+      fill(colours[1]);
+    }
+
+    else if (questionScreen % 4 === 3) {
+      fill(colours[2]);
+    }
+
+    else {
+      fill(colours[3]);
+    }
 
     if (choice1selected || choice2selected || choice4selected) {
       fill(180);
@@ -270,7 +341,22 @@ class Question {
   }
 
   choice4(choice4text) {
-    fill(colours);
+    
+    if (questionScreen % 4 === 1) {
+      fill(colours[0]);
+    }
+
+    else if (questionScreen % 4 === 2) {
+      fill(colours[1]);
+    }
+
+    else if (questionScreen % 4 === 3) {
+      fill(colours[2]);
+    }
+
+    else {
+      fill(colours[3]);
+    }
 
     if (choice1selected || choice2selected || choice3selected) {
       fill(180);
@@ -438,32 +524,31 @@ function mousePressed() {
     }
 
     questionScreen--;
-    newColour();
   }
 
   if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
     if (choice1selected) {
+      userChoices.push(choice1songs[questionScreen-1]);
       total1selected++;
       questionScreen++;
-      newColour();
     }
     
     else if (choice2selected) {
+      userChoices.push(choice2songs[questionScreen-1]);
       total2selected++;
       questionScreen++;
-      newColour();
     }
 
     else if (choice3selected) {
+      userChoices.push(choice3songs[questionScreen-1]);
       total3selected++;
       questionScreen++;
-      newColour();
     }
 
     else if (choice4selected) {
+      userChoices.push(choice4songs[questionScreen-1]);
       total4selected++;
       questionScreen++;
-      newColour();
     }
     
     else if (!mobile()) {
@@ -480,8 +565,24 @@ function mousePressed() {
 
 function mouseReleased() {
   if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && mobile()) {
+    // following if statements incorrect
+    if (choice1selected) {
+      choice1selected += 0.5;
+    }
+
+    else if (choice2selected) {
+      choice2selected += 0.5;
+    }
+
+    else if (choice3selected) {
+      choice3selected += 0.5;
+    }
+
+    else if (choice4selected) {
+      choice4selected += 0.5;
+    }
+
     questionScreen += 0.5;
-    newColour();
   }
 }
 
@@ -513,8 +614,4 @@ function questions() {
   question.choice4(choice4list[questionScreen-1]);
   question.back();
   question.next();
-}
-
-function newColour() {
-  colours = random(["red", "blue", "green", "purple"]);
 }
