@@ -43,7 +43,8 @@ let choice3songs = [question1songs[2], question2songs[2], question3songs[2], que
 let choice4songs = [question1songs[3], question2songs[3], question3songs[3], question4songs[3], question5songs[3], question6songs[3], question7songs[3], question8songs[3], question9songs[3], question10songs[3], question11songs[3], question12songs[3], question13songs[3], question14songs[3], question15songs[3], question16songs[3], question17songs[3], question18songs[3], question19songs[3], question20songs[3]];
 
 let questionsArray = [];
-let userChoices = [];
+let choicesArray = [];
+let songs = [];
 
 let startText;
 
@@ -199,7 +200,6 @@ function draw() {
 
   if (questionScreen > 0) {
     questions();
-    console.log(total1selected, total2selected, total3selected, total4selected);
   }
 }
 
@@ -507,47 +507,31 @@ function keyPressed() {
 
 function mousePressed() {
   if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
-    if (total1selected > 0) {
-      total1selected--;
-    }
-
-    else if (total2selected > 0) {
-      total2selected--;
-    }
-
-    else if (total3selected > 0) {
-      total3selected--;
-    }
-
-    else if (total4selected > 0) {
-      total4selected--;
-    }
-
     questionScreen--;
   }
 
   if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
     if (choice1selected) {
-      userChoices.push(choice1songs[questionScreen-1]);
-      total1selected++;
+      songs.push(choice1songs[questionScreen-1]);
+      choicesArray.push(1);
       questionScreen++;
     }
     
     else if (choice2selected) {
-      userChoices.push(choice2songs[questionScreen-1]);
-      total2selected++;
+      songs.push(choice2songs[questionScreen-1]);
+      choicesArray.push(2);
       questionScreen++;
     }
 
     else if (choice3selected) {
-      userChoices.push(choice3songs[questionScreen-1]);
-      total3selected++;
+      songs.push(choice3songs[questionScreen-1]);
+      choicesArray.push(3);
       questionScreen++;
     }
 
     else if (choice4selected) {
-      userChoices.push(choice4songs[questionScreen-1]);
-      total4selected++;
+      songs.push(choice4songs[questionScreen-1]);
+      choicesArray.push(4);
       questionScreen++;
     }
     
@@ -565,24 +549,16 @@ function mousePressed() {
 
 function mouseReleased() {
   if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && mobile()) {
-    // following if statements incorrect
-    if (choice1selected) {
-      choice1selected += 0.5;
-    }
-
-    else if (choice2selected) {
-      choice2selected += 0.5;
-    }
-
-    else if (choice3selected) {
-      choice3selected += 0.5;
-    }
-
-    else if (choice4selected) {
-      choice4selected += 0.5;
-    }
-
+    evenChoices();
     questionScreen += 0.5;
+  }
+}
+
+function evenChoices() {
+  for (let i = questionScreen-1; i < choicesArray.length; i++) {
+    if (i !== choicesArray.length) {
+      choicesArray.pop();
+    }
   }
 }
 
