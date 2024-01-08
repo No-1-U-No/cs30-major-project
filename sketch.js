@@ -5,39 +5,38 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-// Changes to proposal.md must be discussed with Mr. Schellenberg
-
 const TOTAL_QUESTIONS = 20;
 
 let questionScreen = 0;
+let mostSelected = 0;
 let colours = ["red", "blue", "green", "purple"];
 
-let questionList = [`How do you like to listen to music the most?`, `When do you like to listen to music the most?`, `What kind of instrument do you play?`, `How do you feel about singing?`, `Where do most of your favourite artists originate from?`, `Which decade of music is your favourite?`, `Which of these is your favourite genre of music?`, `Which of these is your favourite genre of music?`, `Which movie soundtrack has the best songs?`, `Which kind of love song is your favourite?`, `How did you feel after your last breakup?`, `What are your opinions on music and TikTok?`, `Pick a Midnights song`, `Pick a Harry's House song`, `Pick a timeless song`, `Pick a boy band`, `Pick a Canadian superstar`, `Which 2023 song do you find the most overplayed?`, `Which of those songs can you not get enough of?`, `Are you excited to see your result?`];
-let choice1list = [`Radio`, `Waking up in the morning`, `Brass`, `I love singing, and I can do it well!`, `Canada`, `'60s or '70s`, `Pop or rock`, `Hip-hop or rap`, `Top Gun: Maverick`, `Songs about a significant other`, `I accepted that we weren't meant to be`, `I'm all for TikTokers' songs!`, `Anti-Hero`, `As It Was`, `"Best of My Love" by the Emotions`, `BTS`, `Avril Lavigne`, `"Creepin'" by Metro Boomin, The Weeknd & 21 Savage`, `Creepin'`, `I need to see it asap!!!`];
-let choice2list = [`Streaming`, `Whenever I need a short break`, `Chordophone`, `I love singing, even though I kind of stink`, `Nigeria`, `'80s or '90s`, `Indie or alternative`, `R&B or soul`, `Spider-Man: Across the Spider-Verse`, `Songs about family and/or friends`, `I wish we were still together`, `I love seeing old songs go viral!`, `Lavender Haze`, `Late Night Talking`, `"Blue (Da Ba Dee)" by Eiffel 65`, `*NSYNC`, `Justin Bieber`, `"Flowers" by Miley Cyrus`, `Flowers`, `Yesss! Tell me the truth!`];
-let choice3list = [`Concerts and live performances`, `Whenever I need a positivity booster`, `Percussion`, `Sometimes I hate the way my voice sounds`, `South Korea`, `2000s or 2010s`, `Dance or electronic`, `Afrobeats`, `Barbie`, `Self-love songs`, `I was disappointed and upset`, `TikTok ruins songs`, `Karma`, `Satellite`, `"I Don't Wanna Know" by Mario Winans ft. Enya & P. Diddy`, `One Direction`, `Shawn Mendes`, `"Kill Bill" by SZA`, `Kill Bill`, `I doubt it'll be correct, but sure`];
-let choice4list = [`Movies`, `Falling asleep at night`, `Woodwind`, `I'm better at rapping`, `UK`, `2020s`, `Country`, `K-Pop`, `Trolls Band Together`, `Songs about someone who loves me when I don't love myself as much`, `I've never had a breakup :)`, `I prefer organic hits`, `I prefer indie Taylor`, `Ehhh... I prefer Niall`, `Don't know any of those, but I like older songs`, `I much prefer girl groups`, `The Weeknd`, `"Calm Down" by Rema & Selena Gomez`, `Calm Down`, `I don't wanna know`];
+let questionList = ["How do you like to listen to music the most?", "When do you like to listen to music the most?", "What kind of instrument do you play?", "How do you feel about singing?", "Where do most of your favourite artists originate from?", "Which decade of music is your favourite?", "Which of these is your favourite genre of music?", "Which of these is your favourite genre of music?", "Which movie soundtrack has the best songs?", "Which kind of love song is your favourite?", "How did you feel after your last breakup?", "What are your opinions on music and TikTok?", "Pick a Midnights song", "Pick a Harry's House song", "Pick a timeless song", "Pick a boy band", "Pick a Canadian superstar", "Which 2023 song do you find the most overplayed?", "Which of those songs can you not get enough of?", "Are you excited to see your result?"];
+let choice1list = ["Radio", "Waking up in the morning", "Brass", "I love singing, and I can do it well!", "Canada", "'60s or '70s", "Pop or rock", "Hip-hop or rap", "Top Gun: Maverick", "Songs about a significant other", "I accepted that we weren't meant to be", "I'm all for TikTokers' songs!", "Anti-Hero", "As It Was", "\"Best of My Love\" by the Emotions", "BTS", "Avril Lavigne", "\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage", "Creepin'", "I need to see it asap!!!"];
+let choice2list = ["Streaming", "Whenever I need a short break", "Chordophone", "I love singing, even though I kind of stink", "Nigeria", "'80s or '90s", "Indie or alternative", "R&B or soul", "Spider-Man: Across the Spider-Verse", "Songs about family and/or friends", "I wish we were still together", "I love seeing old songs go viral!", "Lavender Haze", "Late Night Talking", "\"Blue (Da Ba Dee)\" by Eiffel 65", "*NSYNC", "Justin Bieber", "\"Flowers\" by Miley Cyrus", "Flowers", "Yesss! Tell me the truth!"];
+let choice3list = ["Concerts and live performances", "Whenever I need a positivity booster", "Percussion", "Sometimes I hate the way my voice sounds", "South Korea", "2000s or 2010s", "Dance or electronic", "Afrobeats", "Barbie", "Self-love songs", "I was disappointed and upset", "TikTok ruins songs", "Karma", "Satellite", "\"I Don't Wanna Know\" by Mario Winans ft. Enya & P. Diddy", "One Direction", "Shawn Mendes", "\"Kill Bill\" by SZA", "Kill Bill", "I doubt it'll be correct, but sure"];
+let choice4list = ["Movies", "Falling asleep at night", "Woodwind", "I'm better at rapping", "UK", "2020s", "Country", "K-Pop", "Trolls Band Together", "Songs about someone who loves me when I don't love myself as much", "I've never had a breakup :)", "I prefer organic hits", "I prefer indie Taylor", "Ehhh... I prefer Niall", "Don't know any of those, but I like older songs", "I much prefer girl groups", "The Weeknd", "\"Calm Down\" by Rema & Selena Gomez", "Calm Down", "I don't wanna know"];
 
-let question1songs = [`"Forget Me" by Lewis Capaldi`, `"Daylight" by David Kushner`, `"Jaded" by Miley Cyrus`, `"Dance The Night" by Dua Lipa`];
-let question2songs = [`"Unstoppable" by Sia`, `"Lil Boo Thang" by Paul Russell`, `"I'm Good (Blue)" by David Guetta & Bebe Rexha`, `"Thank God I Do" by Lauren Daigle`];
-let question3songs = [`"Lil Boo Thang" by Paul Russell`, `"Thank God I Do" by Lauren Daigle`, `"Kill Bill" by SZA`, `"Lavender Haze" by Taylor Swift`];
-let question4songs = [`"Dance The Night" by Dua Lipa`, `"WHAT THE HELL ARE WE DYING FOR ?" by Shawn Mendes`, `"Flowers" by Miley Cyrus`, `"Mona Lisa" by Dominic Fike`];
-let question5songs = [`"Die For You" by The Weeknd`, `"Calm Down" by Rema & Selena Gomez`, `"Cupid (Twin Ver.)" by FIFTY FIFTY`, `"As It Was" by Harry Styles`];
-let question6songs = [`"Until I Found You" by Stephen Sanchez`, `"Forget Me" by Lewis Capaldi`, `"Fast Car" by Luke Combs`, `"Daylight" by David Kushner`];
-let question7songs = [`"Flowers" by Miley Cyrus`, `"The Alcott" by The National ft. Taylor Swift`, `"I'm Good (Blue)" by David Guetta & Bebe Rexha`, `"Fast Car" by Luke Combs`];
-let question8songs = [`"Mona Lisa" by Dominic Fike`, `"Kill Bill" by SZA`, `"Calm Down" by Rema & Selena Gomez`, `"Cupid (Twin Ver.)" by FIFTY FIFTY`];
-let question9songs = [`"I Ain't Worried" by OneRepublic`, `"Mona Lisa" by Dominic Fike`, `"Dance The Night" by Dua Lipa`, `"Better Place" by *NSYNC`];
-let question10songs = [`"Until I Found You" by Stephen Sanchez`, `"Fast Car" by Luke Combs`, `"Unstoppable" by Sia`, `"Thank God I Do" by Lauren Daigle`];
-let question11songs = [`"Flowers" by Miley Cyrus`, `"Forget Me" by Lewis Capaldi`, `"Jaded" by Miley Cyrus`, `"Heaven" by Niall Horan`];
-let question12songs = [`"Daylight" by David Kushner`, `"Unstoppable" by Sia`, `"Anti-Hero" by Taylor Swift`, `"Heaven" by Niall Horan`];
-let question13songs = [`"Anti-Hero" by Taylor Swift`, `"Lavender Haze" by Taylor Swift`, `"Karma" by Taylor Swift`, `"The Alcott" by The National ft. Taylor Swift`];
-let question14songs = [`"As It Was" by Harry Styles`, `"Late Night Talking" by Harry Styles`, `"Satellite" by Harry Styles`, `"Heaven" by Niall Horan`];
-let question15songs = [`"Lil Boo Thang" by Paul Russell`, `"I'm Good (Blue)" by David Guetta & Bebe Rexha`, `"Creepin''" by Metro Boomin, The Weeknd & 21 Savage`, `"Lavender Haze" by Taylor Swift`];
-let question16songs = [`"Seven" by Jung Kook & Latto`, `"Better Place" by *NSYNC`, `"As It Was" by Harry Styles`, `"Cupid (Twin Ver.)" by FIFTY FIFTY`];
-let question17songs = [`"I'm a Mess" by Avril Lavigne with YUNGBLUD`, `"Better Place" by *NSYNC`, `"WHAT THE HELL ARE WE DYING FOR ?" by Shawn Mendes`, `"Die For You" by The Weeknd`];
-let question18songs = [`"Die For You" by The Weeknd`, `"Jaded" by Miley Cyrus`, `"Karma" by Taylor Swift`, `"Until I Found You" by Stephen Sanchez`];
-let question19songs = [`"Creepin''" by Metro Boomin, The Weeknd & 21 Savage`, `"Flowers" by Miley Cyrus`, `"Kill Bill" by SZA`, `"Calm Down" by Rema & Selena Gomez`];
-let question20songs = [`"Karma" by Taylor Swift`, `"The Alcott" by The National ft. Taylor Swift`, `"Anti-Hero" by Taylor Swift`, `"Creepin'" by Metro Boomin, The Weeknd & 21 Savage`];
+let question1songs = ["\"Forget Me\" by Lewis Capaldi", "\"Daylight\" by David Kushner", "\"Jaded\" by Miley Cyrus", "\"Dance the Night\" by Dua Lipa"];
+let question2songs = ["\"Unstoppable\" by Sia", "\"Lil Boo Thang\" by Paul Russell", "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha", "\"Thank God I Do\" by Lauren Daigle"];
+let question3songs = ["\"Lil Boo Thang\" by Paul Russell", "\"Thank God I Do\" by Lauren Daigle", "\"Kill Bill\" by SZA", "\"Lavender Haze\" by Taylor Swift"];
+let question4songs = ["\"Dance the Night\" by Dua Lipa", "\"What the Hell Are We Dying For?\" by Shawn Mendes", "\"Flowers\" by Miley Cyrus", "\"Mona Lisa\" by Dominic Fike"];
+let question5songs = ["\"Die for You\" by The Weeknd", "\"Calm Down\" by Rema & Selena Gomez", "\"Cupid\" by FIFTY FIFTY", "\"As It Was\" by Harry Styles"];
+let question6songs = ["\"Until I Found You\" by Stephen Sanchez", "\"Forget Me\" by Lewis Capaldi", "\"Fast Car\" by Luke Combs", "\"Daylight\" by David Kushner"];
+let question7songs = ["\"Flowers\" by Miley Cyrus", "\"The Alcott\" by The National ft. Taylor Swift", "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha", "\"Fast Car\" by Luke Combs"];
+let question8songs = ["\"Mona Lisa\" by Dominic Fike", "\"Kill Bill\" by SZA", "\"Calm Down\" by Rema & Selena Gomez", "\"Cupid\" by FIFTY FIFTY"];
+let question9songs = ["\"I Ain't Worried\" by OneRepublic", "\"Mona Lisa\" by Dominic Fike", "\"Dance the Night\" by Dua Lipa", "\"Better Place\" by *NSYNC"];
+let question10songs = ["\"Until I Found You\" by Stephen Sanchez", "\"Fast Car\" by Luke Combs", "\"Unstoppable\" by Sia", "\"Thank God I Do\" by Lauren Daigle"];
+let question11songs = ["\"Flowers\" by Miley Cyrus", "\"Forget Me\" by Lewis Capaldi", "\"Jaded\" by Miley Cyrus", "\"Heaven\" by Niall Horan"];
+let question12songs = ["\"Daylight\" by David Kushner", "\"Unstoppable\" by Sia", "\"Anti-Hero\" by Taylor Swift", "\"Heaven\" by Niall Horan"];
+let question13songs = ["\"Anti-Hero\" by Taylor Swift", "\"Lavender Haze\" by Taylor Swift", "\"Karma\" by Taylor Swift", "\"The Alcott\" by The National ft. Taylor Swift"];
+let question14songs = ["\"As It Was\" by Harry Styles", "\"Late Night Talking\" by Harry Styles", "\"Satellite\" by Harry Styles", "\"Heaven\" by Niall Horan"];
+let question15songs = ["\"Lil Boo Thang\" by Paul Russell", "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha", "\"Creepin''\" by Metro Boomin, The Weeknd & 21 Savage", "\"Lavender Haze\" by Taylor Swift"];
+let question16songs = ["\"Seven\" by Jung Kook & Latto", "\"Better Place\" by *NSYNC", "\"As It Was\" by Harry Styles", "\"Cupid\" by FIFTY FIFTY"];
+let question17songs = ["\"I'm a Mess\" by Avril Lavigne with YUNGBLUD", "\"Better Place\" by *NSYNC", "\"What the Hell Are We Dying For?\" by Shawn Mendes", "\"Die for You\" by The Weeknd"];
+let question18songs = ["\"Die for You\" by The Weeknd", "\"Jaded\" by Miley Cyrus", "\"Karma\" by Taylor Swift", "\"Until I Found You\" by Stephen Sanchez"];
+let question19songs = ["\"Creepin''\" by Metro Boomin, The Weeknd & 21 Savage", "\"Flowers\" by Miley Cyrus", "\"Kill Bill\" by SZA", "\"Calm Down\" by Rema & Selena Gomez"];
+let question20songs = ["\"Karma\" by Taylor Swift", "\"The Alcott\" by The National ft. Taylor Swift", "\"Anti-Hero\" by Taylor Swift", "\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage"];
 
 let choice1songs = [question1songs[0], question2songs[0], question3songs[0], question4songs[0], question5songs[0], question6songs[0], question7songs[0], question8songs[0], question9songs[0], question10songs[0], question11songs[0], question12songs[0], question13songs[0], question14songs[0], question15songs[0], question16songs[0], question17songs[0], question18songs[0], question19songs[0], question20songs[0]];
 let choice2songs = [question1songs[1], question2songs[1], question3songs[1], question4songs[1], question5songs[1], question6songs[1], question7songs[1], question8songs[1], question9songs[1], question10songs[1], question11songs[1], question12songs[1], question13songs[1], question14songs[1], question15songs[1], question16songs[1], question17songs[1], question18songs[1], question19songs[1], question20songs[1]];
@@ -48,61 +47,42 @@ let questionsArray = [];
 let choicesArray = [];
 let choicesSelected = new Map();
 
-let startText;
-
 let question;
-
+let startText;
 let questionX, questionY, questionWidth, questionHeight, questionSize;
-
-let choices1and3x, choices2and4x;
-let choices1and2y, choices3and4y;
-let choicesWidth, choicesHeight;
-let choicesSize;
-
-let backX, nextX;
-let backNextY, backNextWidth, backNextHeight;
-let backNextSize;
-
-let lower;
-
+let choices1and3x, choices2and4x, choices1and2y, choices3and4y, choicesWidth, choicesHeight, choicesSize;
+let backX, nextX, backNextY, backNextWidth, backNextHeight, backNextSize;
+let lowerText;
 let choice1selected, choice2selected, choice3selected, choice4selected;
-
-let total1selected = 0;
-let total2selected = 0;
-let total3selected = 0;
-let total4selected = 0;
-
-let ah, aiw, al, bp, cd, cr, cu, da, dfy, dtn, fc, fl, fm, he, igb, ja, ka, kb, lbt, lh, ml, tgid, un, uify, wthawdf;
-
-let mostSelected = 0;
+let ah, aiw, al, bp, cd, cr, cu, da, dfy, dtn, fc, fl, fm, he, igb, ja, ka, kb, lbt, lh, ml, tgid, uify, un, wthawdf;
 let jam;
 
 function preload() {
-  ah = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/0V3wPSX9ygBnCm8psDIegu" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  aiw = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/4Dvkj6JhhA12EX05fT7y2e" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  al = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/6INztpNwOTlfSKTuPo0HOP" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  bp = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/1bHnRc60O1N0l3PbHjaKyK" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  cd = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/0WtM2NBVQNNJLh6scP13H8" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  cr = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/2dHHgzDwk4BJdRwy9uXhTO" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  cu = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/7FbrGaHYVDmfr7KoLIZnQ7" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  da = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/1odExI7RdWc4BT515LTAwj" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  dfy = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/2Ch7LmS7r2Gy2kc64wv3Bz" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  dtn = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/11C4y2Yz1XbHmaQwO06s9f" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  fc = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/1Lo0QY9cvc8sUB2vnIOxDT" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  fl = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/7DSAEUvxU8FajXtRloy8M0" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  fm = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/3iHzKA9HlXf5wsGdsrsnSA" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  he = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/5FQ77Cl1ndljtwwImdtjMy" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  igb = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/4uUG5RXrOk84mYEfFvj3cK" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  ja = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/0LbZLBBZI1NfaDgb4dx0UD" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  ka = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/7KokYm8cMIXCsGVmUvKtqf" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  kb = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/3OHfY25tqY28d16oZczHc8" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  lbt = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/0cVyQfDyRnMJ0V3rjjdlU3" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  lh = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/5jQI2r1RdgtuT8S3iG8zFC" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  ml = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/37CoOXIsgF3NzbK1zHZetk" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  tgid = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/2rpZ2T8xOiDnn5VpYXvwIC" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  un = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/1yvMUkIOTeUNtNWlWRgANS" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  uify = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/0T5iIrXA4p5GsubkhuBIKV" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
-  wthawdf = createDiv('<iframe style="border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%" src="https://open.spotify.com/embed/track/1sKtD5KMZgTFHbsxjgqfZh" width="60%" height="100%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>').hide();
+  ah = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/0V3wPSX9ygBnCm8psDIegu' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  aiw = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/4Dvkj6JhhA12EX05fT7y2e' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  al = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/6INztpNwOTlfSKTuPo0HOP' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  bp = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/1bHnRc60O1N0l3PbHjaKyK' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  cd = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/0WtM2NBVQNNJLh6scP13H8' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  cr = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/2dHHgzDwk4BJdRwy9uXhTO' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  cu = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/7FbrGaHYVDmfr7KoLIZnQ7' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  da = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/1odExI7RdWc4BT515LTAwj' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  dfy = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/2Ch7LmS7r2Gy2kc64wv3Bz' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  dtn = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/11C4y2Yz1XbHmaQwO06s9f' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  fc = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/1Lo0QY9cvc8sUB2vnIOxDT' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  fl = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/7DSAEUvxU8FajXtRloy8M0' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  fm = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/3iHzKA9HlXf5wsGdsrsnSA' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  he = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/5FQ77Cl1ndljtwwImdtjMy' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  igb = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/4uUG5RXrOk84mYEfFvj3cK' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  ja = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/0LbZLBBZI1NfaDgb4dx0UD' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  ka = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/7KokYm8cMIXCsGVmUvKtqf' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  kb = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/3OHfY25tqY28d16oZczHc8' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  lbt = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/0cVyQfDyRnMJ0V3rjjdlU3' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  lh = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/5jQI2r1RdgtuT8S3iG8zFC' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  ml = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/37CoOXIsgF3NzbK1zHZetk' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  tgid = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/2rpZ2T8xOiDnn5VpYXvwIC' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  uify = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/0T5iIrXA4p5GsubkhuBIKV' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  un = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/1yvMUkIOTeUNtNWlWRgANS' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
+  wthawdf = createDiv("<iframe style='border-radius:12px; display:block; margin:auto; position:fixed; top:30%; left:20%' src='https://open.spotify.com/embed/track/1sKtD5KMZgTFHbsxjgqfZh' width='60%' height='100%' frameBorder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
 }
 
 function setup() {
@@ -115,7 +95,7 @@ function setup() {
     h: height,
     size: map(5, 0, 100, 0, width),
     description: "Welcome! This quiz will tell you what 2023 song is your jam. Have fun! Press Enter to begin.",
-    lower: map(75.5, 0, 100, 0, height),
+    lowerText: map(75.5, 0, 100, 0, height),
   };
 
   if (width > height) {
@@ -127,7 +107,6 @@ function setup() {
 
     backX = map(25, 0, 100, 0, width);
     backNextWidth = map(20, 0, 100, 0, width);
-
     backNextSize = 0.75*startText.size;
   }
 
@@ -140,7 +119,6 @@ function setup() {
     
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
-
     backNextSize = 2*startText.size;
   }
 
@@ -149,18 +127,16 @@ function setup() {
   questionSize = (questionWidth + questionHeight)/15;
 
   choices2and4x = map(52.5, 0, 100, 0, width);
-
   choices1and2y = map(35, 0, 100, 0, height);
   choices3and4y = map(62.5, 0, 100, 0, height);
   choicesHeight = map(22.5, 0, 100, 0, height);
   choicesSize = (choicesWidth + choicesHeight)/15;
 
   nextX = map(55, 0, 100, 0, width);
-
   backNextY = map(90, 0, 100, 0, height);
   backNextHeight = map(7.5, 0, 100, 0, height);
 
-  lower = map(0.5, 0, 100, 0, height);
+  lowerText = map(0.5, 0, 100, 0, height);
   
   mobile();
   createQuestions();
@@ -181,7 +157,7 @@ function windowResized() {
     h: height,
     size: map(5, 0, 100, 0, width),
     description: "Welcome! This quiz will tell you what 2023 song is your jam. Have fun! Press Enter to begin.",
-    lower: map(75.5, 0, 100, 0, height),
+    lowerText: map(75.5, 0, 100, 0, height),
   };
 
   if (width > height) {
@@ -193,7 +169,6 @@ function windowResized() {
 
     backX = map(25, 0, 100, 0, width);
     backNextWidth = map(20, 0, 100, 0, width);
-
     backNextSize = 0.75*startText.size;
   }
 
@@ -206,7 +181,6 @@ function windowResized() {
     
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
-
     backNextSize = 2*startText.size;
   }
 
@@ -215,18 +189,16 @@ function windowResized() {
   questionSize = (questionWidth + questionHeight)/15;
 
   choices2and4x = map(52.5, 0, 100, 0, width);
-
   choices1and2y = map(35, 0, 100, 0, height);
   choices3and4y = map(62.5, 0, 100, 0, height);
   choicesHeight = map(22.5, 0, 100, 0, height);
   choicesSize = (choicesWidth + choicesHeight)/15;
 
   nextX = map(55, 0, 100, 0, width);
-
   backNextY = map(90, 0, 100, 0, height);
   backNextHeight = map(7.5, 0, 100, 0, height);
 
-  lower = map(0.5, 0, 100, 0, height);
+  lowerText = map(0.5, 0, 100, 0, height);
 
   mobile();
   
@@ -236,7 +208,6 @@ function windowResized() {
 
 function draw() {
   background("whitesmoke");
-  
   questionScreen = Math.floor(abs(questionScreen));
   evenChoices();
 
@@ -280,7 +251,7 @@ class Question {
     this.backNextY = backNextY;
     this.backNextHeight = backNextHeight;
     
-    this.lower = lower;
+    this.lowerText = lowerText;
     
     this.backNextSize = backNextSize;
   }
@@ -307,7 +278,7 @@ class Question {
     
     rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
     fill("white");
-    text(questionText, this.questionX, this.questionY + this.lower, this.questionWidth, this.questionHeight);
+    text(questionText, this.questionX, this.questionY + this.lowerText, this.questionWidth, this.questionHeight);
   }
 
   choice1(choice1text) {
@@ -335,7 +306,7 @@ class Question {
 
     rect(this.choices1and3x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
     fill("white");
-    text(choice1text, this.choices1and3x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
+    text(choice1text, this.choices1and3x, this.choices1and2y + this.lowerText, this.choicesWidth, this.choicesHeight);
   }
 
   choice2(choice2text) {
@@ -361,7 +332,7 @@ class Question {
 
     rect(this.choices2and4x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
     fill("white");
-    text(choice2text, this.choices2and4x, this.choices1and2y + this.lower, this.choicesWidth, this.choicesHeight);
+    text(choice2text, this.choices2and4x, this.choices1and2y + this.lowerText, this.choicesWidth, this.choicesHeight);
   }
 
   choice3(choice3text) {
@@ -387,7 +358,7 @@ class Question {
 
     rect(this.choices1and3x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
     fill("white");
-    text(choice3text, this.choices1and3x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
+    text(choice3text, this.choices1and3x, this.choices3and4y + this.lowerText, this.choicesWidth, this.choicesHeight);
   }
 
   choice4(choice4text) {
@@ -413,7 +384,7 @@ class Question {
 
     rect(this.choices2and4x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
     fill("white");
-    text(choice4text, this.choices2and4x, this.choices3and4y + this.lower, this.choicesWidth, this.choicesHeight);
+    text(choice4text, this.choices2and4x, this.choices3and4y + this.lowerText, this.choicesWidth, this.choicesHeight);
   }
 
   back() {
@@ -458,7 +429,7 @@ class Question {
     }
 
     noStroke();
-    text("BACK", this.backX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
+    text("BACK", this.backX, this.backNextY + this.lowerText, this.backNextWidth, this.backNextHeight);
   }
 
   next() {
@@ -507,7 +478,7 @@ class Question {
     }
     
     noStroke();
-    text("NEXT", this.nextX, this.backNextY + this.lower, this.backNextWidth, this.backNextHeight);
+    text("NEXT", this.nextX, this.backNextY + this.lowerText, this.backNextWidth, this.backNextHeight);
   }
 
   choiceSelected() {
@@ -650,19 +621,14 @@ function evenChoices() {
   }
 }
 
-// function determineJam() {
-//   if (questionScreen > 20) {
-//     for (let song of choicesArray) {
-//       if (choicesSelected.has(song)) {
-//         choicesSelected.set(song, choicesSelected.get(song) + 1);
-//       }
-  
-//       else {
-//         choicesSelected.set(song, 1);
-//       }
-//     }
-//   }
-// }
+function determineJam() {
+  for (let song of choicesSelected.keys()) {
+    if (choicesSelected.get(song) > mostSelected) {
+      mostSelected = choicesSelected.get(song);
+      jam = song;
+    }
+  }
+}
 
 function start() {
   fill("black");
@@ -672,8 +638,6 @@ function start() {
 }
 
 function questions() {
-  clear();
-  
   question.question(questionList[questionScreen-1]);
   question.choice1(choice1list[questionScreen-1]);
   question.choice2(choice2list[questionScreen-1]);
@@ -684,15 +648,112 @@ function questions() {
 }
 
 function results() {
-  for (let song of choicesSelected.keys()) {
-    if (choicesSelected.get(song) > mostSelected) {
-      mostSelected = choicesSelected.get(song);
-      jam = song;
-    }
-  }
-
+  determineJam();
   fill("black");
   textAlign(CENTER, CENTER);
   textSize(startText.size);
-  text(`Your jam is ${jam}!`, width/2, height/8);
+  text(`Your jam is ${jam}!`, 0, 125, width);
+  embed();
+}
+
+function embed() {
+  if (jam === "\"Anti-Hero\" by Taylor Swift") {
+    ah.show();
+  }
+
+  else if (jam === "\"As It Was\" by Harry Styles") {
+    aiw.show();
+  }
+
+  else if (jam === "\"The Alcott\" by The National ft. Taylor Swift") {
+    al.show();
+  }
+
+  else if (jam === "\"Better Place\" by *NSYNC") {
+    bp.show();
+  }
+
+  else if (jam === "\"Calm Down\" by Rema & Selena Gomez") {
+    cd.show();
+  }
+
+  else if (jam === "\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage") {
+    cr.show();
+  }
+
+  else if (jam === "\"Cupid\" by FIFTY FIFTY") {
+    cu.show();
+  }
+
+  else if (jam === "\"Daylight\" by David Kushner") {
+    da.show();
+  }
+
+  else if (jam === "\"Die for You\" by The Weeknd") {
+    dfy.show();
+  }
+
+  else if (jam === "\"Dance the Night\" by Dua Lipa") {
+    dtn.show();
+  }
+
+  else if (jam === "\"Fast Car\" by Luke Combs") {
+    fc.show();
+  }
+
+  else if (jam === "\"Flowers\" by Miley Cyrus") {
+    fl.show();
+  }
+
+  else if (jam === "\"Forget Me\" by Lewis Capaldi") {
+    fm.show();
+  }
+
+  else if (jam === "\"Heaven\" by Niall Horan") {
+    he.show();
+  }
+
+  else if (jam === "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha") {
+    igb.show();
+  }
+
+  else if (jam === "\"Jaded\" by Miley Cyrus") {
+    ja.show();
+  }
+
+  else if (jam === "\"Karma\" by Taylor Swift") {
+    ka.show();
+  }
+
+  else if (jam === "\"Kill Bill\" by SZA") {
+    kb.show();
+  }
+
+  else if (jam === "\"Lil Boo Thang\" by Paul Russell") {
+    lbt.show();
+  }
+
+  else if (jam === "\"Lavender Haze\" by Taylor Swift") {
+    lh.show();
+  }
+
+  else if (jam === "\"Mona Lisa\" by Dominic Fike") {
+    ml.show();
+  }
+
+  else if (jam === "\"Thank God I Do\" by Lauren Daigle") {
+    tgid.show();
+  }
+
+  else if (jam === "\"Until I Found You\" by Stephen Sanchez") {
+    uify.show();
+  }
+
+  else if (jam === "\"Unstoppable\" by Sia") {
+    un.show();
+  }
+  
+  else if (jam === "\"What the Hell Are We Dying For?\" by Shawn Mendes") {
+    wthawdf.show();
+  }
 }
