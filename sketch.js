@@ -31,11 +31,11 @@ let question11songs = ["\"Flowers\" by Miley Cyrus", "\"Forget Me\" by Lewis Cap
 let question12songs = ["\"Daylight\" by David Kushner", "\"Unstoppable\" by Sia", "\"Anti-Hero\" by Taylor Swift", "\"Heaven\" by Niall Horan"];
 let question13songs = ["\"Anti-Hero\" by Taylor Swift", "\"Lavender Haze\" by Taylor Swift", "\"Karma\" by Taylor Swift", "\"The Alcott\" by The National ft. Taylor Swift"];
 let question14songs = ["\"As It Was\" by Harry Styles", "\"Late Night Talking\" by Harry Styles", "\"Satellite\" by Harry Styles", "\"Heaven\" by Niall Horan"];
-let question15songs = ["\"Lil Boo Thang\" by Paul Russell", "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha", "\"Creepin''\" by Metro Boomin, The Weeknd & 21 Savage", "\"Lavender Haze\" by Taylor Swift"];
+let question15songs = ["\"Lil Boo Thang\" by Paul Russell", "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha", "\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage", "\"Lavender Haze\" by Taylor Swift"];
 let question16songs = ["\"Seven\" by Jung Kook & Latto", "\"Better Place\" by *NSYNC", "\"As It Was\" by Harry Styles", "\"Cupid\" by FIFTY FIFTY"];
 let question17songs = ["\"I'm a Mess\" by Avril Lavigne with YUNGBLUD", "\"Better Place\" by *NSYNC", "\"What the Hell Are We Dying For?\" by Shawn Mendes", "\"Die for You\" by The Weeknd"];
 let question18songs = ["\"Die for You\" by The Weeknd", "\"Jaded\" by Miley Cyrus", "\"Karma\" by Taylor Swift", "\"Until I Found You\" by Stephen Sanchez"];
-let question19songs = ["\"Creepin''\" by Metro Boomin, The Weeknd & 21 Savage", "\"Flowers\" by Miley Cyrus", "\"Kill Bill\" by SZA", "\"Calm Down\" by Rema & Selena Gomez"];
+let question19songs = ["\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage", "\"Flowers\" by Miley Cyrus", "\"Kill Bill\" by SZA", "\"Calm Down\" by Rema & Selena Gomez"];
 let question20songs = ["\"Karma\" by Taylor Swift", "\"The Alcott\" by The National ft. Taylor Swift", "\"Anti-Hero\" by Taylor Swift", "\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage"];
 
 let choice1songs = [question1songs[0], question2songs[0], question3songs[0], question4songs[0], question5songs[0], question6songs[0], question7songs[0], question8songs[0], question9songs[0], question10songs[0], question11songs[0], question12songs[0], question13songs[0], question14songs[0], question15songs[0], question16songs[0], question17songs[0], question18songs[0], question19songs[0], question20songs[0]];
@@ -526,11 +526,36 @@ function keyPressed() {
 }
 
 function mousePressed() {
-  if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
+  if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && questionScreen <= TOTAL_QUESTIONS) {
     questionScreen--;
+    // ah.hide();
+    // aiw.hide();
+    // al.hide();
+    // bp.hide();
+    // cd.hide();
+    // cr.hide();
+    // cu.hide();
+    // da.hide();
+    // dfy.hide();
+    // dtn.hide();
+    // fc.hide();
+    // fl.hide();
+    // fm.hide();
+    // he.hide();
+    // igb.hide();
+    // ja.hide();
+    // ka.hide();
+    // kb.hide();
+    // lbt.hide();
+    // lh.hide();
+    // ml.hide();
+    // tgid.hide();
+    // uify.hide();
+    // un.hide();
+    // wthawdf.hide();
   }
 
-  if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
+  if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && questionScreen <= TOTAL_QUESTIONS) {
     if (choice1selected) {
       if (choicesSelected.has(choice1songs[questionScreen-1])) {
         choicesSelected.set(choice1songs[questionScreen-1], choicesSelected.get(choice1songs[questionScreen-1]) + 1);
@@ -588,7 +613,7 @@ function mousePressed() {
     }
   }
 
-  if (questionScreen > 0) {
+  if (questionScreen > 0 && questionScreen <= TOTAL_QUESTIONS) {
     for (let currentQuestion of questionsArray) {
       currentQuestion.choiceSelected();
     }
@@ -599,7 +624,7 @@ function mousePressed() {
 }
 
 function touchEnded() {
-  if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0) {
+  if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && questionScreen <= TOTAL_QUESTIONS) {
     questionScreen += 0.5;
   }
 }
@@ -618,15 +643,6 @@ function createQuestions() {
 function evenChoices() {
   for (let i = questionScreen - 1; i < choicesArray.length; i++) {
     choicesArray.pop();
-  }
-}
-
-function determineJam() {
-  for (let song of choicesSelected.keys()) {
-    if (choicesSelected.get(song) > mostSelected) {
-      mostSelected = choicesSelected.get(song);
-      jam = song;
-    }
   }
 }
 
@@ -654,6 +670,15 @@ function results() {
   textSize(startText.size);
   text(`Your jam is ${jam}!`, 0, 125, width);
   embed();
+}
+
+function determineJam() {
+  for (let song of choicesSelected.keys()) {
+    if (choicesSelected.get(song) > mostSelected) {
+      mostSelected = choicesSelected.get(song);
+      jam = song;
+    }
+  }
 }
 
 function embed() {
