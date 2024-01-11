@@ -95,7 +95,7 @@ function setup() {
     w: width,
     h: height,
     size: map(5, 0, 100, 0, width),
-    description: "Welcome! This test will tell you what 2023 song is your jam. Have fun! Press Enter to begin.",
+    text: "Welcome! This test will tell you what 2023 song is your jam. Have fun! Press Enter to begin.",
   };
 
   if (width > height) {
@@ -108,6 +108,16 @@ function setup() {
     backX = map(25, 0, 100, 0, width);
     backNextWidth = map(20, 0, 100, 0, width);
     backNextSize = 0.75*startText.size;
+
+    retakeRect = {
+      x: width/2 - map(30, 0, 100, 0, width)/2,
+      y: 0.8*height,
+      w: map(30, 0, 100, 0, width),
+      h: height/10,
+      size: map(6, 0, 100, 0, height),
+      text: "Retake test?",
+      lowerText: map(0.5, 0, 100, 0, height),
+    };
   }
 
   else {
@@ -120,6 +130,16 @@ function setup() {
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
     backNextSize = 2*startText.size;
+
+    retakeRect = {
+      x: width/2 - map(60, 0, 100, 0, width)/2,
+      y: 0.8*height,
+      w: map(60, 0, 100, 0, width),
+      h: height/10,
+      size: map(4, 0, 100, 0, height),
+      text: "Retake test?",
+      lowerText: map(0.5, 0, 100, 0, height),
+    };
   }
 
   questionY = map(5, 0, 100, 0, height);
@@ -145,16 +165,6 @@ function setup() {
   choice2selected = false;
   choice3selected = false;
   choice4selected = false;
-  
-  retakeRect = {
-    x: width/2 - map(30, 0, 100, 0, width)/2,
-    y: 0.8*height,
-    w: map(30, 0, 100, 0, width),
-    h: height/10,
-    size: map(5, 0, 100, 0, height),
-    text: "Retake test?",
-    lowerText: map(75.5, 0, 100, 0, height),
-  };
 }
 
 function windowResized() {
@@ -166,7 +176,7 @@ function windowResized() {
     w: width,
     h: height,
     size: map(5, 0, 100, 0, width),
-    description: "Welcome! This test will tell you what 2023 song is your jam. Have fun! Press Enter to begin.",
+    text: "Welcome! This test will tell you what 2023 song is your jam. Have fun! Press Enter to begin.",
   };
 
   if (width > height) {
@@ -179,6 +189,16 @@ function windowResized() {
     backX = map(25, 0, 100, 0, width);
     backNextWidth = map(20, 0, 100, 0, width);
     backNextSize = 0.75*startText.size;
+
+    retakeRect = {
+      x: width/2 - map(30, 0, 100, 0, width)/2,
+      y: 0.8*height,
+      w: map(30, 0, 100, 0, width),
+      h: height/10,
+      size: map(6, 0, 100, 0, height),
+      text: "Retake test?",
+      lowerText: map(0.5, 0, 100, 0, height),
+    };
   }
 
   else {
@@ -191,6 +211,16 @@ function windowResized() {
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
     backNextSize = 2*startText.size;
+
+    retakeRect = {
+      x: width/2 - map(60, 0, 100, 0, width)/2,
+      y: 0.8*height,
+      w: map(60, 0, 100, 0, width),
+      h: height/10,
+      size: map(4, 0, 100, 0, height),
+      text: "Retake test?",
+      lowerText: map(0.5, 0, 100, 0, height),
+    };
   }
 
   questionY = map(5, 0, 100, 0, height);
@@ -213,16 +243,6 @@ function windowResized() {
   
   questionsArray.splice(0);
   createQuestions();
-
-  retakeRect = {
-    x: width/2 - map(30, 0, 100, 0, width)/2,
-    y: 0.8*height,
-    w: map(30, 0, 100, 0, width),
-    h: height/10,
-    size: map(5, 0, 100, 0, height),
-    text: "Retake test?",
-    lowerText: map(75.5, 0, 100, 0, height),
-  };
 }
 
 function draw() {
@@ -677,7 +697,7 @@ function start() {
   fill("black");
   textAlign(CENTER, CENTER);
   textSize(startText.size);
-  text(startText.description, startText.x, startText.y, startText.w, startText.h);
+  text(startText.text, startText.x, startText.y, startText.w, startText.h);
 }
 
 function questions() {
