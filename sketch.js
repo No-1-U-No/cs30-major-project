@@ -69,46 +69,8 @@ let choice1selected, choice2selected, choice3selected, choice4selected;
 let ah, aiw, al, bp, cd, cr, cu, da, dfy, dtn, fc, fl, fm, he, igb, ja, ka, kb, lbt, lh, ml, tgid, uify, un, wthawdf;
 let jam;
 
-function preload() {
-  if (mobile()) {
-    topPercentage = 30;
-  }
-
-  else {
-    topPercentage = 35;
-  }
-
-  leftPercentage = 20;
-  widthPercentage = 60;
-  heightPercentage = 40;
-
-  // after press play, press Tab 3x, esc 2x, and it works
-  ah = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0V3wPSX9ygBnCm8psDIegu" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  aiw = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/4Dvkj6JhhA12EX05fT7y2e" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  al = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/6INztpNwOTlfSKTuPo0HOP" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  bp = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1bHnRc60O1N0l3PbHjaKyK" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  cd = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0WtM2NBVQNNJLh6scP13H8" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  cr = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/2dHHgzDwk4BJdRwy9uXhTO" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  cu = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/7FbrGaHYVDmfr7KoLIZnQ7" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  da = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1odExI7RdWc4BT515LTAwj" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  dfy = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/2Ch7LmS7r2Gy2kc64wv3Bz" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  dtn = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/11C4y2Yz1XbHmaQwO06s9f" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  fc = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1Lo0QY9cvc8sUB2vnIOxDT" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  fl = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/7DSAEUvxU8FajXtRloy8M0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  fm = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/3iHzKA9HlXf5wsGdsrsnSA" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  he = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/5FQ77Cl1ndljtwwImdtjMy" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  igb = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/4uUG5RXrOk84mYEfFvj3cK" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  ja = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0LbZLBBZI1NfaDgb4dx0UD" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  ka = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/7KokYm8cMIXCsGVmUvKtqf" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  kb = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/3OHfY25tqY28d16oZczHc8" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  lbt = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0cVyQfDyRnMJ0V3rjjdlU3" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  lh = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/5jQI2r1RdgtuT8S3iG8zFC" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  ml = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/37CoOXIsgF3NzbK1zHZetk" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  tgid = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/2rpZ2T8xOiDnn5VpYXvwIC" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  uify = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0T5iIrXA4p5GsubkhuBIKV" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  un = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1yvMUkIOTeUNtNWlWRgANS" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  wthawdf = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1sKtD5KMZgTFHbsxjgqfZh" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-}
+// function preload() {
+// }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -178,6 +140,45 @@ function setup() {
   choice2selected = false;
   choice3selected = false;
   choice4selected = false;
+
+  if (mobile()) {
+    topPercentage = 30;
+  }
+
+  else {
+    topPercentage = 35;
+  }
+
+  leftPercentage = 20;
+  widthPercentage = 60;
+  heightPercentage = 40;
+
+  // after press play, press Tab 3x, esc 2x, and it works
+  ah = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0V3wPSX9ygBnCm8psDIegu" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  aiw = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/4Dvkj6JhhA12EX05fT7y2e" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  al = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/6INztpNwOTlfSKTuPo0HOP" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  bp = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1bHnRc60O1N0l3PbHjaKyK" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  cd = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0WtM2NBVQNNJLh6scP13H8" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  cr = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/2dHHgzDwk4BJdRwy9uXhTO" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  cu = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/7FbrGaHYVDmfr7KoLIZnQ7" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  da = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1odExI7RdWc4BT515LTAwj" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  dfy = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/2Ch7LmS7r2Gy2kc64wv3Bz" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  dtn = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/11C4y2Yz1XbHmaQwO06s9f" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  fc = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1Lo0QY9cvc8sUB2vnIOxDT" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  fl = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/7DSAEUvxU8FajXtRloy8M0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  fm = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/3iHzKA9HlXf5wsGdsrsnSA" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  he = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/5FQ77Cl1ndljtwwImdtjMy" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  igb = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/4uUG5RXrOk84mYEfFvj3cK" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  ja = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0LbZLBBZI1NfaDgb4dx0UD" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  ka = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/7KokYm8cMIXCsGVmUvKtqf" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  kb = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/3OHfY25tqY28d16oZczHc8" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  lbt = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0cVyQfDyRnMJ0V3rjjdlU3" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  lh = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/5jQI2r1RdgtuT8S3iG8zFC" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  ml = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/37CoOXIsgF3NzbK1zHZetk" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  tgid = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/2rpZ2T8xOiDnn5VpYXvwIC" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  uify = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0T5iIrXA4p5GsubkhuBIKV" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  un = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1yvMUkIOTeUNtNWlWRgANS" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  wthawdf = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1sKtD5KMZgTFHbsxjgqfZh" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
 }
 
 function windowResized() {
@@ -731,6 +732,8 @@ function embed() {
   else if (jam === jams[24]) {
     wthawdf.show();
   }
+
+  // document.getElementById("defaultCanvas0").focus();
 }
 
 function retake() {
