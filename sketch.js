@@ -5,11 +5,11 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+const START_SCREEN = 0;
 const TOTAL_QUESTIONS = 20;
 
-let questionScreen = 0;
-let mostSelected = 0;
 let colours = ["red", "blue", "green", "purple"];
+let questionScreen = START_SCREEN;
 
 let questionList = ["How do you like to listen to music the most?", "When do you like to listen to music the most?", "What kind of instrument do you play?", "How do you feel about singing?", "Where do most of your favourite artists originate?", "Which decade of music is your favourite?", "Which of these is your favourite genre of music?", "Which of these is your favourite genre of music?", "Which movie soundtrack has the best songs?", "Which kind of love song is your favourite?", "How did you feel after your last breakup?", "What are your opinions on music and TikTok?", "Pick a Midnights song", "Pick a Harry's House song", "Pick a timeless song", "Pick a boy band", "Pick a Canadian superstar", "Which 2023 song do you find the most overplayed?", "Which of those songs can you not get enough of?", "Are you excited to see your result?"];
 let choice1list = ["Radio", "Waking up in the morning", "Brass", "I love singing, and I can do it well!", "Canada", "'60s or '70s", "Pop or rock", "Hip-hop or rap", "Top Gun: Maverick", "Songs about a significant other", "I accepted that we weren't meant to be", "I'm all for TikTokers' songs!", "Anti-Hero", "As It Was", "\"Best of My Love\" by the Emotions", "BTS", "Avril Lavigne", "\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage", "Creepin'", "I need to see it asap!!!"];
@@ -17,47 +17,57 @@ let choice2list = ["Streaming", "Whenever I need a short break", "Chordophone", 
 let choice3list = ["Concerts and live performances", "Whenever I need a positivity booster", "Percussion", "Sometimes I hate the way my voice sounds", "South Korea", "2000s or 2010s", "Dance or electronic", "Afrobeats", "Barbie", "Self-love songs", "I was disappointed and upset", "TikTok ruins songs", "Karma", "Satellite", "\"I Don't Wanna Know\" by Mario Winans ft. Enya & P. Diddy", "One Direction", "Shawn Mendes", "\"Kill Bill\" by SZA", "Kill Bill", "Yesss! Tell me the truth!"];
 let choice4list = ["Movies", "Falling asleep at night", "Woodwind", "I'm better at rapping", "UK", "2020s", "Country", "K-Pop", "Trolls Band Together", "Songs about someone who loves me when I don't love myself as much", "I've never had a breakup :)", "I prefer organic hits", "I prefer indie Taylor", "Ehhh... I prefer Niall", "Don't know any of those, but I like older songs", "I much prefer girl groups", "The Weeknd", "\"Calm Down\" by Rema & Selena Gomez", "Calm Down", "I doubt it'll be correct, but sure"];
 
-let question1songs = ["\"Forget Me\" by Lewis Capaldi", "\"Daylight\" by David Kushner", "\"Fast Car\" by Luke Combs", "\"Dance the Night\" by Dua Lipa"];
-let question2songs = ["\"Unstoppable\" by Sia", "\"Lil Boo Thang\" by Paul Russell", "\"Flowers\" by Miley Cyrus", "\"Thank God I Do\" by Lauren Daigle"];
-let question3songs = ["\"Lil Boo Thang\" by Paul Russell", "\"Thank God I Do\" by Lauren Daigle", "\"Kill Bill\" by SZA", "\"Lavender Haze\" by Taylor Swift"];
-let question4songs = ["\"Dance the Night\" by Dua Lipa", "\"What the Hell Are We Dying For?\" by Shawn Mendes", "\"Jaded\" by Miley Cyrus", "\"Mona Lisa\" by Dominic Fike"];
-let question5songs = ["\"Die for You\" by The Weeknd", "\"Calm Down\" by Rema & Selena Gomez", "\"Cupid\" by FIFTY FIFTY", "\"As It Was\" by Harry Styles"];
-let question6songs = ["\"Until I Found You\" by Stephen Sanchez", "\"Forget Me\" by Lewis Capaldi", "\"Unstoppable\" by Sia", "\"Daylight\" by David Kushner"];
-let question7songs = ["\"Jaded\" by Miley Cyrus", "\"The Alcott\" by The National ft. Taylor Swift", "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha", "\"Fast Car\" by Luke Combs"];
-let question8songs = ["\"Mona Lisa\" by Dominic Fike", "\"Kill Bill\" by SZA", "\"Calm Down\" by Rema & Selena Gomez", "\"Cupid\" by FIFTY FIFTY"];
-let question9songs = ["\"I Ain't Worried\" by OneRepublic", "\"Mona Lisa\" by Dominic Fike", "\"Dance the Night\" by Dua Lipa", "\"Better Place\" by *NSYNC"];
-let question10songs = ["\"Until I Found You\" by Stephen Sanchez", "\"Fast Car\" by Luke Combs", "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha", "\"Thank God I Do\" by Lauren Daigle"];
-let question11songs = ["\"Flowers\" by Miley Cyrus", "\"Forget Me\" by Lewis Capaldi", "\"What the Hell Are We Dying For?\" by Shawn Mendes", "\"Heaven\" by Niall Horan"];
-let question12songs = ["\"Daylight\" by David Kushner", "\"Unstoppable\" by Sia", "\"Anti-Hero\" by Taylor Swift", "\"Heaven\" by Niall Horan"];
-let question13songs = ["\"Anti-Hero\" by Taylor Swift", "\"Lavender Haze\" by Taylor Swift", "\"Karma\" by Taylor Swift", "\"The Alcott\" by The National ft. Taylor Swift"];
-let question14songs = ["\"As It Was\" by Harry Styles", "\"Late Night Talking\" by Harry Styles", "\"Satellite\" by Harry Styles", "\"Heaven\" by Niall Horan"];
-let question15songs = ["\"Lil Boo Thang\" by Paul Russell", "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha", "\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage", "\"Lavender Haze\" by Taylor Swift"];
-let question16songs = ["\"Seven\" by Jung Kook & Latto", "\"Better Place\" by *NSYNC", "\"As It Was\" by Harry Styles", "\"Cupid\" by FIFTY FIFTY"];
-let question17songs = ["\"I'm a Mess\" by Avril Lavigne with YUNGBLUD", "\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage", "\"What the Hell Are We Dying For?\" by Shawn Mendes", "\"Die for You\" by The Weeknd"];
-let question18songs = ["\"Die for You\" by The Weeknd", "\"Jaded\" by Miley Cyrus", "\"Karma\" by Taylor Swift", "\"Until I Found You\" by Stephen Sanchez"];
-let question19songs = ["\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage", "\"Flowers\" by Miley Cyrus", "\"Kill Bill\" by SZA", "\"Calm Down\" by Rema & Selena Gomez"];
-let question20songs = ["\"Karma\" by Taylor Swift", "\"Better Place\" by *NSYNC", "\"The Alcott\" by The National ft. Taylor Swift", "\"Anti-Hero\" by Taylor Swift"];
+let mostSelected = 0;
+let jams = ["\"Anti-Hero\" by Taylor Swift", "\"As It Was\" by Harry Styles", "\"The Alcott\" by The National ft. Taylor Swift", "\"Better Place\" by *NSYNC", "\"Calm Down\" by Rema & Selena Gomez", "\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage", "\"Cupid\" by FIFTY FIFTY", "\"Daylight\" by David Kushner", "\"Die for You\" by The Weeknd", "\"Dance the Night\" by Dua Lipa", "\"Fast Car\" by Luke Combs", "\"Flowers\" by Miley Cyrus", "\"Forget Me\" by Lewis Capaldi", "\"Heaven\" by Niall Horan", "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha", "\"Jaded\" by Miley Cyrus", "\"Karma\" by Taylor Swift", "\"Kill Bill\" by SZA", "\"Lil Boo Thang\" by Paul Russell", "\"Lavender Haze\" by Taylor Swift", "\"Mona Lisa\" by Dominic Fike", "\"Thank God I Do\" by Lauren Daigle", "\"Until I Found You\" by Stephen Sanchez", "\"Unstoppable\" by Sia", "\"What the Hell Are We Dying For?\" by Shawn Mendes"];
+let extras = ["\"I'm a Mess\" by Avril Lavigne with YUNGBLUD", "\"I Ain't Worried\" by OneRepublic", "\"Late Night Talking\" by Harry Styles", "\"Satellite\" by Harry Styles", "\"Seven\" by Jung Kook & Latto"];
+
+let question1songs = [jams[12], jams[7], jams[10], jams[9]];
+let question2songs = [jams[23], jams[18], jams[11], jams[21]];
+let question3songs = [jams[18], jams[21], jams[17], jams[19]];
+let question4songs = [jams[9], jams[24], jams[15], jams[20]];
+let question5songs = [jams[8], jams[4], jams[6], jams[1]];
+let question6songs = [jams[22], jams[12], jams[23], jams[7]];
+let question7songs = [jams[15], jams[2], jams[14], jams[10]];
+let question8songs = [jams[20], jams[17], jams[4], jams[6]];
+let question9songs = [extras[1], jams[20], jams[9], jams[3]];
+let question10songs = [jams[22], jams[10], jams[14], jams[21]];
+let question11songs = [jams[11], jams[12], jams[24], jams[13]];
+let question12songs = [jams[7], jams[23], jams[0], jams[13]];
+let question13songs = [jams[0], jams[19], jams[16], jams[2]];
+let question14songs = [jams[1], extras[2], extras[3], jams[13]];
+let question15songs = [jams[18], jams[14], jams[5], jams[19]];
+let question16songs = [extras[4], jams[3], jams[1], jams[6]];
+let question17songs = [extras[0], jams[5], jams[24], jams[8]];
+let question18songs = [jams[8], jams[15], jams[16], jams[22]];
+let question19songs = [jams[5], jams[11], jams[17], jams[4]];
+let question20songs = [jams[16], jams[3], jams[2], jams[0]];
 
 let choice1songs = [question1songs[0], question2songs[0], question3songs[0], question4songs[0], question5songs[0], question6songs[0], question7songs[0], question8songs[0], question9songs[0], question10songs[0], question11songs[0], question12songs[0], question13songs[0], question14songs[0], question15songs[0], question16songs[0], question17songs[0], question18songs[0], question19songs[0], question20songs[0]];
 let choice2songs = [question1songs[1], question2songs[1], question3songs[1], question4songs[1], question5songs[1], question6songs[1], question7songs[1], question8songs[1], question9songs[1], question10songs[1], question11songs[1], question12songs[1], question13songs[1], question14songs[1], question15songs[1], question16songs[1], question17songs[1], question18songs[1], question19songs[1], question20songs[1]];
 let choice3songs = [question1songs[2], question2songs[2], question3songs[2], question4songs[2], question5songs[2], question6songs[2], question7songs[2], question8songs[2], question9songs[2], question10songs[2], question11songs[2], question12songs[2], question13songs[2], question14songs[2], question15songs[2], question16songs[2], question17songs[2], question18songs[2], question19songs[2], question20songs[2]];
 let choice4songs = [question1songs[3], question2songs[3], question3songs[3], question4songs[3], question5songs[3], question6songs[3], question7songs[3], question8songs[3], question9songs[3], question10songs[3], question11songs[3], question12songs[3], question13songs[3], question14songs[3], question15songs[3], question16songs[3], question17songs[3], question18songs[3], question19songs[3], question20songs[3]];
 
-let questionsArray = [];
-let choicesArray = [];
-let choicesSelected = new Map();
+let selectedOrder = [];
+let selectedCount = new Map();
 
+let questionsArray = [];
 let question;
-let startText;
+
+let topPercentage, leftPercentage, widthPercentage, heightPercentage;
+
+let questionIndex, lastSelected, lastTouch, currentChoice;
+
+let startText, endText;
+
 let questionX, questionY, questionWidth, questionHeight, questionSize;
 let choices1and3x, choices2and4x, choices1and2y, choices3and4y, choicesWidth, choicesHeight, choicesSize;
 let backX, nextX, backNextY, backNextWidth, backNextHeight, backNextSize;
 let lowerText;
+
 let choice1selected, choice2selected, choice3selected, choice4selected;
+
 let ah, aiw, al, bp, cd, cr, cu, da, dfy, dtn, fc, fl, fm, he, igb, ja, ka, kb, lbt, lh, ml, tgid, uify, un, wthawdf;
 let jam;
-let topPercentage, leftPercentage, widthPercentage, heightPercentage;
-let retakeRect;
 
 function preload() {
   if (mobile()) {
@@ -72,31 +82,32 @@ function preload() {
   widthPercentage = 60;
   heightPercentage = 40;
 
-  ah = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/0V3wPSX9ygBnCm8psDIegu" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  aiw = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/4Dvkj6JhhA12EX05fT7y2e" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  al = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/6INztpNwOTlfSKTuPo0HOP" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  bp = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/1bHnRc60O1N0l3PbHjaKyK" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  cd = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/0WtM2NBVQNNJLh6scP13H8" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  cr = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/2dHHgzDwk4BJdRwy9uXhTO" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  cu = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/7FbrGaHYVDmfr7KoLIZnQ7" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  da = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/1odExI7RdWc4BT515LTAwj" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  dfy = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/2Ch7LmS7r2Gy2kc64wv3Bz" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  dtn = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/11C4y2Yz1XbHmaQwO06s9f" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  fc = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/1Lo0QY9cvc8sUB2vnIOxDT" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  fl = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/7DSAEUvxU8FajXtRloy8M0" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  fm = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/3iHzKA9HlXf5wsGdsrsnSA" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  he = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/5FQ77Cl1ndljtwwImdtjMy" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  igb = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/4uUG5RXrOk84mYEfFvj3cK" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  ja = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/0LbZLBBZI1NfaDgb4dx0UD" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  ka = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/7KokYm8cMIXCsGVmUvKtqf" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  kb = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/3OHfY25tqY28d16oZczHc8" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  lbt = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/0cVyQfDyRnMJ0V3rjjdlU3" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  lh = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/5jQI2r1RdgtuT8S3iG8zFC" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  ml = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/37CoOXIsgF3NzbK1zHZetk" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  tgid = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/2rpZ2T8xOiDnn5VpYXvwIC" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  uify = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/0T5iIrXA4p5GsubkhuBIKV" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  un = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/1yvMUkIOTeUNtNWlWRgANS" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
-  wthawdf = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%" src="https://open.spotify.com/embed/track/1sKtD5KMZgTFHbsxjgqfZh" width="${widthPercentage}%" height="${heightPercentage}%" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  // after press play, press Tab 3x, esc 2x, and it works
+  ah = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0V3wPSX9ygBnCm8psDIegu" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  aiw = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/4Dvkj6JhhA12EX05fT7y2e" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  al = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/6INztpNwOTlfSKTuPo0HOP" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  bp = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1bHnRc60O1N0l3PbHjaKyK" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  cd = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0WtM2NBVQNNJLh6scP13H8" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  cr = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/2dHHgzDwk4BJdRwy9uXhTO" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  cu = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/7FbrGaHYVDmfr7KoLIZnQ7" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  da = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1odExI7RdWc4BT515LTAwj" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  dfy = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/2Ch7LmS7r2Gy2kc64wv3Bz" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  dtn = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/11C4y2Yz1XbHmaQwO06s9f" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  fc = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1Lo0QY9cvc8sUB2vnIOxDT" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  fl = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/7DSAEUvxU8FajXtRloy8M0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  fm = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/3iHzKA9HlXf5wsGdsrsnSA" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  he = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/5FQ77Cl1ndljtwwImdtjMy" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  igb = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/4uUG5RXrOk84mYEfFvj3cK" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  ja = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0LbZLBBZI1NfaDgb4dx0UD" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  ka = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/7KokYm8cMIXCsGVmUvKtqf" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  kb = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/3OHfY25tqY28d16oZczHc8" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  lbt = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0cVyQfDyRnMJ0V3rjjdlU3" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  lh = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/5jQI2r1RdgtuT8S3iG8zFC" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  ml = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/37CoOXIsgF3NzbK1zHZetk" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  tgid = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/2rpZ2T8xOiDnn5VpYXvwIC" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  uify = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/0T5iIrXA4p5GsubkhuBIKV" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  un = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1yvMUkIOTeUNtNWlWRgANS" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
+  wthawdf = createDiv(`<iframe style="display: block; margin: auto; position: fixed; top: ${topPercentage}%; left: ${leftPercentage}%; width: ${widthPercentage}%; height: ${heightPercentage}%" src="https://open.spotify.com/embed/track/1sKtD5KMZgTFHbsxjgqfZh" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`).hide();
 }
 
 function setup() {
@@ -111,6 +122,15 @@ function setup() {
     text: "Welcome! This test will tell you what 2023 song is your jam. Have fun! Press Enter to begin.",
   };
 
+  endText = {
+    x: startText.x,
+    y1: map(15, 0, 100, 0, height),
+    y2: map(85, 0, 100, 0, height),
+    w: startText.w,
+    size: startText.size,
+    text: "Thanks for taking the test! Not satisfied with your result? Press Enter to do it again.",
+  };
+
   if (width > height) {
     questionX = map(25, 0, 100, 0, width);
     questionWidth = map(50, 0, 100, 0, width);
@@ -120,17 +140,7 @@ function setup() {
 
     backX = map(25, 0, 100, 0, width);
     backNextWidth = map(20, 0, 100, 0, width);
-    backNextSize = 0.75*startText.size;
-
-    retakeRect = {
-      x: width/2 - map(30, 0, 100, 0, width)/2,
-      y: 0.8*height,
-      w: map(30, 0, 100, 0, width),
-      h: height/10,
-      size: map(6, 0, 100, 0, height),
-      text: "Retake test?",
-      lowerText: map(0.5, 0, 100, 0, height),
-    };
+    backNextSize = 0.625*startText.size;
   }
 
   else {
@@ -143,27 +153,17 @@ function setup() {
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
     backNextSize = 2*startText.size;
-
-    retakeRect = {
-      x: width/2 - map(60, 0, 100, 0, width)/2,
-      y: 0.8*height,
-      w: map(60, 0, 100, 0, width),
-      h: height/10,
-      size: map(4, 0, 100, 0, height),
-      text: "Retake test?",
-      lowerText: map(0.5, 0, 100, 0, height),
-    };
   }
 
   questionY = map(5, 0, 100, 0, height);
   questionHeight = map(25, 0, 100, 0, height);
-  questionSize = (questionWidth + questionHeight)/15;
+  questionSize = (questionWidth + questionHeight)/16;
 
   choices2and4x = map(52.5, 0, 100, 0, width);
   choices1and2y = map(35, 0, 100, 0, height);
   choices3and4y = map(62.5, 0, 100, 0, height);
   choicesHeight = map(22.5, 0, 100, 0, height);
-  choicesSize = (choicesWidth + choicesHeight)/15;
+  choicesSize = (choicesWidth + choicesHeight)/16;
 
   nextX = map(55, 0, 100, 0, width);
   backNextY = map(90, 0, 100, 0, height);
@@ -192,6 +192,15 @@ function windowResized() {
     text: "Welcome! This test will tell you what 2023 song is your jam. Have fun! Press Enter to begin.",
   };
 
+  endText = {
+    x: startText.x,
+    y1: map(15, 0, 100, 0, height),
+    y2: map(85, 0, 100, 0, height),
+    w: startText.w,
+    size: startText.size,
+    text: "Thanks for taking the test! Not satisfied with your result? Press Enter to do it again.",
+  };
+
   if (width > height) {
     questionX = map(25, 0, 100, 0, width);
     questionWidth = map(50, 0, 100, 0, width);
@@ -201,17 +210,7 @@ function windowResized() {
 
     backX = map(25, 0, 100, 0, width);
     backNextWidth = map(20, 0, 100, 0, width);
-    backNextSize = 0.75*startText.size;
-
-    retakeRect = {
-      x: width/2 - map(30, 0, 100, 0, width)/2,
-      y: 0.8*height,
-      w: map(30, 0, 100, 0, width),
-      h: height/10,
-      size: map(6, 0, 100, 0, height),
-      text: "Retake test?",
-      lowerText: map(0.5, 0, 100, 0, height),
-    };
+    backNextSize = 0.625*startText.size;
   }
 
   else {
@@ -224,27 +223,17 @@ function windowResized() {
     backX = map(5, 0, 100, 0, width);
     backNextWidth = map(40, 0, 100, 0, width);
     backNextSize = 2*startText.size;
-
-    retakeRect = {
-      x: width/2 - map(60, 0, 100, 0, width)/2,
-      y: 0.8*height,
-      w: map(60, 0, 100, 0, width),
-      h: height/10,
-      size: map(4, 0, 100, 0, height),
-      text: "Retake test?",
-      lowerText: map(0.5, 0, 100, 0, height),
-    };
   }
 
   questionY = map(5, 0, 100, 0, height);
   questionHeight = map(25, 0, 100, 0, height);
-  questionSize = (questionWidth + questionHeight)/15;
+  questionSize = (questionWidth + questionHeight)/16;
 
   choices2and4x = map(52.5, 0, 100, 0, width);
   choices1and2y = map(35, 0, 100, 0, height);
   choices3and4y = map(62.5, 0, 100, 0, height);
   choicesHeight = map(22.5, 0, 100, 0, height);
-  choicesSize = (choicesWidth + choicesHeight)/15;
+  choicesSize = (choicesWidth + choicesHeight)/16;
 
   nextX = map(55, 0, 100, 0, width);
   backNextY = map(90, 0, 100, 0, height);
@@ -253,17 +242,15 @@ function windowResized() {
   lowerText = map(0.5, 0, 100, 0, height);
 
   mobile();
-  
   questionsArray.splice(0);
   createQuestions();
 }
 
 function draw() {
   background("whitesmoke");
-  questionScreen = Math.floor(abs(questionScreen));
-  evenChoices();
+  indexes();
 
-  if (questionScreen === 0) {
+  if (questionScreen === START_SCREEN) {
     start();
   }
 
@@ -279,257 +266,200 @@ function draw() {
 class Question {
   constructor() {
     this.questionX = questionX;
-    this.questionWidth = questionWidth;
-
-    this.choices1and3x = choices1and3x;
-    this.choicesWidth = choicesWidth;
-
-    this.backX = backX;
-    this.backNextWidth = backNextWidth;
-
     this.questionY = questionY;
+    this.questionWidth = questionWidth;
     this.questionHeight = questionHeight;
     this.questionSize = questionSize;
 
+    this.choices1and3x = choices1and3x;
     this.choices2and4x = choices2and4x;
-
     this.choices1and2y = choices1and2y;
     this.choices3and4y = choices3and4y;
+    this.choicesWidth = choicesWidth;
     this.choicesHeight = choicesHeight;
     this.choicesSize = choicesSize;
 
+    this.backX = backX;
     this.nextX = nextX;
-
     this.backNextY = backNextY;
+    this.backNextWidth = backNextWidth;
     this.backNextHeight = backNextHeight;
+    this.backNextSize = backNextSize;
     
     this.lowerText = lowerText;
-    
-    this.backNextSize = backNextSize;
   }
 
-  question(questionText) {
-    textSize(this.questionSize);
+  colour() {
+    if (questionScreen % 4 === 1) {
+      fill(colours[0]);
+    }
+
+    else if (questionScreen % 4 === 2) {
+      fill(colours[1]);
+    }
+
+    else if (questionScreen % 4 === 3) {
+      fill(colours[2]);
+    }
+
+    else {
+      fill(colours[3]);
+    }
+  }
+
+  question() {
     noStroke();
-    
-    if (questionScreen % 4 === 1) {
-      fill(colours[0]);
-    }
-
-    else if (questionScreen % 4 === 2) {
-      fill(colours[1]);
-    }
-
-    else if (questionScreen % 4 === 3) {
-      fill(colours[2]);
-    }
-
-    else {
-      fill(colours[3]);
-    }
-    
+    this.colour();
     rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
-    fill("white");
-    text(questionText, this.questionX, this.questionY + this.lowerText, this.questionWidth, this.questionHeight);
   }
 
-  choice1(choice1text) {
-    textSize(this.choicesSize);
-    
-    if (questionScreen % 4 === 1) {
-      fill(colours[0]);
-    }
-
-    else if (questionScreen % 4 === 2) {
-      fill(colours[1]);
-    }
-
-    else if (questionScreen % 4 === 3) {
-      fill(colours[2]);
-    }
-
-    else {
-      fill(colours[3]);
-    }
-
+  choice1() {
     if (choice2selected || choice3selected || choice4selected) {
       fill(180);
     }
 
     rect(this.choices1and3x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
-    fill("white");
-    text(choice1text, this.choices1and3x, this.choices1and2y + this.lowerText, this.choicesWidth, this.choicesHeight);
   }
 
-  choice2(choice2text) {
-    if (questionScreen % 4 === 1) {
-      fill(colours[0]);
-    }
-
-    else if (questionScreen % 4 === 2) {
-      fill(colours[1]);
-    }
-
-    else if (questionScreen % 4 === 3) {
-      fill(colours[2]);
-    }
-
-    else {
-      fill(colours[3]);
-    }
+  choice2() {
+    this.colour();
 
     if (choice1selected || choice3selected || choice4selected) {
       fill(180);
     }
 
     rect(this.choices2and4x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
-    fill("white");
-    text(choice2text, this.choices2and4x, this.choices1and2y + this.lowerText, this.choicesWidth, this.choicesHeight);
   }
 
-  choice3(choice3text) {
-    if (questionScreen % 4 === 1) {
-      fill(colours[0]);
-    }
-
-    else if (questionScreen % 4 === 2) {
-      fill(colours[1]);
-    }
-
-    else if (questionScreen % 4 === 3) {
-      fill(colours[2]);
-    }
-
-    else {
-      fill(colours[3]);
-    }
+  choice3() {
+    this.colour();
 
     if (choice1selected || choice2selected || choice4selected) {
       fill(180);
     }
 
     rect(this.choices1and3x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
-    fill("white");
-    text(choice3text, this.choices1and3x, this.choices3and4y + this.lowerText, this.choicesWidth, this.choicesHeight);
   }
 
-  choice4(choice4text) {
-    if (questionScreen % 4 === 1) {
-      fill(colours[0]);
-    }
-
-    else if (questionScreen % 4 === 2) {
-      fill(colours[1]);
-    }
-
-    else if (questionScreen % 4 === 3) {
-      fill(colours[2]);
-    }
-
-    else {
-      fill(colours[3]);
-    }
+  choice4() {
+    this.colour();
 
     if (choice1selected || choice2selected || choice3selected) {
       fill(180);
     }
 
     rect(this.choices2and4x, this.choices3and4y, this.choicesWidth, this.choicesHeight);
-    fill("white");
-    text(choice4text, this.choices2and4x, this.choices3and4y + this.lowerText, this.choicesWidth, this.choicesHeight);
   }
 
   back() {
-    textSize(this.backNextSize);
     stroke("black");
 
     // even though they look the same, this keeps the rectangle from staying black on mobile after clicking once
     if (mobile()) {
-      if (touches.length > 0) {
-        if (touches[touches.length-1].x >= this.backX && touches[touches.length-1].x <= this.backX + this.backNextWidth && touches[touches.length-1].y >= this.backNextY && touches[touches.length-1].y <= this.backNextY + this.backNextHeight) {
-          fill("black");
-          rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
-          fill("white");
-        }
-  
-        else {
-          fill("white");
-          rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
-          fill("black");
-        }
+      if (touches.length > 0 && touches[lastTouch].x >= this.backX && touches[lastTouch].x <= this.backX + this.backNextWidth && touches[lastTouch].y >= this.backNextY && touches[lastTouch].y <= this.backNextY + this.backNextHeight) {
+        fill("black");
       }
 
       else {
         fill("white");
-        rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
-        fill("black");
       }
     }
 
     else {
       if (mouseX >= this.backX && mouseX <= this.backX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight) {
         fill("black");
-        rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
-        fill("white");
       }
 
       else {
         fill("white");
-        rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
-        fill("black");
       }
     }
 
-    noStroke();
-    text("BACK", this.backX, this.backNextY + this.lowerText, this.backNextWidth, this.backNextHeight);
+    rect(this.backX, this.backNextY, this.backNextWidth, this.backNextHeight);
   }
 
   next() {
-    stroke("black");
-
     // https://dev.to/timhuang/a-simple-way-to-detect-if-browser-is-on-a-mobile-device-with-javascript-44j3
     if (mobile()) {
-      if (touches.length > 0) {
-        if (touches[touches.length-1].x >= this.nextX && touches[touches.length-1].x <= this.nextX + this.backNextWidth && touches[touches.length-1].y >= this.backNextY && touches[touches.length-1].y <= this.backNextY + this.backNextHeight && !(choice1selected || choice2selected || choice3selected || choice4selected)) {
-          fill("black");
-          rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
-          fill("white");
-        }
-
-        else {
-          fill("white");
-          rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
-          fill("black");
-        }
+      if (touches.length > 0 && touches[lastTouch].x >= this.nextX && touches[lastTouch].x <= this.nextX + this.backNextWidth && touches[lastTouch].y >= this.backNextY && touches[lastTouch].y <= this.backNextY + this.backNextHeight) {
+        fill("black");
       }
-        
+
       else {
         fill("white");
-        rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
-        fill("black");
       }
     }
     
     else {
-      if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && (choice1selected || choice2selected || choice3selected || choice4selected)) {
+      if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight) {
         fill("black");
-        rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
-        fill("white");
-      }
-  
-      else if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight && !(choice1selected || choice2selected || choice3selected || choice4selected)) {
-        rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
-        fill("white");
       }
   
       else {
         fill("white");
-        rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
-        fill("black");
       }
     }
     
+    rect(this.nextX, this.backNextY, this.backNextWidth, this.backNextHeight);
+  }
+
+  questionChoiceText(questionText, choice1text, choice2text, choice3text, choice4text) {
     noStroke();
+    fill("white");
+
+    textSize(this.questionSize);
+    text(questionText, this.questionX, this.questionY + this.lowerText, this.questionWidth, this.questionHeight);
+
+    textSize(this.choicesSize);
+    text(choice1text, this.choices1and3x, this.choices1and2y + this.lowerText, this.choicesWidth, this.choicesHeight);
+    text(choice2text, this.choices2and4x, this.choices1and2y + this.lowerText, this.choicesWidth, this.choicesHeight);
+    text(choice3text, this.choices1and3x, this.choices3and4y + this.lowerText, this.choicesWidth, this.choicesHeight);
+    text(choice4text, this.choices2and4x, this.choices3and4y + this.lowerText, this.choicesWidth, this.choicesHeight);
+
+    textSize(this.backNextSize);
+    
+    if (mobile()) {
+      if (touches.length > 0 && touches[lastTouch].x >= this.backX && touches[lastTouch].x <= this.backX + this.backNextWidth && touches[lastTouch].y >= this.backNextY && touches[lastTouch].y <= this.backNextY + this.backNextHeight) {
+        fill("white");
+      }
+
+      else {
+        fill("black");
+      }
+    }
+
+    else {
+      if (mouseX >= this.backX && mouseX <= this.backX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight) {
+        fill("white");
+      }
+
+      else {
+        fill("black");
+      }
+    }
+
+    text("BACK", this.backX, this.backNextY + this.lowerText, this.backNextWidth, this.backNextHeight);
+
+    if (mobile()) {
+      if (touches.length > 0 && touches[lastTouch].x >= this.nextX && touches[lastTouch].x <= this.nextX + this.backNextWidth && touches[lastTouch].y >= this.backNextY && touches[lastTouch].y <= this.backNextY + this.backNextHeight) {
+        fill("white");
+      }
+
+      else {
+        fill("black");
+      }
+    }
+
+    else {
+      if (mouseX >= this.nextX && mouseX <= this.nextX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight) {
+        fill("white");
+      }
+
+      else {
+        fill("black");
+      }
+    }
+
     text("NEXT", this.nextX, this.backNextY + this.lowerText, this.backNextWidth, this.backNextHeight);
   }
 
@@ -572,106 +502,69 @@ class Question {
 }
 
 function keyPressed() {
-  if (keyCode === ENTER && questionScreen === 0) {
+  if (keyCode === ENTER && questionScreen === START_SCREEN) {
     questionScreen++;
+  }
+
+  else if (keyCode === ESCAPE && questionScreen > TOTAL_QUESTIONS) {
+    retake();
   }
 }
 
 function mousePressed() {
   if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && questionScreen <= TOTAL_QUESTIONS) {
-    questionScreen--;
-
-    if (choicesSelected.get(choicesArray[questionScreen-1]) > 1) {
-      choicesSelected.set(choicesArray[questionScreen-1], choicesSelected.get(choicesArray[questionScreen-1]) - 1);
+    if (selectedCount.get(lastSelected) > 1) {
+      selectedCount.set(lastSelected, selectedCount.get(lastSelected) - 1);
     }
     
     else {
-      choicesSelected.delete(choicesArray[questionScreen-1]);
+      selectedCount.delete(lastSelected);
     }
-    
-    // ah.hide();
-    // aiw.hide();
-    // al.hide();
-    // bp.hide();
-    // cd.hide();
-    // cr.hide();
-    // cu.hide();
-    // da.hide();
-    // dfy.hide();
-    // dtn.hide();
-    // fc.hide();
-    // fl.hide();
-    // fm.hide();
-    // he.hide();
-    // igb.hide();
-    // ja.hide();
-    // ka.hide();
-    // kb.hide();
-    // lbt.hide();
-    // lh.hide();
-    // ml.hide();
-    // tgid.hide();
-    // uify.hide();
-    // un.hide();
-    // wthawdf.hide();
+
+    selectedOrder.pop();
+    questionScreen--;
   }
 
-  if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && questionScreen <= TOTAL_QUESTIONS) {
+  if (mouseX >= question.nextX && mouseX <= question.nextX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && questionScreen <= TOTAL_QUESTIONS) {        
     if (choice1selected) {
-      if (choicesSelected.has(choice1songs[questionScreen-1])) {
-        choicesSelected.set(choice1songs[questionScreen-1], choicesSelected.get(choice1songs[questionScreen-1]) + 1);
-      }
-
-      else {
-        choicesSelected.set(choice1songs[questionScreen-1], 1);
-      }
-
-      choicesArray.push(choice1songs[questionScreen-1]);
-      questionScreen++;
+      currentChoice = choice1songs[questionIndex];
     }
     
     else if (choice2selected) {
-      if (choicesSelected.has(choice2songs[questionScreen-1])) {
-        choicesSelected.set(choice2songs[questionScreen-1], choicesSelected.get(choice2songs[questionScreen-1]) + 1);
-      }
-
-      else {
-        choicesSelected.set(choice2songs[questionScreen-1], 1);
-      }
-
-      choicesArray.push(choice2songs[questionScreen-1]);
-      questionScreen++;
+      currentChoice = choice2songs[questionIndex];
     }
 
     else if (choice3selected) {
-      if (choicesSelected.has(choice3songs[questionScreen-1])) {
-        choicesSelected.set(choice3songs[questionScreen-1], choicesSelected.get(choice3songs[questionScreen-1]) + 1);
-      }
-
-      else {
-        choicesSelected.set(choice3songs[questionScreen-1], 1);
-      }
-
-      choicesArray.push(choice3songs[questionScreen-1]);
-      questionScreen++;
+      currentChoice = choice3songs[questionIndex];
     }
 
     else if (choice4selected) {
-      if (choicesSelected.has(choice4songs[questionScreen-1])) {
-        choicesSelected.set(choice4songs[questionScreen-1], choicesSelected.get(choice4songs[questionScreen-1]) + 1);
+      currentChoice = choice4songs[questionIndex];
+    }
+
+    else {
+      if (!mobile()) {
+        alert("Please select an option.");
       }
 
-      else {
-        choicesSelected.set(choice4songs[questionScreen-1], 1);
-      }
+      questionScreen--;
+    }
 
-      choicesArray.push(choice4songs[questionScreen-1]);
-      questionScreen++;
+    if (selectedCount.has(currentChoice)) {
+      selectedOrder.push(currentChoice);
+      selectedCount.set(currentChoice, selectedCount.get(currentChoice) + 1);
     }
-    
-    else if (!mobile()) {
-      alert("Please select an option.");
+
+    else if (currentChoice === undefined) {
+      selectedCount.delete(currentChoice);
     }
+
+    else {
+      selectedOrder.push(currentChoice);
+      selectedCount.set(currentChoice, 1);
+    }
+
+    questionScreen++;
   }
 
   if (questionScreen > 0 && questionScreen <= TOTAL_QUESTIONS) {
@@ -680,30 +573,24 @@ function mousePressed() {
     }
   }
 
-  console.log(choicesSelected);
-}
-
-function touchEnded() {
-  if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > 0 && questionScreen <= TOTAL_QUESTIONS) {
-    questionScreen += 0.5;
-  }
+  return false;
 }
 
 function mobile() {
-  return /Android | BlackBerry | CPU | IE Mobile | Intel | iPad | iPhone | iPod | Linux | Macintosh | Opera Mini | webOS/i.test(navigator.userAgent);
+  return /Android | CPU | IE Mobile | Intel | KFAPWI | LYF | MSIE | Opera Mini | RIM | webOS/i.test(navigator.userAgent);
 }
 
 function createQuestions() {
-  for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-    question = new Question;
-    questionsArray.push(question);
+  for (let questionCount = 0; questionCount < TOTAL_QUESTIONS; questionCount++) {
+    questionsArray.push(question = new Question);
   }
 }
 
-function evenChoices() {
-  for (let i = questionScreen - 1; i < choicesArray.length; i++) {
-    choicesArray.pop();
-  }
+function indexes() {
+  questionIndex = questionScreen - 1;
+  lastSelected = selectedOrder[questionIndex - 1];
+  lastTouch = touches.length - 1;
+  currentChoice = undefined;
 }
 
 function start() {
@@ -714,150 +601,174 @@ function start() {
 }
 
 function questions() {
-  question.question(questionList[questionScreen-1]);
-  question.choice1(choice1list[questionScreen-1]);
-  question.choice2(choice2list[questionScreen-1]);
-  question.choice3(choice3list[questionScreen-1]);
-  question.choice4(choice4list[questionScreen-1]);
+  question.colour();
+  question.question();
+  question.choice1();
+  question.choice2();
+  question.choice3();
+  question.choice4();
   question.back();
   question.next();
+  question.questionChoiceText(questionList[questionIndex], choice1list[questionIndex], choice2list[questionIndex], choice3list[questionIndex], choice4list[questionIndex]);
 }
 
 function results() {
   determineJam();
-
   fill("black");
   textAlign(CENTER, CENTER);
   textSize(startText.size);
-  text(`Your jam is ${jam}!`, 0, 125, width);
-
+  text(`Your jam is ${jam}!`, endText.x, endText.y1, endText.w);
   embed();
-  stroke("black");
-
-  if (mouseX >= retakeRect.x && mouseX <= retakeRect.x + retakeRect.w && mouseY >= retakeRect.y && mouseY <= retakeRect.y + retakeRect.h) {
-    fill("black");
-    rect(retakeRect.x, retakeRect.y, retakeRect.w, retakeRect.h);
-    fill("white");
-  }
-
-  else {
-    fill("white");
-    rect(retakeRect.x, retakeRect.y, retakeRect.w, retakeRect.h);
-    fill("black");
-  }
-
-  noStroke();
-  textSize(retakeRect.size);
-  text(retakeRect.text, retakeRect.x, retakeRect.y + retakeRect.lowerText, retakeRect.w, retakeRect.h);
+  text(endText.text, endText.x, endText.y2, endText.w);
 }
 
 function determineJam() {
-  for (let song of choicesSelected.keys()) {
-    if (choicesSelected.get(song) > mostSelected) {
-      mostSelected = choicesSelected.get(song);
+  for (let song of selectedCount.keys()) {
+    if (selectedCount.get(song) > mostSelected) {
+      mostSelected = selectedCount.get(song);
       jam = song;
     }
   }
 }
 
 function embed() {
-  if (jam === "\"Anti-Hero\" by Taylor Swift") {
+  if (jam === jams[0]) {
     ah.show();
   }
 
-  else if (jam === "\"As It Was\" by Harry Styles") {
+  else if (jam === jams[1]) {
     aiw.show();
   }
 
-  else if (jam === "\"The Alcott\" by The National ft. Taylor Swift") {
+  else if (jam === jams[2]) {
     al.show();
   }
 
-  else if (jam === "\"Better Place\" by *NSYNC") {
+  else if (jam === jams[3]) {
     bp.show();
   }
 
-  else if (jam === "\"Calm Down\" by Rema & Selena Gomez") {
+  else if (jam === jams[4]) {
     cd.show();
   }
 
-  else if (jam === "\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage") {
+  else if (jam === jams[5]) {
     cr.show();
   }
 
-  else if (jam === "\"Cupid\" by FIFTY FIFTY") {
+  else if (jam === jams[6]) {
     cu.show();
   }
 
-  else if (jam === "\"Daylight\" by David Kushner") {
+  else if (jam === jams[7]) {
     da.show();
   }
 
-  else if (jam === "\"Die for You\" by The Weeknd") {
+  else if (jam === jams[8]) {
     dfy.show();
   }
 
-  else if (jam === "\"Dance the Night\" by Dua Lipa") {
+  else if (jam === jams[9]) {
     dtn.show();
   }
 
-  else if (jam === "\"Fast Car\" by Luke Combs") {
+  else if (jam === jams[10]) {
     fc.show();
   }
 
-  else if (jam === "\"Flowers\" by Miley Cyrus") {
+  else if (jam === jams[11]) {
     fl.show();
   }
 
-  else if (jam === "\"Forget Me\" by Lewis Capaldi") {
+  else if (jam === jams[12]) {
     fm.show();
   }
 
-  else if (jam === "\"Heaven\" by Niall Horan") {
+  else if (jam === jams[13]) {
     he.show();
   }
 
-  else if (jam === "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha") {
+  else if (jam === jams[14]) {
     igb.show();
   }
 
-  else if (jam === "\"Jaded\" by Miley Cyrus") {
+  else if (jam === jams[15]) {
     ja.show();
   }
 
-  else if (jam === "\"Karma\" by Taylor Swift") {
+  else if (jam === jams[16]) {
     ka.show();
   }
 
-  else if (jam === "\"Kill Bill\" by SZA") {
+  else if (jam === jams[17]) {
     kb.show();
   }
 
-  else if (jam === "\"Lil Boo Thang\" by Paul Russell") {
+  else if (jam === jams[18]) {
     lbt.show();
   }
 
-  else if (jam === "\"Lavender Haze\" by Taylor Swift") {
+  else if (jam === jams[19]) {
     lh.show();
   }
 
-  else if (jam === "\"Mona Lisa\" by Dominic Fike") {
+  else if (jam === jams[20]) {
     ml.show();
   }
 
-  else if (jam === "\"Thank God I Do\" by Lauren Daigle") {
+  else if (jam === jams[21]) {
     tgid.show();
   }
 
-  else if (jam === "\"Until I Found You\" by Stephen Sanchez") {
+  else if (jam === jams[22]) {
     uify.show();
   }
 
-  else if (jam === "\"Unstoppable\" by Sia") {
+  else if (jam === jams[23]) {
     un.show();
   }
   
-  else if (jam === "\"What the Hell Are We Dying For?\" by Shawn Mendes") {
+  else if (jam === jams[24]) {
     wthawdf.show();
   }
+}
+
+function retake() {
+  questionScreen = START_SCREEN;
+
+  choice1selected = false;
+  choice2selected = false;
+  choice3selected = false;
+  choice4selected = false;
+
+  mostSelected = 0;
+  ah.hide();
+  aiw.hide();
+  al.hide();
+  bp.hide();
+  cd.hide();
+  cr.hide();
+  cu.hide();
+  da.hide();
+  dfy.hide();
+  dtn.hide();
+  fc.hide();
+  fl.hide();
+  fm.hide();
+  he.hide();
+  igb.hide();
+  ja.hide();
+  ka.hide();
+  kb.hide();
+  lbt.hide();
+  lh.hide();
+  ml.hide();
+  tgid.hide();
+  uify.hide();
+  un.hide();
+  wthawdf.hide();
+  jam = undefined;
+
+  selectedOrder.splice(0);
+  selectedCount.clear();
 }
