@@ -3,10 +3,24 @@
 // January 16, 2024
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+//
+// - Quiz dimensions resize well and behave slightly differently for nearly all devices; here's how to see it:
+//   - Step 1: Click Ctrl+Shift+I to inspect;
+//   - Step 2: Click Ctrl+Shift+M to toggle device toolbar;
+//   - Step 3: Click on "Dimensions: Responsive", and change "Responsive" to any device of your choice
+//   - Step 4: Changing the device sometimes zooms up on the screen (ex. changing iPad Air to iPhone XR), so refresh the page if this happens
+// - Examples of devices it works well with are all iPads and iPhone, Pixel and Samsung Galaxy mobile devices
+// - Examples of devices it doesn't work well with are BlackBerry Z30, Nest Hub, Nokia N9, and Surface Pro 7
+//
+// - After retrieving Spotify embeds for each jam, attributes were added to each song so that it could be sized and displayed better
+// - Embeds appear slightly crammed with smaller mobile devices (I believe when the width is less than 300px), but otherwise always works
+// - After adding attributes, songs stopped playing, but after removing some of Spotify's own attributes, the player functionality improved:
+//   - Example of Spotify embed: <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0V3wPSX9ygBnCm8psDIegu?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+//   - Example with my changes: <iframe style='display: block; margin: auto; position: fixed; top: 35%; left: 20%; width: 60%; height: 40%' src='https://open.spotify.com/embed/track/0V3wPSX9ygBnCm8psDIegu' frameborder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>
 
 const START_SCREEN = 0;
 const TOTAL_QUESTIONS = 20;
+
 const COLOURS = ["red", "blue", "green", "purple"];
 
 const QUESTION_LIST = ["How do you like to listen to music the most?", "When do you like to listen to music the most?", "What kind of instrument do you play?", "How do you feel about singing?", "Where do most of your favourite artists originate?", "Which decade of music is your favourite?", "Which of these is your favourite genre of music?", "Which of these is your favourite genre of music?", "Which movie soundtrack has the best songs?", "Which kind of love song is your favourite?", "How did you feel after your last breakup?", "What are your opinions on music and TikTok?", "Pick a Midnights song", "Pick a Harry's House song", "Pick a timeless song", "Pick a boy band", "Pick a Canadian superstar", "Which 2023 song do you find the most overplayed?", "Which of those songs can you not get enough of?", "Are you excited to see your result?"];
@@ -559,7 +573,7 @@ function mousePressed() {
 }
 
 function mobile() {
-  return /Android | CPU | IE Mobile | Intel | KFAPWI | LYF | MSIE | Opera Mini | RIM | webOS/i.test(navigator.userAgent);
+  return /Android | CPU | IE Mobile | Intel | KFAPWI | Linux | LYF | MSIE | Opera Mini | RIM | webOS/i.test(navigator.userAgent);
 }
 
 function createQuestions() {
