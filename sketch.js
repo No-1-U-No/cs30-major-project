@@ -29,9 +29,12 @@ const CHOICE_2_LIST = ["Streaming", "Whenever I need a short break", "Chordophon
 const CHOICE_3_LIST = ["Concerts and live performances", "Whenever I need a positivity booster", "Percussion", "Sometimes I hate the way my voice sounds", "South Korea", "2000s or 2010s", "Dance or electronic", "Afrobeats", "Barbie", "Self-love songs", "I was disappointed and upset", "TikTok ruins songs", "Karma", "Satellite", "\"I Don't Wanna Know\" by Mario Winans ft. Enya & P. Diddy", "One Direction", "Shawn Mendes", "\"Kill Bill\" by SZA", "Kill Bill", "Yesss! Tell me the truth!"];
 const CHOICE_4_LIST = ["Movies", "Falling asleep at night", "Woodwind", "I'm better at rapping", "UK", "2020s", "Country", "K-Pop", "Trolls Band Together", "Songs about someone who loves me when I don't love myself as much", "I've never had a breakup :)", "I prefer organic hits", "I prefer indie Taylor", "Ehhh... I prefer Niall", "Don't know any of those, but I like older songs", "I much prefer girl groups", "The Weeknd", "\"Calm Down\" by Rema & Selena Gomez", "Calm Down", "I doubt it'll be correct, but sure"];
 
+// "Jams" are songs that are called three times in the QUESTION_N_SONGS, so they have a chance of being your jam
+// "Extras" are songs that are called only once in the QUESTION_N_SONGS, so they have no chance of being the jam
 const JAMS = ["\"Anti-Hero\" by Taylor Swift", "\"As It Was\" by Harry Styles", "\"The Alcott\" by The National ft. Taylor Swift", "\"Better Place\" by *NSYNC", "\"Calm Down\" by Rema & Selena Gomez", "\"Creepin'\" by Metro Boomin, The Weeknd & 21 Savage", "\"Cupid\" by FIFTY FIFTY", "\"Daylight\" by David Kushner", "\"Die for You\" by The Weeknd", "\"Dance the Night\" by Dua Lipa", "\"Fast Car\" by Luke Combs", "\"Flowers\" by Miley Cyrus", "\"Forget Me\" by Lewis Capaldi", "\"Heaven\" by Niall Horan", "\"I'm Good (Blue)\" by David Guetta & Bebe Rexha", "\"Jaded\" by Miley Cyrus", "\"Karma\" by Taylor Swift", "\"Kill Bill\" by SZA", "\"Lil Boo Thang\" by Paul Russell", "\"Lavender Haze\" by Taylor Swift", "\"Mona Lisa\" by Dominic Fike", "\"Thank God I Do\" by Lauren Daigle", "\"Until I Found You\" by Stephen Sanchez", "\"Unstoppable\" by Sia", "\"What the Hell Are We Dying For?\" by Shawn Mendes"];
 const EXTRAS = ["\"I'm a Mess\" by Avril Lavigne with YUNGBLUD", "\"I Ain't Worried\" by OneRepublic", "\"Late Night Talking\" by Harry Styles", "\"Satellite\" by Harry Styles", "\"Seven\" by Jung Kook & Latto"];
 
+// Sorting songs by question; array values are choice 1, choice 2, choice 3, choice 4
 const QUESTION_1_SONGS = [JAMS[12], JAMS[7], JAMS[10], JAMS[9]];
 const QUESTION_2_SONGS = [JAMS[23], JAMS[18], JAMS[11], JAMS[21]];
 const QUESTION_3_SONGS = [JAMS[18], JAMS[21], JAMS[17], JAMS[19]];
@@ -53,34 +56,43 @@ const QUESTION_18_SONGS = [JAMS[8], JAMS[15], JAMS[16], JAMS[22]];
 const QUESTION_19_SONGS = [JAMS[5], JAMS[11], JAMS[17], JAMS[4]];
 const QUESTION_20_SONGS = [JAMS[16], JAMS[3], JAMS[2], JAMS[0]];
 
+// Sorting songs by choice; array values are question 1, question 2... up to question 20
 const CHOICE_1_SONGS = [QUESTION_1_SONGS[0], QUESTION_2_SONGS[0], QUESTION_3_SONGS[0], QUESTION_4_SONGS[0], QUESTION_5_SONGS[0], QUESTION_6_SONGS[0], QUESTION_7_SONGS[0], QUESTION_8_SONGS[0], QUESTION_9_SONGS[0], QUESTION_10_SONGS[0], QUESTION_11_SONGS[0], QUESTION_12_SONGS[0], QUESTION_13_SONGS[0], QUESTION_14_SONGS[0], QUESTION_15_SONGS[0], QUESTION_16_SONGS[0], QUESTION_17_SONGS[0], QUESTION_18_SONGS[0], QUESTION_19_SONGS[0], QUESTION_20_SONGS[0]];
 const CHOICE_2_SONGS = [QUESTION_1_SONGS[1], QUESTION_2_SONGS[1], QUESTION_3_SONGS[1], QUESTION_4_SONGS[1], QUESTION_5_SONGS[1], QUESTION_6_SONGS[1], QUESTION_7_SONGS[1], QUESTION_8_SONGS[1], QUESTION_9_SONGS[1], QUESTION_10_SONGS[1], QUESTION_11_SONGS[1], QUESTION_12_SONGS[1], QUESTION_13_SONGS[1], QUESTION_14_SONGS[1], QUESTION_15_SONGS[1], QUESTION_16_SONGS[1], QUESTION_17_SONGS[1], QUESTION_18_SONGS[1], QUESTION_19_SONGS[1], QUESTION_20_SONGS[1]];
 const CHOICE_3_SONGS = [QUESTION_1_SONGS[2], QUESTION_2_SONGS[2], QUESTION_3_SONGS[2], QUESTION_4_SONGS[2], QUESTION_5_SONGS[2], QUESTION_6_SONGS[2], QUESTION_7_SONGS[2], QUESTION_8_SONGS[2], QUESTION_9_SONGS[2], QUESTION_10_SONGS[2], QUESTION_11_SONGS[2], QUESTION_12_SONGS[2], QUESTION_13_SONGS[2], QUESTION_14_SONGS[2], QUESTION_15_SONGS[2], QUESTION_16_SONGS[2], QUESTION_17_SONGS[2], QUESTION_18_SONGS[2], QUESTION_19_SONGS[2], QUESTION_20_SONGS[2]];
 const CHOICE_4_SONGS = [QUESTION_1_SONGS[3], QUESTION_2_SONGS[3], QUESTION_3_SONGS[3], QUESTION_4_SONGS[3], QUESTION_5_SONGS[3], QUESTION_6_SONGS[3], QUESTION_7_SONGS[3], QUESTION_8_SONGS[3], QUESTION_9_SONGS[3], QUESTION_10_SONGS[3], QUESTION_11_SONGS[3], QUESTION_12_SONGS[3], QUESTION_13_SONGS[3], QUESTION_14_SONGS[3], QUESTION_15_SONGS[3], QUESTION_16_SONGS[3], QUESTION_17_SONGS[3], QUESTION_18_SONGS[3], QUESTION_19_SONGS[3], QUESTION_20_SONGS[3]];
 
 let questionScreen = START_SCREEN;
+
+// Each question is a class Question function that is stored inside the questionsArray
 let questionsArray = [];
 let question;
 
+// The array tracks the order the songs were selected in, and the map tracks how many times each song was selected
 let selectedOrder = [];
 let selectedCount = new Map();
 
+// Special indexes (stored inside indexes() function)
 let currentQuestion, lastSelected, lastTouch, currentChoice;
 
 let startText, startRect, endText, endRect;
 
+// Values for layout of question box, each choice, and back and next buttons
 let questionX, questionY, questionWidth, questionHeight, questionSize;
 let choices1and3x, choices2and4x, choices1and2y, choices3and4y, choicesWidth, choicesHeight, choicesSize;
 let backX, nextX, backNextY, backNextWidth, backNextHeight, backNextSize;
 let lowerText;
 
+// Booleans that tell you if you've currently selected a choice prior to clicking the Next button
 let choice1selected, choice2selected, choice3selected, choice4selected;
 
+// Determined at end of quiz
 let mostSelected = 0;
 let ah, aiw, al, bp, cd, cr, cu, da, dfy, dtn, fc, fl, fm, he, igb, ja, ka, kb, lbt, lh, ml, tgid, uify, un, wthawdf;
 let jam;
 
 function preload() {
+  // Spotify embeds for the 25 possible jams
   ah = createDiv("<iframe style='display: block; margin: auto; position: fixed; top: 35%; left: 20%; width: 60%; height: 40%' src='https://open.spotify.com/embed/track/0V3wPSX9ygBnCm8psDIegu' frameborder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
   aiw = createDiv("<iframe style='display: block; margin: auto; position: fixed; top: 35%; left: 20%; width: 60%; height: 40%' src='https://open.spotify.com/embed/track/4Dvkj6JhhA12EX05fT7y2e' frameborder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
   al = createDiv("<iframe style='display: block; margin: auto; position: fixed; top: 35%; left: 20%; width: 60%; height: 40%' src='https://open.spotify.com/embed/track/6INztpNwOTlfSKTuPo0HOP' frameborder='0' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>").hide();
@@ -111,6 +123,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
+  // Objects that store values for layout of start and result screens
   startText = {
     x: 0,
     y: 0,
@@ -139,14 +152,18 @@ function setup() {
   };
 
   endRect = {
-    x: width/2 - map(25, 0, 100, 0, width),
+    x: startRect.x,
     y: height/4,
-    w: map(50, 0, 100, 0, width),
+    w: startRect.w,
     h: map(7.5, 0, 100, 0, height),
     text: "RETAKE",
-    lowerText: map(0.75, 0, 100, 0, height),
+    lowerText: startRect.lowerText,
   };
 
+  // The following are affected based off screen size:
+  // - Text size of "BACK" and "NEXT"
+  // - X-coordinates of question, left-side choices and Back button
+  // - Width of everything
   if (width > height) {
     questionX = map(25, 0, 100, 0, width);
     questionWidth = map(50, 0, 100, 0, width);
@@ -171,6 +188,10 @@ function setup() {
     backNextSize = 1.25*startText.size;
   }
 
+  // The following are not affected based off screen size:
+  // - Text size of question and choices
+  // - X-coordinates of right-side choices and Next button
+  // - Y-coordinates, height, and lowering text of everything
   questionY = map(5, 0, 100, 0, height);
   questionHeight = map(25, 0, 100, 0, height);
   questionSize = (questionWidth + questionHeight)/16;
@@ -186,7 +207,8 @@ function setup() {
   backNextHeight = map(7.5, 0, 100, 0, height);
 
   lowerText = map(0.5, 0, 100, 0, height);
-  
+
+  // Detects if user is on a mobile device
   mobile();
   createQuestions();
 
@@ -197,87 +219,8 @@ function setup() {
 }
 
 function windowResized() {
-  createCanvas(windowWidth, windowHeight);
-
-  startText = {
-    x: 0,
-    y: 0,
-    w: width,
-    h: height,
-    size: (map(5, 0, 100, 0, width) + map(5, 0, 100, 0, height))/2,
-    text: "Welcome! This quiz will tell you what 2023 song is your jam. Have fun! Press Start to begin.",
-  };
-
-  startRect = {
-    x: width/2 - map(25, 0, 100, 0, width),
-    y: height/8,
-    w: map(50, 0, 100, 0, width),
-    h: map(10, 0, 100, 0, height),
-    text: "START",
-    lowerText: map(0.75, 0, 100, 0, height),
-  };
-
-  endText = {
-    x: startText.x,
-    y1: map(15, 0, 100, 0, height),
-    y2: map(85, 0, 100, 0, height),
-    w: startText.w,
-    size: startText.size,
-    text: "Thanks for taking the quiz! Not satisfied with your result? Press Retake to do it again.",
-  };
-
-  endRect = {
-    x: width/2 - map(25, 0, 100, 0, width),
-    y: height/4,
-    w: map(50, 0, 100, 0, width),
-    h: map(7.5, 0, 100, 0, height),
-    text: "RETAKE",
-    lowerText: map(0.75, 0, 100, 0, height),
-  };
-
-  if (width > height) {
-    questionX = map(25, 0, 100, 0, width);
-    questionWidth = map(50, 0, 100, 0, width);
-
-    choices1and3x = map(25, 0, 100, 0, width);
-    choicesWidth = map(22.5, 0, 100, 0, width);
-
-    backX = map(25, 0, 100, 0, width);
-    backNextWidth = map(20, 0, 100, 0, width);
-    backNextSize = 0.625*startText.size;
-  }
-
-  else {
-    questionX = map(5, 0, 100, 0, width);
-    questionWidth = map(90, 0, 100, 0, width);
-
-    choices1and3x = map(5, 0, 100, 0, width);
-    choicesWidth = map(42.5, 0, 100, 0, width);
-    
-    backX = map(5, 0, 100, 0, width);
-    backNextWidth = map(40, 0, 100, 0, width);
-    backNextSize = 1.25*startText.size;
-  }
-
-  questionY = map(5, 0, 100, 0, height);
-  questionHeight = map(25, 0, 100, 0, height);
-  questionSize = (questionWidth + questionHeight)/16;
-
-  choices2and4x = map(52.5, 0, 100, 0, width);
-  choices1and2y = map(35, 0, 100, 0, height);
-  choices3and4y = map(62.5, 0, 100, 0, height);
-  choicesHeight = map(22.5, 0, 100, 0, height);
-  choicesSize = (choicesWidth + choicesHeight)/16;
-
-  nextX = map(55, 0, 100, 0, width);
-  backNextY = map(90, 0, 100, 0, height);
-  backNextHeight = map(7.5, 0, 100, 0, height);
-
-  lowerText = map(0.5, 0, 100, 0, height);
-
-  mobile();
-  questionsArray.splice(0);
-  createQuestions();
+  // Everything defined in the setup is called again when the user resizes their screen so that the new content fits appropriately
+  setup();
 }
 
 function draw() {
@@ -324,6 +267,7 @@ class Question {
   }
 
   colour() {
+    // Ordering question screens by 1-2-3-4, the colour of the question and choices will be red-blue-green-purple
     if (questionScreen % 4 === 1) {
       fill(COLOURS[0]);
     }
@@ -346,6 +290,7 @@ class Question {
     this.colour();
     rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
 
+    // If a choice other than 1 is selected, choice 1 fills itself gray
     if (choice2selected || choice3selected || choice4selected) {
       fill(180);
     }
