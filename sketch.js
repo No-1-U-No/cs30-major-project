@@ -290,7 +290,7 @@ class Question {
     this.colour();
     rect(this.questionX, this.questionY, this.questionWidth, this.questionHeight);
 
-    // If a choice other than 1 is selected, choice 1 fills itself gray
+    // If a choice other than 1 is selected, choice 1 is filled in grey; otherwise, it keeps its colour from the colour() function
     if (choice2selected || choice3selected || choice4selected) {
       fill(180);
     }
@@ -298,6 +298,7 @@ class Question {
     rect(this.choices1and3x, this.choices1and2y, this.choicesWidth, this.choicesHeight);
     this.colour();
 
+    // Pattern from above follows for the next three choices
     if (choice1selected || choice3selected || choice4selected) {
       fill(180);
     }
@@ -337,7 +338,7 @@ class Question {
     stroke("black");
     textSize(this.backNextSize);
 
-    // even though they look the same, this keeps the rectangle from staying black on mobile after clicking once
+    // If I only used mouseX and mouseY, the buttons would stay black forever after clicking them
     if (mobile()) {
       if (touches.length > 0 && touches[lastTouch].x >= this.backX && touches[lastTouch].x <= this.backX + this.backNextWidth && touches[lastTouch].y >= this.backNextY && touches[lastTouch].y <= this.backNextY + this.backNextHeight) {
         fill("black");
@@ -352,6 +353,7 @@ class Question {
       }
     }
 
+    // If I only used touches[lastTouch].x and touches[lastTouch].y, the buttons would never turn black when hovering over or clicking them
     else {
       if (mouseX >= this.backX && mouseX <= this.backX + this.backNextWidth && mouseY >= this.backNextY && mouseY <= this.backNextY + this.backNextHeight) {
         fill("black");
@@ -370,10 +372,10 @@ class Question {
     text("BACK", this.backX, this.backNextY + this.lowerText, this.backNextWidth, this.backNextHeight);
   }
 
+  // Exact same pattern as back() function
   next() {
     stroke("black");
 
-    // https://dev.to/timhuang/a-simple-way-to-detect-if-browser-is-on-a-mobile-device-with-javascript-44j3
     if (mobile()) {
       if (touches.length > 0 && touches[lastTouch].x >= this.nextX && touches[lastTouch].x <= this.nextX + this.backNextWidth && touches[lastTouch].y >= this.backNextY && touches[lastTouch].y <= this.backNextY + this.backNextHeight) {
         fill("black");
@@ -406,7 +408,9 @@ class Question {
     text("NEXT", this.nextX, this.backNextY + this.lowerText, this.backNextWidth, this.backNextHeight);
   }
 
+  // This tells you which choice your cursor is over (and since it's called in mousePressed(), that tells you which choice you clicked on) 
   choiceSelected() {
+    // Hovering over (and in mousePressed(), tells if you're clicking on) choice 1 toggles the boolean to true while the others remain false
     if (mouseX >= this.choices1and3x && mouseX <= this.choices1and3x + this.choicesWidth && mouseY >= this.choices1and2y && mouseY <= this.choices1and2y + this.choicesHeight) {
       choice1selected = true;
       choice2selected = false;
@@ -414,6 +418,7 @@ class Question {
       choice4selected = false;
     }
 
+    // Pattern from above follows for the next three else if statements
     else if (mouseX >= this.choices2and4x && mouseX <= this.choices2and4x + this.choicesWidth && mouseY >= this.choices1and2y && mouseY <= this.choices1and2y + this.choicesHeight) {
       choice1selected = false;
       choice2selected = true;
@@ -435,6 +440,7 @@ class Question {
       choice4selected = true;
     }
 
+    // Clicking anywhere on the screen that isn't one of the choices toggles all the selected choice booleans to false
     else {
       choice1selected = false;
       choice2selected = false;
@@ -445,19 +451,24 @@ class Question {
 }
 
 function mousePressed() {
+  // Clicking the Start button begins the quiz
   if (mouseX >= startRect.x && mouseX <= startRect.x + startRect.w && mouseY >= startRect.y && mouseY <= startRect.y + startRect.h && questionScreen === START_SCREEN) {
     questionScreen++;
   }
-  
+
+  // Clicking the Back button removes the most recently selected song, since you are going back to change your answer
   if (mouseX >= question.backX && mouseX <= question.backX + question.backNextWidth && mouseY >= question.backNextY && mouseY <= question.backNextY + question.backNextHeight && questionScreen > START_SCREEN && questionScreen <= TOTAL_QUESTIONS) {
+    // If the song was already selected at least once, its selected value decreases by one
     if (selectedCount.get(lastSelected) > 1) {
       selectedCount.set(lastSelected, selectedCount.get(lastSelected) - 1);
     }
-    
+
+    // If the song was selected only once, it is deleted from the map because there is no point to track a song that has never been selected
     else {
       selectedCount.delete(lastSelected);
     }
 
+    // The last song selected always gets removed from the array that tracks the order of the song's selections
     selectedOrder.pop();
     questionScreen--;
   }
@@ -466,7 +477,7 @@ function mousePressed() {
     if (choice1selected) {
       currentChoice = CHOICE_1_SONGS[currentQuestion];
     }
-    
+
     else if (choice2selected) {
       currentChoice = CHOICE_2_SONGS[currentQuestion];
     }
@@ -518,6 +529,7 @@ function mousePressed() {
 }
 
 function mobile() {
+  // https://dev.to/timhuang/a-simple-way-to-detect-if-browser-is-on-a-mobile-device-with-javascript-44j3
   return /Android | CPU | IE Mobile | Intel | KFAPWI | Linux | LYF | MSIE | Opera Mini | RIM | webOS/i.test(navigator.userAgent);
 }
 
