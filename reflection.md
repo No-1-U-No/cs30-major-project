@@ -10,7 +10,7 @@
 
 ## What was the hardest part of the project?
 - Spotify embedding was the hardest part of the project.
-- Since the embeds are HTML, I had to relearn how to center <div> elements on the page.
+- Since the embeds are HTML, I had to relearn how to center DIV elements on the page.
 - Songs wouldn't play after I centered the embeds, so I removed two of Spotify's own attributes, and the songs could play again.
 
 ## Were there any problems I could not solve?
